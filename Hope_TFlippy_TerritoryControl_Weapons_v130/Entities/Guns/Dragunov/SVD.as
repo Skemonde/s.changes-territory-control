@@ -28,7 +28,7 @@ void onInit(CBlob@ this)
 	settings.G_BACK_T = 3; //Should we recoil the arm back time? (aim goes up, then back down with this, if > 0, how long should it last)
 
 	//Sound
-	settings.FIRE_SOUND = "Callahan_Shoot.ogg"; //Sound when shooting
+	settings.FIRE_SOUND = "DragunovaFire.ogg"; //Sound when shooting
 	settings.RELOAD_SOUND = "SniperReload.ogg"; //Sound when reloading
 
 	//Offset
