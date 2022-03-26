@@ -303,6 +303,10 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 		case Hitters::burn:
 		case Hitters::fire:
 		case HittersTC::radiation:
+		case Hitters::drown:
+		case Hitters::water:
+		case Hitters::water_stun:
+		case Hitters::water_stun_force:
 			damage = 0.00f;
 			break;
 
