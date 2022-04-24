@@ -168,17 +168,6 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-        ShopItem@ s = addShopItem(this, "Black Kitten", "$kittenblack$", "kittenblack", "A cute little kitten! Take care of it!", false, true);
-		AddRequirement(s.requirements, "coin", "", "Coins", getRandomCost(@rand, 250, 350));
-		s.spawnNothing = true;
-	}
-	{
-        
-        ShopItem@ s = addShopItem(this, "White Kitten", "$kittenwhite$", "kittenwhite", "A cute little kitten! Take care of it!", false, true);
-		AddRequirement(s.requirements, "coin", "", "Coins", getRandomCost(@rand, 250, 350));
-		s.spawnNothing = true;
-	}
-	{
 		ShopItem@ s = addShopItem(this, "Tree Seed", "$seed$", "seed", "A tree seed. Trees don't have seeds, though.");
 		AddRequirement(s.requirements, "coin", "", "Coins", 150);
 		s.spawnNothing = true;

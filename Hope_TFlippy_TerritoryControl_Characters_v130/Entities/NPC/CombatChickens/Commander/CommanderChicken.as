@@ -57,15 +57,14 @@ void onInit(CBlob@ this)
 		switch(XORRandom(6))
 		{
 			case 0:
-				gun_config = "cock19";
+				gun_config = "cock";
 				ammo_config = "mat_pistolammo";
 
 				this.set_u8("reactionTime", 0);
-				this.set_u8("attackDelay", 1);
+				this.set_u8("attackDelay", 3);
 				this.set_f32("chaseDistance", 50);
 				this.set_f32("minDistance", 0);
 				this.set_f32("maxDistance", 400);
-				this.set_bool("bomber", false);
 				this.set_f32("inaccuracy", 0.25f);
 
 				break;
@@ -77,9 +76,8 @@ void onInit(CBlob@ this)
 				this.set_u8("reactionTime", 0);
 				this.set_u8("attackDelay", 0);
 				this.set_f32("chaseDistance", 400); 
-				this.set_f32("minDistance", 0);
+				this.set_f32("minDistance", 64);
 				this.set_f32("maxDistance", 800);
-				this.set_bool("bomber", false);
 				this.set_f32("inaccuracy", 0.000f);
 
 				break;

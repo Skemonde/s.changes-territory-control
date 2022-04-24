@@ -296,3 +296,8 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 		}
 	}
 }
+
+void onDie(CBlob@ this)
+{
+	if (isServer()) server_CreateBlob("bp_energetics", this.getTeamNum(), this.getPosition());
+}

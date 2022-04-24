@@ -295,6 +295,25 @@ namespace CMap
 		tile_ironingot,
 		tile_ironingot_d0,
 		tile_ironingot_d1,
+	
+	    tile_kudzu_back = tile_goldingot + 16,
+		tile_kudzu_back_v0,
+		tile_kudzu_back_v1,
+		tile_kudzu_back_v2,
+		tile_kudzu_back_v3,
+		tile_kudzu_back_v4,
+		tile_kudzu_back_v5,
+		tile_kudzu_back_v6,
+		tile_kudzu_back_v7,
+		tile_kudzu_back_v8,
+		tile_kudzu_back_v9,
+		tile_kudzu_back_v10,
+		tile_kudzu_back_v11,
+		tile_kudzu_back_v12,
+		tile_kudzu_back_v13,
+		tile_kudzu_back_v14,
+		tile_kudzu_back_f14,
+		tile_kudzu_back_d0,
 	};
 };
 
@@ -356,6 +375,11 @@ bool isTileSnow(TileType tile)
 bool isTileSnowPile(TileType tile)
 {
 	return tile >= CMap::tile_snow_pile && tile <= CMap::tile_snow_pile_v5;
+}
+
+bool isTileBKudzu(TileType tile)
+{
+	return tile >= CMap::tile_kudzu_back && tile <= CMap::tile_kudzu_back_d0;
 }
 
 void onInit(CMap@ this)

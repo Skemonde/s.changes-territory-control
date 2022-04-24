@@ -30,15 +30,35 @@ void onInit(CBlob@ this)
 	addTokens(this); //colored shop icons
 
 	this.set_Vec2f("shop offset", Vec2f(0,0));
-	this.set_Vec2f("shop menu size", Vec2f(5, 4));
+	this.set_Vec2f("shop menu size", Vec2f(6, 4));
 	this.set_string("shop description", "Builder's Workshop");
 	this.set_u8("shop icon", 15);
 	//this.set_Vec2f("class offset", Vec2f(-6, 0));
 	//this.set_string("required class", "pus");
 
 	{
+		ShopItem@ s = addShopItem(this, "Building for Dummies", "$artisancertificate$", "artisancertificate", "Simplified Builder manuscript for those dumb peasants.", true);
+		AddRequirement(s.requirements, "coin", "", "Coins", 200);
+
+		s.spawnNothing = true;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "Engineer's Tools", "$icon_engineertools$", "engineertools", "Engineer's Tools for real engineers.", true);
+		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 4);
+		AddRequirement(s.requirements, "coin", "", "Coins", 1000);
+
+		s.spawnNothing = true;
+	}
+	{
 		ShopItem@ s = addShopItem(this, "Lantern", "$lantern$", "lantern", descriptions[9], false);
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 10);
+
+		s.spawnNothing = true;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "Jack o' Lantern", "$jackolantern$", "jackolantern", "A spooky pumpkin.", true);
+		AddRequirement(s.requirements, "blob", "lantern", "Lantern", 1);
+		AddRequirement(s.requirements, "blob", "pumpkin", "Pumpkin", 1);
 
 		s.spawnNothing = true;
 	}
@@ -103,31 +123,10 @@ void onInit(CBlob@ this)
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 75);
 
 		s.spawnNothing = true;
-	}
-	{
-		ShopItem@ s = addShopItem(this, "Jack o' Lantern", "$jackolantern$", "jackolantern", "A spooky pumpkin.", true);
-		AddRequirement(s.requirements, "blob", "lantern", "Lantern", 1);
-		AddRequirement(s.requirements, "blob", "pumpkin", "Pumpkin", 1);
-
-		s.spawnNothing = true;
-	}
-	{
-		ShopItem@ s = addShopItem(this, "Building for Dummies", "$artisancertificate$", "artisancertificate", "Simplified Builder manuscript for those dumb peasants.", true);
-		AddRequirement(s.requirements, "coin", "", "Coins", 200);
-
-		s.spawnNothing = true;
-	}
-	{
-		ShopItem@ s = addShopItem(this, "Engineer's Tools", "$icon_engineertools$", "engineertools", "Engineer's Tools for real engineers.", true);
-		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 4);
-		AddRequirement(s.requirements, "coin", "", "Coins", 1000);
-
-		s.spawnNothing = true;
-	}
+	}	
     {
-        ShopItem@ s = addShopItem(this, "Bookshelf", "$bookshelf$", "bookshelf", "Decorative bookshelf.", true);
-        AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 125);
-		AddRequirement(s.requirements, "coin", "", "Coins", 20);
+        ShopItem@ s = addShopItem(this, "Nightstand", "$nightstand$", "nightstand", "A simple nightstand.", true);
+        AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 75);
 	
 	    s.spawnNothing = true;
 	} 
@@ -136,13 +135,26 @@ void onInit(CBlob@ this)
         AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 150);
 	
 	    s.spawnNothing = true;
-	} 
+	}
     {
-        ShopItem@ s = addShopItem(this, "Nightstand", "$nightstand$", "nightstand", "A simple nightstand.", true);
-        AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 75);
+        ShopItem@ s = addShopItem(this, "Bookshelf", "$bookshelf$", "bookshelf", "Decorative bookshelf.", true);
+        AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 125);
+		AddRequirement(s.requirements, "coin", "", "Coins", 20);
 	
 	    s.spawnNothing = true;
-	} 
+	}
+	{
+		ShopItem@ s = addShopItem(this, "Gaming Chair", "$gamingchair$", "gamingchair", "A chair for true gamer.", true);
+		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 100);
+
+		s.spawnNothing = true;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "Gaming Table", "$gamingtable$", "gamingtable", "A table for true gamer.", true);
+		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 200);
+
+		s.spawnNothing = true;
+	}
 }
 
 void onChangeTeam(CBlob@ this, const int oldTeam)
@@ -158,6 +170,10 @@ void addTokens(CBlob@ this)
 
 	AddIconToken("$icon_trampoline$", "Trampoline.png", Vec2f(32, 16), 3, teamnum);
 	AddIconToken("$icon_engineertools$", "EngineerTools.png", Vec2f(16, 16), 0, teamnum);
+	AddIconToken("$chair$", "Chair.png", Vec2f(13, 17), 2, teamnum);
+	AddIconToken("$table$", "table.png", Vec2f(24, 10), 0, teamnum);
+	AddIconToken("$gamingchair$", "GamingChair.png", Vec2f(15, 18), 2, teamnum);
+	AddIconToken("$gamingtable$", "GamingTable.png", Vec2f(24, 10), 0, teamnum);	
 }
 
 void GetButtonsFor(CBlob@ this, CBlob@ caller)

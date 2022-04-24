@@ -43,7 +43,7 @@ void onInit(CBlob@ this)
 
 	if (!this.exists("CustomBullet")) this.set_string("CustomBullet", "Bullet.png");  // Default bullet image
 	if (!this.exists("CustomBulletWidth")) this.set_f32("CustomBulletWidth", 0.7f);  // Default bullet width
-	if (!this.exists("CustomBulletLength")) this.set_f32("CustomBulletLength", 3.0f); // Default bullet length
+	if (!this.exists("CustomBulletLength")) this.set_f32("CustomBulletLength", 10.0f); // Default bullet length
 
 	string vert_name = this.get_string("CustomBullet");
 	CRules@ rules = getRules();

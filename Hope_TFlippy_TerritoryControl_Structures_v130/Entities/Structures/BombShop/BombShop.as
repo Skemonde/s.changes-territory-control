@@ -55,9 +55,21 @@ void onInit(CBlob@ this)
 	}
 	{
 		ShopItem@ s = addShopItem(this, "Big Bomb (1)", "$icon_bigbomb$", "mat_bigbomb-1", "A really big bomb. Handle with care. It's indeed a large bomb.");
-		AddRequirement(s.requirements, "coin", "", "Coins", 700);
-		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 150);
-		AddRequirement(s.requirements, "blob", "mat_coal", "Coal", 50);
+		AddRequirement(s.requirements, "coin", "", "Coins", 1500);
+		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 500);
+		AddRequirement(s.requirements, "blob", "mat_coal", "Coal", 100);
+		s.customButton = true;
+		s.buttonwidth = 1;
+		s.buttonheight = 2;
+
+		s.spawnNothing = true;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "B.D. Bomb (1)", "$mat_bd$", "mat_bd-1", "Evil.");
+		AddRequirement(s.requirements, "coin", "", "Coins", 4000);
+		AddRequirement(s.requirements, "blob", "mat_mithrilenriched", "Enriched Mithril", 150);
+		AddRequirement(s.requirements, "blob", "mat_sulphur", "Sulphur", 750);
+		AddRequirement(s.requirements, "blob", "mat_mithrilingot", "Mithril Ingot", 20);
 		s.customButton = true;
 		s.buttonwidth = 1;
 		s.buttonheight = 2;

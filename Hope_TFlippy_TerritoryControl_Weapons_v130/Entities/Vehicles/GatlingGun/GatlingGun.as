@@ -21,6 +21,7 @@ void onInit(CBlob@ this)
 	settings.MUZZLE_OFFSET = Vec2f(-24, -1); //Where muzzle flash and bullet spawn
 
 	this.set("gun_settings", @settings);
+	this.set_f32("CustomBulletLength", 10.0f);
 
 	Vehicle_Setup(this,
 	              0.0f, // move speed

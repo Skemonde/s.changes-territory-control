@@ -22,6 +22,7 @@ void onInit(CBlob@ this)
 	AddIconToken("$icon_coilgun$", "Coilgun_Icon.png", Vec2f(48, 16), 0);
 	AddIconToken("$icon_scyther$", "Scyther.png", Vec2f(24, 24), 0);
 	AddIconToken("$advancedengineertools$", "AdvancedEngineerTools.png", Vec2f(16, 16), 0);
+	AddIconToken("$ancientmanipulator$", "AncientManipulator.png", Vec2f(34, 27), 0);
 	
 	addTokens(this); //colored shop icons
 
@@ -29,7 +30,7 @@ void onInit(CBlob@ this)
 
 	// SHOP
 	this.set_Vec2f("shop offset", Vec2f(0, 0));
-	this.set_Vec2f("shop menu size", Vec2f(5, 7));
+	this.set_Vec2f("shop menu size", Vec2f(5, 9));
 	this.set_string("shop description", "Molecular Fabricator");
 	this.set_u8("shop icon", 15);
 
@@ -230,6 +231,13 @@ void onInit(CBlob@ this)
 		AddRequirement(s.requirements, "blob", "mat_matter", "Amazing Technicolor Dust", 150);
 		AddRequirement(s.requirements, "blob", "mat_plasteel", "Plasteel Sheet", 70);
 		AddRequirement(s.requirements, "blob", "mat_mithrilingot", "Mithril Ingot", 4);
+		s.spawnNothing = true;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "Ancient Manipulator", "$ancientmanipulator$", "ancientmanipulator", "An ancient manipulator. Can produce guns from mithril and create matter");
+		AddRequirement(s.requirements, "blob", "mat_matter", "Amazing Technicolor Dust", 200);
+		AddRequirement(s.requirements, "blob", "mat_plasteel", "Plasteel Sheet", 100);
+		AddRequirement(s.requirements, "blob", "mat_mithrilingot", "Mithril Ingot", 10);
 		s.spawnNothing = true;
 	}
 }

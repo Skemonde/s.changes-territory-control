@@ -13,8 +13,8 @@ namespace Builder
 		TOOL_CLEAR = 31,
 		PAGE_SELECT = 32,
 
-		make_block = 64,
-		make_reserved = 99
+		make_block = 58,
+		make_reserved = 98
 	};
 
 	enum Page
@@ -40,7 +40,7 @@ const string[] PAGE_NAME =
 const u8 GRID_SIZE = 48;
 const u8 GRID_PADDING = 12;
 
-const Vec2f MENU_SIZE(6, 9);
+const Vec2f MENU_SIZE(6, 7);
 const u32 SHOW_NO_BUILD_TIME = 90;
 
 void onInit(CInventory@ this)

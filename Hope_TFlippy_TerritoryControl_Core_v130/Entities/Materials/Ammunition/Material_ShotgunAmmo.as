@@ -6,6 +6,6 @@ void onInit(CBlob@ this)
 	}
 	this.Tag("ammo");
 
-	this.maxQuantity = 20;
+	this.maxQuantity = 80;
 	this.getCurrentScript().runFlags |= Script::remove_after_this;
 }
