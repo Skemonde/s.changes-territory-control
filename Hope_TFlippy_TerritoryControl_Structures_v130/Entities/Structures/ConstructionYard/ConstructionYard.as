@@ -24,6 +24,7 @@ void onInit(CBlob@ this)
 
 	AddIconToken("$icon_gatlinggun$", "Icon_Vehicles.png", Vec2f(24, 24), 2);
 	AddIconToken("$icon_mortar$", "Icon_Vehicles.png", Vec2f(24, 24), 3);
+	AddIconToken("$icon_incendiarymortar$", "IncendiaryMortar_Icon.png", Vec2f(24, 24), 0);
 	AddIconToken("$icon_howitzer$", "Icon_Vehicles.png", Vec2f(24, 24), 4);
 
 	AddIconToken("$mat_ironingot$", "Material_IronIngot.png", Vec2f(16, 16), 1);
@@ -31,7 +32,7 @@ void onInit(CBlob@ this)
 
 	// SHOP
 	this.set_Vec2f("shop offset", Vec2f(0, 8));
-	this.set_Vec2f("shop menu size", Vec2f(12, 12));
+	this.set_Vec2f("shop menu size", Vec2f(12, 10));
 	this.set_string("shop description", "Buy");
 	this.set_u8("shop icon", 25);
 
@@ -116,7 +117,7 @@ void onInit(CBlob@ this)
 	{
 		ShopItem@ s = addShopItem(this, "Machine Gun", "$icon_gatlinggun$", "gatlinggun", "Useful for making holes.", false, true);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 16);
-		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 16);
+		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 8);
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 150);
 		AddRequirement(s.requirements, "coin", "", "Coins", 500);
 
@@ -137,7 +138,7 @@ void onInit(CBlob@ this)
 	}
 	{
 		ShopItem@ s = addShopItem(this, "Bomber", "$icon_bomber$", "bomber", "$icon_bomber$\n\n\n\n\n\n\n\n" + "A large aerial vehicle used for safe transport and bombing the peasants below.\n[Space] to drop items out of inventory.", false, true);
-		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 1000);
+		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 450);
 		AddRequirement(s.requirements, "coin", "", "Coins", 500);
 
 		s.crate_icon = 13;
@@ -258,6 +259,18 @@ void onInit(CBlob@ this)
 		s.buttonwidth = 4;
 		s.buttonheight = 2;
 	}
+	/*
+	{
+		ShopItem@ s = addShopItem(this, "Incendiary Mortar", "$icon_incendiarymortar$", "incendiarymortar", "Trenches won't save you....", false, true);
+		AddRequirement(s.requirements, "blob", "mat_steelingot", "Iron Ingot", 24);
+		AddRequirement(s.requirements, "coin", "", "Coins", 1000);
+
+		s.crate_icon = 3;
+		s.customButton = true;
+		s.buttonwidth = 2;
+		s.buttonheight = 2;
+	}
+	*/
 }
 
 void onChangeTeam(CBlob@ this, const int oldTeam)
@@ -286,8 +299,8 @@ void addTokens(CBlob@ this)
 	AddIconToken("$icon_minicopter$", "minicopter_icon.png", Vec2f(64, 32), 0, teamnum);
 
 	AddIconToken("$uav$", "UAV.png", Vec2f(64, 32), 0, teamnum);
-	AddIconToken("$jetfighter$", "JetFighter.png", Vec2f(64, 32), 0, teamnum);
-	AddIconToken("$helichopper$", "Helichopper.png", Vec2f(64, 32), 0, teamnum);
+	AddIconToken("$jetfighter$", "JetFighter.png", Vec2f(80, 32), 0, teamnum);
+	AddIconToken("$helichopper$", "Helichopper.png", Vec2f(80, 40), 0, teamnum);
 }
 
 void GetButtonsFor(CBlob@ this, CBlob@ caller)

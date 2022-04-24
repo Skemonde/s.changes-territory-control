@@ -46,5 +46,6 @@ const GramophoneRecord@[] records =
 	GramophoneRecord("A Man Who Resembles The Dark Side of Moon", "Disc_Moon.ogg"),
 	GramophoneRecord("7 Year Bitch", "Disc_7YearBitch.ogg"),
 	GramophoneRecord("Homeward Bound", "Disc_HomewardBound.ogg"),
-	GramophoneRecord("Carry on Wayward Son", "Disc_CarryOnWaywardSon.ogg")
+	GramophoneRecord("Carry on Wayward Son", "Disc_CarryOnWaywardSon.ogg"),
+	GramophoneRecord("Pirate Tavern", "Disc_PirateTavern.ogg")
 };

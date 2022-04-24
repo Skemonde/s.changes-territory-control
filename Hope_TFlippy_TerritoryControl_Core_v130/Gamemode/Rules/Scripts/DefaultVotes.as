@@ -365,7 +365,7 @@ VoteObject@ Create_VoteNextmap(CPlayer@ byplayer, string reason, u8 maptype)
 	vote.reason = reason;
 	vote.byuser = byplayer.getUsername();
 	vote.forcePassFeature = "nextmap";
-	vote.required_percent = 0.65f;
+	vote.required_percent = 0.55f;
 
 	CalculateVoteThresholds(vote);
 

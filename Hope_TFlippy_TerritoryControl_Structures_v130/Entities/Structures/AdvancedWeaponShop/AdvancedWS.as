@@ -1,4 +1,4 @@
-//script by Xeno(PURPLExeno), sprites by Skemonde(TheCustomerMan), hosting by vladkvs193
+//script by Xeno(PURPLExeno), sprites by Skemonde(TheCustomerMan)
 
 #include "Requirements.as";
 #include "ShopCommon.as";
@@ -20,7 +20,7 @@ void onInit(CBlob@ this)
 	addTokens(this); 
 
 	this.set_Vec2f("shop offset", Vec2f(0, 0));
-	this.set_Vec2f("shop menu size", Vec2f(4, 9));
+	this.set_Vec2f("shop menu size", Vec2f(4, 10));
 	this.set_string("shop description", "Advanced Weapon Shop");
 	this.set_u8("shop icon", 21);
 
@@ -64,7 +64,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-        ShopItem@ s = addShopItem(this, "Mauser C96", "$c96$", "c96", "Mauser self-loading pistol.");
+        ShopItem@ s = addShopItem(this, "Mauser Pistole C96", "$c96$", "c96", "Mauser self-loading pistol.");
 		AddRequirement(s.requirements, "coin", "", "Coins", 960);
 		AddRequirement(s.requirements, "blob", "beagle", "UPF Beagle-20", 1);
 		AddRequirement(s.requirements, "blob",  "mat_steelingot", "Steel Ingot", 4);
@@ -75,16 +75,15 @@ void onInit(CBlob@ this)
 	{
         ShopItem@ s = addShopItem(this, "Mauser Schnellfeuer Pistole", "$m712$", "m712", "Official modification that makes C96 fully automatic!!");
 		AddRequirement(s.requirements, "coin", "", "Coins", 3712);
-        AddRequirement(s.requirements, "blob", "c96", "Mauser C96", 1);
+        AddRequirement(s.requirements, "blob", "c96", "M.Pistole C96", 1);
 		AddRequirement(s.requirements, "blob", "uzi", "UPF Submachine Gun", 1);
         AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 4);
 	    AddRequirement(s.requirements, "blob",  "mat_steelingot", "Steel Ingot", 8);
 		
         s.spawnNothing = true;
     }
-	AddIconToken("$icon_ivan_offering_1$", "AltarIvan_Icons.png", Vec2f(24, 24), 1);
     {
-		ShopItem@ s = addShopItem(this, "Squat of Kalashnikov", "$ak47$", "ak47", "Popular russian weapon");
+		ShopItem@ s = addShopItem(this, "Brand-new AK-47", "$bnak$", "bnak", "Popular russian weapon");
 		AddRequirement(s.requirements, "coin", "", "Coins", 1500);
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 250);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 24);
@@ -96,34 +95,8 @@ void onInit(CBlob@ this)
 
 		s.spawnNothing = true;
 	}
-	{
-		ShopItem@ s = addShopItem(this, "RP-46", "$rp46$", "rp46", "Powerful machinegun with slow fire rate and medium accuracy");
-		AddRequirement(s.requirements, "coin", "", "Coins", 2500);
-		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 100);
-		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 16);
-		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 10);
-		
-		s.customButton = true;
-		s.buttonwidth = 4;
-		s.buttonheight = 1;
-
-		s.spawnNothing = true;
-	}
-	{
-		ShopItem@ s = addShopItem(this, "TKB-521", "$tkb521$", "tkb521", "A nice machinegun with a big magazine and medium damage");
-		AddRequirement(s.requirements, "coin", "", "Coins", 2750);
-		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 200);
-		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 8);
-		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 12);
-		
-		s.customButton = true;
-		s.buttonwidth = 4;
-		s.buttonheight = 1;
-
-		s.spawnNothing = true;
-	}
 	{	
-		ShopItem@ s = addShopItem(this, "Dragunov's Rifle", "$SVD$", "SVD", "A strong semi-auto sniper rifle.");
+		ShopItem@ s = addShopItem(this, "Sniper Rifle Dragunova", "$svd$", "svd", "A strong semi-auto half-sniper rifle.");
 		AddRequirement(s.requirements, "coin", "", "Coins", 2500);
 		AddRequirement(s.requirements, "blob",  "mat_wood", "Wood", 300);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 16);
@@ -229,6 +202,44 @@ void onInit(CBlob@ this)
 
 		s.spawnNothing = true;
 	}
+	{
+		ShopItem@ s = addShopItem(this, "Handheld Machine Gun", "$macrogun$", "macrogun", "Remember gatling gun from vehicle shop? From now you can wield same thing if you strong enough...");
+		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 16);
+		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 24);
+		AddRequirement(s.requirements, "coin", "", "Coins", 500);
+
+		s.customButton = true;
+		s.buttonwidth = 4;
+		s.buttonheight = 1;
+		
+		s.spawnNothing = true;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "RP-46", "$rp46$", "rp46", "Powerful machinegun with slow fire rate and medium accuracy");
+		AddRequirement(s.requirements, "coin", "", "Coins", 2500);
+		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 100);
+		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 16);
+		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 10);
+		
+		s.customButton = true;
+		s.buttonwidth = 4;
+		s.buttonheight = 1;
+
+		s.spawnNothing = true;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "TKB-521", "$tkb521$", "tkb521", "A nice machinegun with a big magazine and medium damage");
+		AddRequirement(s.requirements, "coin", "", "Coins", 2750);
+		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 200);
+		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 8);
+		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 12);
+		
+		s.customButton = true;
+		s.buttonwidth = 4;
+		s.buttonheight = 1;
+
+		s.spawnNothing = true;
+	}
 }    
 
 void onChangeTeam(CBlob@ this, const int oldTeam)
@@ -243,6 +254,8 @@ void addTokens(CBlob@ this)
 
 	AddIconToken("$rp46$", "RP-46.png", Vec2f(34, 12), 0, teamnum);
 	AddIconToken("$tkb521$", "TKB-521.png", Vec2f(34, 14), 0, teamnum);
+	AddIconToken("$m712$", "M712.png", Vec2f(19, 11), 0, teamnum);
+	AddIconToken("$macrogun$", "Macrogun.png", Vec2f(29, 13), 0, teamnum);
 }
 
 void GetButtonsFor(CBlob@ this, CBlob@ caller)

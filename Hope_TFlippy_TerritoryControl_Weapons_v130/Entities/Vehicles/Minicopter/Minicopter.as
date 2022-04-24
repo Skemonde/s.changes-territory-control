@@ -45,6 +45,7 @@ void onInit(CBlob@ this)
 	settings.G_RECOIL = 0;
 
 	this.set("gun_settings", @settings);
+	this.set_f32("CustomBulletLength", 10.0f);
 
 	if (this !is null)
 	{

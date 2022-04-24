@@ -61,6 +61,8 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 	AddIconToken("$stone_triangle$", "StoneTriangle.png", Vec2f(8, 8), 0);
 	AddIconToken("$concrete_triangle$", "ConcreteTriangle.png", Vec2f(8, 8), 0);
 	AddIconToken("$iron_triangle$", "IronTriangle.png", Vec2f(8, 8), 0);
+	AddIconToken("$wood_step$", "WoodStep.png", Vec2f(8, 8), 0);
+	AddIconToken("$stone_step$", "StoneStep.png", Vec2f(8, 8), 0);
 	AddIconToken("$stone_halfblock$", "StoneHalfBlock.png", Vec2f(8, 8), 0);
 	AddIconToken("$iron_halfblock$", "IronHalfBlock.png", Vec2f(8, 8), 0);
 	AddIconToken("$icon_ironplatform$", "IronPlatform.png", Vec2f(8, 8), 0);
@@ -293,6 +295,16 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 	{
 		BuildBlock b(0, "iron_triangle", "$iron_triangle$", "Iron Triangle");
 		AddRequirement(b.reqs, "blob", "mat_ironingot", "Iron Ingots", 2);
+		blocks[0].push_back(b);
+	}
+	{
+		BuildBlock b(0, "wood_step", "$wood_step$", "Wooden Step");
+		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 2);
+		blocks[0].push_back(b);
+	}
+	{
+		BuildBlock b(0, "stone_step", "$stone_step$", "Stone Step");
+		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 2);
 		blocks[0].push_back(b);
 	}
 	{

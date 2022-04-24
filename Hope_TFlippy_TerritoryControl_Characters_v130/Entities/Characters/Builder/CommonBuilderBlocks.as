@@ -61,6 +61,8 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 	AddIconToken("$stone_triangle$", "StoneTriangle.png", Vec2f(8, 8), 0);
 	AddIconToken("$concrete_triangle$", "ConcreteTriangle.png", Vec2f(8, 8), 0);
 	AddIconToken("$iron_triangle$", "IronTriangle.png", Vec2f(8, 8), 0);
+	AddIconToken("$wood_step$", "WoodStep.png", Vec2f(8, 8), 0);
+	AddIconToken("$stone_step$", "StoneStep.png", Vec2f(8, 8), 0);
 	AddIconToken("$stone_halfblock$", "StoneHalfBlock.png", Vec2f(8, 8), 0);
 	AddIconToken("$iron_halfblock$", "IronHalfBlock.png", Vec2f(8, 8), 0);
 	AddIconToken("$icon_ironplatform$", "IronPlatform.png", Vec2f(8, 8), 0);
@@ -69,6 +71,7 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 	AddIconToken("$brick_block$", "World.png", Vec2f(8, 8), 412);
 	AddIconToken("$sand_block$", "World.png", Vec2f(8, 8), 220);
 	AddIconToken("$kudzu_block$", "World.png", Vec2f(8, 8), CMap::tile_kudzu);
+	AddIconToken("$kudzu_back_block$", "World.png", Vec2f(8, 8), CMap::tile_kudzu_back);
 	AddIconToken("$goldingot_block$", "World.png", Vec2f(8, 8), CMap::tile_goldingot);
 	AddIconToken("$mithrilingot_block$", "World.png", Vec2f(8, 8), CMap::tile_mithrilingot);
 	AddIconToken("$copperingot_block$", "World.png", Vec2f(8, 8), CMap::tile_copperingot);
@@ -293,6 +296,16 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		blocks[0].push_back(b);
 	}
 	{
+		BuildBlock b(0, "wood_step", "$wood_step$", "Wooden Step");
+		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 2);
+		blocks[0].push_back(b);
+	}
+	{
+		BuildBlock b(0, "stone_step", "$stone_step$", "Stone Step");
+		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 2);
+		blocks[0].push_back(b);
+	}
+	{
 		BuildBlock b(0, "stone_halfblock", "$stone_halfblock$", "Stone Half Block");
 		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 2);
 		blocks[0].push_back(b);
@@ -310,6 +323,11 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 	{
 		BuildBlock b(CMap::tile_kudzu, "kudzu", "$kudzu_block$", "Mostly decorative kudzu leaves \n ");
 		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 20);
+		blocks[0].push_back(b);
+	}
+	{
+		BuildBlock b(CMap::tile_kudzu_back, "kudzu_back", "$kudzu_back_block$", "Mostly decorative kudzu leaves \n ");
+		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 5);
 		blocks[0].push_back(b);
 	}
 	{
@@ -400,7 +418,7 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		blocks[1].push_back(b);
 	}
 	{
-	    BuildBlock b(0, "advancedweaponshop", "$icon_advancedweaponshop$", "Advanced weapon shop\nA workshop for advanced weapons.");
+	    BuildBlock b(0, "advancedweaponshop", "$icon_advancedweaponshop$", "Advanced Weapon Shop\nA workshop for advanced weapons.");
 		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 400);
 		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 200);
 		AddRequirement(b.reqs, "blob", "mat_ironingot", "Iron Ingot", 20);
@@ -411,7 +429,7 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		blocks[1].push_back(b);
 	}	
 	{
-	    BuildBlock b(0, "upfweaponshop", "$icon_upfweaponshop$", "UPFWeaponShop\nA workshop for UPF chicken weapons.");
+	    BuildBlock b(0, "upfweaponshop", "$icon_upfweaponshop$", "UPF Weapon Shop\nA workshop for UPF chicken weapons.");
 		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 300);
 		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 200);
 		AddRequirement(b.reqs, "blob", "bp_weapons", "Blueprint (Weapons)", 1);
@@ -466,22 +484,11 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		blocks[1].push_back(b);
 	}
 	{
-		BuildBlock b(0, "patreonshop", "$icon_patreonshop$", "Gift Shop\nA special souvenir shop for\nVamistorio's Patreon supporters.\n\nUsable by anyone once built.");
-		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 75);
-		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 200);
-		AddRequirement(b.reqs, "coin", "", "Coins", 500);
-		AddRequirement(b.reqs, "seclev feature", "patreon", "Patreon", 1);
+		BuildBlock b(0, "library", "$icon_library$", "Library\nBuy and sell various blueprints.");
+		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 125);
+		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 250);
 		b.buildOnGround = true;
-		b.size.Set(40, 40);
-		blocks[1].push_back(b);
-	}
-	{
-		BuildBlock b(0, "camp", "$icon_camp$", "Camp\nA basic faction base. Can be upgraded to gain\nspecial functions and more durability.\n\n$GREEN$Increases Upkeep cap by 1.$GREEN$\n");
-		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 325);
-		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 175);
-		AddRequirement(b.reqs, "coin", "", "Coins", 100);
-		b.buildOnGround = true;
-		b.size.Set(80, 24);
+		b.size.Set(40, 24);
 		blocks[1].push_back(b);
 	}
 	{
@@ -493,12 +500,25 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		b.size.Set(40, 32);
 		blocks[1].push_back(b);
 	}
+/*
 	{
-		BuildBlock b(0, "library", "$icon_library$", "Library\nBuy and sell various blueprints.");
-		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 125);
-		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 250);
+		BuildBlock b(0, "patreonshop", "$icon_patreonshop$", "Gift Shop\nA special souvenir shop for\nVamistorio's Patreon supporters.\n\nUsable by anyone once built.");
+		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 75);
+		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 200);
+		AddRequirement(b.reqs, "coin", "", "Coins", 500);
+		AddRequirement(b.reqs, "seclev feature", "patreon", "Patreon", 1);
 		b.buildOnGround = true;
-		b.size.Set(40, 24);
+		b.size.Set(40, 40);
+		blocks[1].push_back(b);
+	}
+*/
+	{
+		BuildBlock b(0, "camp", "$icon_camp$", "Camp\nA basic faction base. Can be upgraded to gain\nspecial functions and more durability.\n\n$GREEN$Increases Upkeep cap by 1.$GREEN$\n");
+		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 325);
+		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 175);
+		AddRequirement(b.reqs, "coin", "", "Coins", 100);
+		b.buildOnGround = true;
+		b.size.Set(80, 24);
 		blocks[1].push_back(b);
 	}
 
@@ -690,13 +710,7 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		b.size.Set(24, 24);
 		blocks[2].push_back(b);
 	}
-	{
-		BuildBlock b(0, "shifter", "$shifter$", "Shifter\n Moves things in a set direction, has a cooldown.");
-		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 20);
-		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 10);
-		AddRequirement(b.reqs, "blob", "mat_copperwire", "Copper Wire", 1);
-		blocks[2].push_back(b);
-	}
+/*
 	{
 		BuildBlock b(0, "plasteelconveyor", "$plasteelconveyor$", "Conveyor Belt\nUsed to transport items.");
 		AddRequirement(b.reqs, "blob", "mat_plasteel", "Plasteel", 4);
@@ -737,6 +751,7 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		b.size.Set(40, 32);
 		blocks[2].push_back(b);
 	}
+*/
 
 	BuildBlock[] page_3;
 	blocks.push_back(page_3);
@@ -755,15 +770,15 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		b.size.Set(16, 24);
 		blocks[3].push_back(b);
 	}
-	{
-		BuildBlock b(0, "siren", "$icon_siren$", "Air Raid Siren\nWarns of incoming enemy aerial vehicles within 75 block radius.");
-		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 100);
-		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 25);
-		AddRequirement(b.reqs, "blob", "mat_goldingot", "Gold Ingot", 2);
+	{	
+		BuildBlock b(0, "fireplace", "$fireplace$", "Campfire\nCan be used to cook various foods.");
+		AddRequirement(b.reqs, "blob", "lantern", "Lantern", 1);
+		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 50);
+		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 200); //This is more expensive than for peasants as the fireplace is an amazing lightsource better than most other lightsources
 		b.buildOnGround = true;
-		b.size.Set(24, 32);
+		b.size.Set(16, 16);
 		blocks[3].push_back(b);
-	}
+    }
 	{
 		BuildBlock b(0, "beamtowermirror", "$icon_beamtowermirror$", "Solar Death Ray Mirror\nAim this at the Solar Death Ray Tower.");
 		AddRequirement(b.reqs, "blob", "mat_steelingot", "Steel Ingot", 10);
@@ -792,17 +807,10 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		b.size.Set(8, 24);
 		blocks[3].push_back(b);
 	}
-	// {
-		// BuildBlock b(0, "hedgehog", "$hedgehog$", "Hedgehog Barricade");
-		// // AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 20);
-		// // AddRequirement(b.reqs, "blob", "mat_copperwire", "Copper Wire", 1);
-		// // b.buildOnGround = true;
-		// // b.size.Set(16, 16);
-		// blocks[3].push_back(b);
-	// }
 	{
-		BuildBlock b(0, "barbedwire", "$barbedwire$", "Barbed Wire\nHurts anyone who passes through it. Good at preventing people from climbing over walls.");
-		AddRequirement(b.reqs, "blob", "mat_ironingot", "Iron Ingot", 4);
+		BuildBlock b(0, "industriallamp", "$icon_industriallamp$", "Industrial Lamp\nA sturdy lamp to ligthen up the mood in your factory.\nActs as a support block.");
+		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 30);
+		AddRequirement(b.reqs, "blob", "mat_copperwire", "Copper Wire", 1);
 		blocks[3].push_back(b);
 	}
 	{
@@ -811,6 +819,20 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		AddRequirement(b.reqs, "blob", "mat_copperwire", "Copper Wire", 1);
 		blocks[3].push_back(b);
 	}
+	{
+		BuildBlock b(0, "ceilinglamp", "$icon_ceilinglamp$", "Ceiling Lamp\nIt's quite bright.\n\nCan be toggled by a Security Station.");
+		AddRequirement(b.reqs, "blob", "mat_ironingot", "Iron Ingot", 1);
+		AddRequirement(b.reqs, "blob", "mat_copperwire", "Copper Wire", 2);
+		blocks[3].push_back(b);
+	}
+	// {
+		// BuildBlock b(0, "hedgehog", "$hedgehog$", "Hedgehog Barricade");
+		// // AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 20);
+		// // AddRequirement(b.reqs, "blob", "mat_copperwire", "Copper Wire", 1);
+		// // b.buildOnGround = true;
+		// // b.size.Set(16, 16);
+		// blocks[3].push_back(b);
+	// }
 	{
 		BuildBlock b(0, "textsign", "$icon_textsign$", "Sign\nType '!write -text-' in chat and then use it on the sign. Writing on a piece of paper costs 50 coins.");
 		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 150);
@@ -840,15 +862,12 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		blocks[3].push_back(b);
 	}
 	{
-		BuildBlock b(0, "banner", "$icon_banner$", "Banner\nBanner to show off your team's color.");
-		AddRequirement(b.reqs, "coin", "", "Coins", 150);
-		b.size.Set(16, 32);
-		blocks[3].push_back(b);
-	}
-	{
-		BuildBlock b(0, "industriallamp", "$icon_industriallamp$", "Industrial Lamp\nA sturdy lamp to ligthen up the mood in your factory.\nActs as a support block.");
-		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 30);
-		AddRequirement(b.reqs, "blob", "mat_copperwire", "Copper Wire", 1);
+		BuildBlock b(0, "securitystation", "$icon_securitystation$", "Security Station\nProvides remote control and linking of various security devices, such as blast doors and turrets.\n\nCreates a unique Security Card upon construction, which can be used to limit  control of devices exclusively to this machine.");
+		AddRequirement(b.reqs, "blob", "mat_ironingot", "Iron Ingot", 20);
+		AddRequirement(b.reqs, "blob", "mat_steelingot", "Steel Ingot", 10);
+		AddRequirement(b.reqs, "blob", "mat_copperwire", "Copper Wire", 20);
+		b.buildOnGround = true;
+		b.size.Set(24, 24);
 		blocks[3].push_back(b);
 	}
 	{
@@ -858,6 +877,14 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		AddRequirement(b.reqs, "blob", "mat_mithrilingot", "Mithril Ingot", 5);
 		b.buildOnGround = true;
 		b.size.Set(24, 24);
+		blocks[3].push_back(b);
+	}
+	{
+		BuildBlock b(0, "tavern", "$icon_tavern$", "Tavern\nA poorly built cozy tavern.\nNeutrals may set their team here, paying you 20 coins for each spawn.");
+		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 350);
+		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 200);
+		b.buildOnGround = true;
+		b.size.Set(56, 32);
 		blocks[3].push_back(b);
 	}
 	{
@@ -878,21 +905,6 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		blocks[3].push_back(b);
 	}
 	{
-		BuildBlock b(0, "securitystation", "$icon_securitystation$", "Security Station\nProvides remote control and linking of various security devices, such as blast doors and turrets.\n\nCreates a unique Security Card upon construction, which can be used to limit  control of devices exclusively to this machine.");
-		AddRequirement(b.reqs, "blob", "mat_ironingot", "Iron Ingot", 20);
-		AddRequirement(b.reqs, "blob", "mat_steelingot", "Steel Ingot", 10);
-		AddRequirement(b.reqs, "blob", "mat_copperwire", "Copper Wire", 20);
-		b.buildOnGround = true;
-		b.size.Set(24, 24);
-		blocks[3].push_back(b);
-	}
-	{
-		BuildBlock b(0, "ceilinglamp", "$icon_ceilinglamp$", "Ceiling Lamp\nIt's quite bright.\n\nCan be toggled by a Security Station.");
-		AddRequirement(b.reqs, "blob", "mat_ironingot", "Iron Ingot", 1);
-		AddRequirement(b.reqs, "blob", "mat_copperwire", "Copper Wire", 2);
-		blocks[3].push_back(b);
-	}
-	{
 		BuildBlock b(0, "altar", "$icon_altar$", "Altar\nWorship your idols here. Needs to be carved first.");
 		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 2000);
 		AddRequirement(b.reqs, "coin", "", "Coins", 250);
@@ -900,21 +912,31 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		b.size.Set(24, 32);
 		blocks[3].push_back(b);
 	}
-	{	
-		BuildBlock b(0, "fireplace", "$fireplace$", "Campfire\nCan be used to cook various foods.");
-		AddRequirement(b.reqs, "blob", "lantern", "Lantern", 1);
-		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 50);
-		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 200); //This is more expensive than for peasants as the fireplace is an amazing lightsource better than most other lightsources
-		b.buildOnGround = true;
-		b.size.Set(16, 16);
-		blocks[3].push_back(b);
-    }
 	{
-		BuildBlock b(0, "tavern", "$icon_tavern$", "Tavern\nA poorly built cozy tavern.\nNeutrals may set their team here, paying you 20 coins for each spawn.");
-		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 350);
-		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 200);
+		BuildBlock b(0, "banner", "$icon_banner$", "Banner\nBanner to show off your team's color.");
+		AddRequirement(b.reqs, "coin", "", "Coins", 150);
+		b.size.Set(16, 32);
+		blocks[3].push_back(b);
+	}
+	{
+		BuildBlock b(0, "siren", "$icon_siren$", "Air Raid Siren\nWarns of incoming enemy aerial vehicles within 75 block radius.");
+		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 100);
+		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 25);
+		AddRequirement(b.reqs, "blob", "mat_goldingot", "Gold Ingot", 2);
 		b.buildOnGround = true;
-		b.size.Set(56, 32);
+		b.size.Set(24, 32);
+		blocks[3].push_back(b);
+	}
+	{
+		BuildBlock b(0, "barbedwire", "$barbedwire$", "Barbed Wire\nHurts anyone who passes through it. Good at preventing people from climbing over walls.");
+		AddRequirement(b.reqs, "blob", "mat_ironingot", "Iron Ingot", 4);
+		blocks[3].push_back(b);
+	}
+	{
+		BuildBlock b(0, "shifter", "$shifter$", "Shifter\n Moves things in a set direction, has a cooldown.");
+		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 20);
+		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 10);
+		AddRequirement(b.reqs, "blob", "mat_copperwire", "Copper Wire", 1);
 		blocks[3].push_back(b);
 	}
 	// {

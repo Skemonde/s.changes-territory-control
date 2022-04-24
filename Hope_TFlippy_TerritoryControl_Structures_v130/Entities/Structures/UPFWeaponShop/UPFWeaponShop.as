@@ -1,4 +1,4 @@
-//script by Xeno(PURPLExeno), sprites by Skemonde(TheCustomerMan), hosting by vladkvs193
+//script by Xeno(PURPLExeno), sprites by Skemonde(TheCustomerMan)
 
 #include "Requirements.as";
 #include "ShopCommon.as";
@@ -20,7 +20,7 @@ void onInit(CBlob@ this)
 	addTokens(this); 
 
 	this.set_Vec2f("shop offset", Vec2f(0, 0));
-	this.set_Vec2f("shop menu size", Vec2f(4, 6));
+	this.set_Vec2f("shop menu size", Vec2f(4, 7));
 	this.set_string("shop description", "UPF Weapon Shop");
 	this.set_u8("shop icon", 21);
  
@@ -48,66 +48,20 @@ void onInit(CBlob@ this)
 
 		s.spawnNothing = true;
 	}
-    {
-		ShopItem@ s = addShopItem(this, "UPF AMR-13", "$amr13$", "amr13", "AMR's bigger brother.");
-		AddRequirement(s.requirements, "coin", "", "Coins", 7000);
-        AddRequirement(s.requirements, "blob", "amr", "AMR-127", 1);
-		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 24);
-		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 36);
-		
-        s.spawnNothing = true;
-	}
-    {
-        ShopItem@ s = addShopItem(this, "UPF TAR21", "$tar21$", "tar21", "Strong automatic rifle for killing peasants.");
-		AddRequirement(s.requirements, "coin", "", "Coins", 750);
-        AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 12);
-		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 16);
-        AddRequirement(s.requirements, "blob", "sar", "UPF SAR-12", 1);
+	    {
+		ShopItem@ s = addShopItem(this, "Grenade (2)", "$icon_grenade$", "mat_grenade-2", "A small, timed explosive device used by grenade launchers.");
+		AddRequirement(s.requirements, "coin", "", "Coins", 100);
 
 		s.spawnNothing = true;
-    }
-	{    ShopItem@ s = addShopItem(this, "UPF TAR21B", "$tar21b$", "tar21b", "Want to get a laser pointer on your gun to look cool? Here you go!");
-		AddRequirement(s.requirements, "coin", "", "Coins", 750);
-        AddRequirement(s.requirements, "blob", "tar21", "UPF TAR21", 1);
-    
-        s.spawnNothing = true;
 	}
     {
-        ShopItem@ s = addShopItem(this, "UPF XM8", "$xm8$", "xm8", "Strong automatical rifle.");
-		AddRequirement(s.requirements, "coin", "", "Coins", 2000);
-        AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 16);
-		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 24);
-        AddRequirement(s.requirements, "blob", "assaultrifle", "UPF Assault Rifle", 1);
-		
-        s.spawnNothing = true;
-    }
-    {
-        ShopItem@ s = addShopItem(this, "UPF XM8v2", "$xm8v2$", "xm8v2", "A heavy UPF machinegun.");
-		AddRequirement(s.requirements, "coin", "", "Coins", 2500);
-        AddRequirement(s.requirements, "blob", "xm8", "UPF XM8", 1);
-		AddRequirement(s.requirements, "blob", "carbine", "UPF Carbine", 1);
-        AddRequirement(s.requirements, "blob",  "mat_steelingot", "Steel Ingot", 36);
-		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 24);
-        
-        s.spawnNothing = true;
-    }
-	{
-        ShopItem@ s = addShopItem(this, "UPF Suppressed AK-47", "$silencedak47$", "silencedak47", "Reassemble two very good guns into better one! Uses low caliber rounds.");
-        AddRequirement(s.requirements, "blob", "silencedrifle", "UPF Suppressed Rifle", 1);
-		AddRequirement(s.requirements, "blob", "ak47", "AK-47", 1);
-		
-        s.spawnNothing = true;
-    }
-    {
-		ShopItem@ s = addShopItem(this, "UPF Suppressed Rifle", "$silencedrifle$", "silencedrifle", "A rifle with a suppressor. Used for assassination of humans.");
-		AddRequirement(s.requirements, "coin", "", "Coins", 2250);
-		AddRequirement(s.requirements, "blob",  "mat_steelingot", "Steel Ingot", 12);
-		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 16);
+		ShopItem@ s = addShopItem(this, "Binoculars", "$icon_binoculars$", "binoculars", "Commanding officer should have a pair of binoculars if they want to see what happens on a battlefield!");
+		AddRequirement(s.requirements, "coin", "", "Coins", 200);
 
 		s.spawnNothing = true;
 	}
 	{
-        ShopItem@ s = addShopItem(this, "UPF Cock19", "$cock19$", "cock19", "Buffed version of fuger.");
+        ShopItem@ s = addShopItem(this, "UPF Cock 19", "$cock$", "cock", "Buffed version of fuger.");
 		AddRequirement(s.requirements, "coin", "", "Coins", 500);
         AddRequirement(s.requirements, "blob", "fuger", "Fuger", 1);
         AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 16);
@@ -116,15 +70,15 @@ void onInit(CBlob@ this)
         s.spawnNothing = true;
     }
     {
-        ShopItem@ s = addShopItem(this, "UPF Cock19B", "$cock19b$", "cock19b", "Want to get a laser pointer on your gun to look cool? Here you go!");
-		AddRequirement(s.requirements, "coin", "", "Coins", 500);
-        AddRequirement(s.requirements, "blob", "cock19", "UPF Cock19", 1);
+        ShopItem@ s = addShopItem(this, "UPF Cock 19 M79", "$cockl$", "cockl", "Want to get a laser pointer on your gun to look cool? Here you go!");
+        AddRequirement(s.requirements, "blob", "cock", "UPF Cock 19", 1);
+		AddRequirement(s.requirements, "blob", "mat_mithril", "Mithril", 50);
 		
         s.spawnNothing = true;
     }
     {     
 		ShopItem@ s = addShopItem(this, "UPF PDW", "$pdw$", "pdw", "UPF PDW. Used for shooting holes into humans.");
-		AddRequirement(s.requirements, "coin", "", "Coins", 1400);
+		AddRequirement(s.requirements, "coin", "", "Coins", 700);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 12);
 		AddRequirement(s.requirements, "blob",  "mat_steelingot", "Steel Ingot", 16);
 
@@ -132,12 +86,70 @@ void onInit(CBlob@ this)
 	}
     {
         ShopItem@ s = addShopItem(this, "UPF Carbine", "$carbine$", "carbine", "UPF Carbine. Used to penetrate humans from afar.");
-		AddRequirement(s.requirements, "coin", "", "Coins", 3000);
+		AddRequirement(s.requirements, "coin", "", "Coins", 1000);
         AddRequirement(s.requirements, "blob",  "mat_steelingot", "Steel Ingot", 14);
         AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 10);
 
 		s.spawnNothing = true;
     }
+    {
+        ShopItem@ s = addShopItem(this, "UPF TAR-21", "$tar$", "tar", "Strong automatic rifle for killing peasants.");
+		AddRequirement(s.requirements, "coin", "", "Coins", 750);
+        AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 12);
+		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 16);
+        AddRequirement(s.requirements, "blob", "sar", "UPF SAR-12", 1);
+
+		s.spawnNothing = true;
+    }
+	{    ShopItem@ s = addShopItem(this, "UPF TAR-21 M79", "$tarl$", "tarl", "Want to get a laser pointer on your gun to look cool? Here you go!");
+        AddRequirement(s.requirements, "blob", "tar", "UPF TAR-21", 1);
+		AddRequirement(s.requirements, "blob", "mat_mithril", "Mithril", 50);
+    
+        s.spawnNothing = true;
+	}
+    {
+        ShopItem@ s = addShopItem(this, "UPF XM8", "$xm$", "xm", "Strong automatical rifle.");
+		AddRequirement(s.requirements, "coin", "", "Coins", 1500);
+        AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 16);
+		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 24);
+        AddRequirement(s.requirements, "blob", "assaultrifle", "UPF Assault Rifle", 1);
+		
+        s.spawnNothing = true;
+    }
+    {
+        ShopItem@ s = addShopItem(this, "UPF XM8 M36", "$xmas$", "xmas", "A heavy UPF machinegun.");
+		AddRequirement(s.requirements, "coin", "", "Coins", 2000);
+        AddRequirement(s.requirements, "blob", "xm", "UPF XM8", 1);
+		AddRequirement(s.requirements, "blob", "carbine", "UPF Carbine", 1);
+        AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 36);
+		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 24);
+        
+        s.spawnNothing = true;
+    }
+	{
+        ShopItem@ s = addShopItem(this, "UPF Suppressed AK-47", "$silencedak$", "silencedak", "Reassemble two very good guns into better one! Uses highcal rounds.");
+        AddRequirement(s.requirements, "blob", "silencedrifle", "UPF Suppressed Rifle", 1);
+		AddRequirement(s.requirements, "blob", "bnak", "AK-47", 1);
+		
+        s.spawnNothing = true;
+    }
+    {
+		ShopItem@ s = addShopItem(this, "UPF Suppressed Rifle", "$silencedrifle$", "silencedrifle", "A rifle with a suppressor. Used for assassination of humans.");
+		AddRequirement(s.requirements, "coin", "", "Coins", 1250);
+		AddRequirement(s.requirements, "blob",  "mat_steelingot", "Steel Ingot", 12);
+		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 16);
+
+		s.spawnNothing = true;
+	}
+    {
+		ShopItem@ s = addShopItem(this, "UPF AMR-13", "$bamr$", "bamr", "AMR's bigger brother.");
+		AddRequirement(s.requirements, "coin", "", "Coins", 4000);
+        AddRequirement(s.requirements, "blob", "amr", "AMR-127", 1);
+		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 24);
+		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 36);
+		
+        s.spawnNothing = true;
+	}
 	{     
 		ShopItem@ s = addShopItem(this, "RPG", "$rpg$", "rpg", "RPG");
 		AddRequirement(s.requirements, "coin", "", "Coins", 3000);
@@ -150,21 +162,19 @@ void onInit(CBlob@ this)
 
 		s.spawnNothing = true;
 	}
-    {       
-		ShopItem@ s = addShopItem(this, "Flashlight", "$icon_flashlight$", "flashlight", "Miraculous light in a tube! Illuminates the area it's pointing at.");
-		AddRequirement(s.requirements, "blob", "mat_copperwire", "Copper Wire", 2);
-		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 2);
-		AddRequirement(s.requirements, "coin", "", "Coins", 30);
+	{
+        ShopItem@ s = addShopItem(this, "Ruhm the Sniper Machine Gun", "$ruhm$", "ruhm", "Have you heard of infernal stone? Finest scientists from UPF have shed both blood and tears to find a way to use it!");
+		AddRequirement(s.requirements, "coin", "", "Coins", 7000);
+		AddRequirement(s.requirements, "blob", "sniper", "UPF Sniper Rifle", 1);
+		AddRequirement(s.requirements, "blob", "minigun", "UPF Megagun", 1);
+		AddRequirement(s.requirements, "blob", "infernalstone", "Infernal Stone", 1);
 
+		s.customButton = true;
+		s.buttonwidth = 4;
+		s.buttonheight = 1;
+		
 		s.spawnNothing = true;
-	}
-    {
-		ShopItem@ s = addShopItem(this, "Binoculars", "$icon_binoculars$", "binoculars", "Two telescopes glued together used for spying neighbours.");
-		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 2);
-		AddRequirement(s.requirements, "coin", "", "Coins", 150);
-
-		s.spawnNothing = true;
-	} 
+    }
 }    
 
 void onChangeTeam(CBlob@ this, const int oldTeam)
@@ -177,18 +187,17 @@ void addTokens(CBlob@ this)
 	int teamnum = this.getTeamNum();
 	if (teamnum > 6) teamnum = 7;
 
-	AddIconToken("$amr13$", "Amr13.png", Vec2f(40, 9), 0, teamnum);
-	AddIconToken("$tar21$", "Tar21.png", Vec2f(22, 11), 0, teamnum);
-	AddIconToken("$xm8$", "Xm8.png", Vec2f(28, 11), 0, teamnum);
-	AddIconToken("$xm8v2$", "Xm8v2.png", Vec2f(28, 11), 0, teamnum);
-	AddIconToken("$cock19$", "Cock19.png", Vec2f(11, 8), 0, teamnum);
+	AddIconToken("$bamr$", "Amr13.png", Vec2f(44, 11), 0, teamnum);
+	AddIconToken("$tar$", "Tar21.png", Vec2f(21, 11), 0, teamnum);
+	AddIconToken("$xm$", "Xm8.png", Vec2f(28, 11), 0, teamnum);
+	AddIconToken("$xmas$", "Xm8M36.png", Vec2f(28, 11), 0, teamnum);
+	AddIconToken("$cock$", "Cock19.png", Vec2f(11, 9), 0, teamnum);
     AddIconToken("$silencedrifle$", "SilencedRifle.png", Vec2f(32, 16), 0, teamnum); 
     AddIconToken("$pdw$", "PDW.png", Vec2f(16, 8), 0, teamnum);
     AddIconToken("$carbine$", "Carbine.png", Vec2f(24, 8), 0, teamnum);
     AddIconToken("$mat_pistolammo$", "Material_PistolAmmo.png", Vec2f(16, 16), 0, teamnum);
-    AddIconToken("$cock19b$", "Cock19B.png", Vec2f(11, 8), 0, teamnum);
-    AddIconToken("$tar21b$", "Tar21B.png", Vec2f(22, 11), 0, teamnum);
-	AddIconToken("$m712$", "M712.png", Vec2f(16, 16), 0, teamnum);
+    AddIconToken("$cockl$", "Cock19M79.png", Vec2f(11, 9), 0, teamnum);
+    AddIconToken("$tarl$", "Tar21M79.png", Vec2f(21, 11), 0, teamnum);
 }
 
 void GetButtonsFor(CBlob@ this, CBlob@ caller)
@@ -270,4 +279,9 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 			}
 		}
 	}
+}
+
+void onDie(CBlob@ this)
+{
+	if (isServer()) server_CreateBlob("bp_weapons", this.getTeamNum(), this.getPosition());
 }

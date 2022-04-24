@@ -7,8 +7,6 @@ void onInit(CSprite@ this)
 {
 	this.ReloadSprites(0,0);
 	this.SetZ(-20.0f);
-
-   
 }
 
 void onTick(CSprite@ this)

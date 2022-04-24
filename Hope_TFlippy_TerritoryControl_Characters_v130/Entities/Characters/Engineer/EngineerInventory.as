@@ -13,7 +13,7 @@ namespace Builder
 		TOOL_CLEAR = 31,
 		PAGE_SELECT = 32,
 
-		make_block = 64,
+		make_block = 58,
 		make_reserved = 99
 	};
 

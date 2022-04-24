@@ -256,3 +256,8 @@ void onRemoveFromInventory(CBlob@ this, CBlob@ blob)
 
 	this.getCurrentScript().tickFrequency = 150 / (this.exists("gyromat_acceleration") ? this.get_f32("gyromat_acceleration") : 1);
 }
+
+void onDie(CBlob@ this)
+{
+	if (isServer()) server_CreateBlob("bp_automation_advanced", this.getTeamNum(), this.getPosition());
+}

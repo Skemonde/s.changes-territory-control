@@ -802,6 +802,8 @@ void onCollision(CBlob@ this, CBlob@ blob, bool solid)
 
 void onDie(CBlob@ this)
 {
+	if (isServer()) server_CreateBlob("bp_chemistry", this.getTeamNum(), this.getPosition());
+	
 	if (isServer())
 	{
 		for (int i = 0; i < 2; i++)
