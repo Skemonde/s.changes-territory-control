@@ -61,9 +61,9 @@ void onInit(CBlob@ this)
 				ammo_config = "mat_pistolammo";
 
 				this.set_u8("reactionTime", 0);
-				this.set_u8("attackDelay", 3);
-				this.set_f32("chaseDistance", 50);
-				this.set_f32("minDistance", 0);
+				this.set_u8("attackDelay", 6);
+				this.set_f32("chaseDistance", 64);
+				this.set_f32("minDistance", 64);
 				this.set_f32("maxDistance", 400);
 				this.set_f32("inaccuracy", 0.25f);
 
@@ -74,11 +74,11 @@ void onInit(CBlob@ this)
 				ammo_config = "mat_rifleammo";
 
 				this.set_u8("reactionTime", 0);
-				this.set_u8("attackDelay", 0);
-				this.set_f32("chaseDistance", 400); 
-				this.set_f32("minDistance", 64);
+				this.set_u8("attackDelay", 10);
+				this.set_f32("chaseDistance", 192); 
+				this.set_f32("minDistance", 192);
 				this.set_f32("maxDistance", 800);
-				this.set_f32("inaccuracy", 0.000f);
+				this.set_f32("inaccuracy", 0);
 
 				break;
 				
@@ -116,7 +116,7 @@ void onInit(CBlob@ this)
 				this.set_f32("chaseDistance", 100);
 				this.set_f32("minDistance", 32);
 				this.set_f32("maxDistance", 300);
-				this.set_f32("inaccuracy", 0.00f);
+				this.set_f32("inaccuracy", 0);
 				break;
 		}
 
