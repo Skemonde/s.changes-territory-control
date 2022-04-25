@@ -18,7 +18,7 @@ void onTick(CBlob@ this)
 			CBlob@ blob = hoomans[i];
 			if (blob.getPlayer() !is null && blob !is null && !this.isAttached())
 			{
-				int random = XORRandom(1000); // 0.1% for a tick
+				int random = XORRandom(100000); // 0.0001% for a tick
 				if (10 > random && !blob.hasTag("injected")) 
 				{
 					if (!blob.hasScript("Paxilon_Effect.as")) blob.AddScript("Paxilon_Effect.as");
