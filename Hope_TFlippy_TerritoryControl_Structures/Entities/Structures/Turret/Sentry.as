@@ -24,6 +24,7 @@ void onInit(CBlob@ this)
 	settings.MUZZLE_OFFSET = Vec2f(-19, -5); //Where muzzle flash and bullet spawn
 
 	this.set("gun_settings", @settings);
+	this.set_f32("CustomBulletLength", 10.0f);
 
 	this.set_f32("pickup_priority", 16.00f);
 	this.getShape().SetRotationsAllowed(false);
