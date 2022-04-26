@@ -6,6 +6,7 @@
 #include "Logging.as";
 
 // A script by TFlippy
+// TODO Fix server_SetQuantity issue
 
 void onInit(CBlob@ this)
 {
