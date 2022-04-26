@@ -17,20 +17,20 @@ void onInit(CBlob@ this)
 	AddIconToken("$ss_scout_raid$", "SS_Icons.png", Vec2f(16, 16), 2);
 	AddIconToken("$ss_minefield$", "SS_Icons.png", Vec2f(16, 16), 3);
 	AddIconToken("$ss_soldier_raid$", "SS_Icons.png", Vec2f(16, 16), 4);
-	AddIconToken("$ss_shelling$", "SS_Icons.png", Vec2f(16, 16), 10);
 	AddIconToken("$ss_guns$", "SS_Icons.png", Vec2f(32, 16), 3);
 	AddIconToken("$ss_ammo$", "SS_Icons.png", Vec2f(32, 16), 4);
 	AddIconToken("$ss_sam$", "SS_Icons.png", Vec2f(32, 24), 4);
 	AddIconToken("$ss_lws$", "SS_Icons.png", Vec2f(32, 24), 5);
 	AddIconToken("$ss_machinegun$", "SS_Icons.png", Vec2f(32, 24), 6);
 	AddIconToken("$ss_chickentank$", "SS_Icons.png", Vec2f(32, 16), 11);
-	AddIconToken("$ss_shelling$", "SS_Icons.png", Vec2f(32, 16), 5);
 	AddIconToken("$ohno$", "MiniNuke.png", Vec2f(9, 16), 0);
+	AddIconToken("$arty10$", "SS_Icons_Barrage.png", Vec2f(16, 16), 0);
+	AddIconToken("$arty25$", "SS_Icons_Barrage.png", Vec2f(16, 16), 1);
 
 	this.getCurrentScript().tickFrequency = 1;
 	
 	this.set_Vec2f("shop offset", Vec2f(0, 0));
-	this.set_Vec2f("shop menu size", Vec2f(4, 7));
+	this.set_Vec2f("shop menu size", Vec2f(4, 6));
 	this.set_string("shop description", "SpaceStar Ordering!");
 	this.set_u8("shop icon", 11);
 	
@@ -67,6 +67,49 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
+		ShopItem@ s = addShopItem(this, "UPF Portable Minefield!", "$ss_minefield$", "minefield", "A brave flock of landmines! No more trespassers!");
+		AddRequirement(s.requirements, "coin", "", "Coins", 799);
+		
+		s.spawnNothing = true;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "UPF Frag Grenades!", "$fraggrenade$", "frag_package", "Angry at humans? Throw a pack of frag grenades at them!");
+		AddRequirement(s.requirements, "coin", "", "Coins", 499);
+		
+		s.spawnNothing = true;
+		s.customButton = true;
+		s.buttonwidth = 1;
+		s.buttonheight = 1;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "UPF Artillery Barrage! (x10)", "$arty10$", "bombardment-barrage-10", "When things go awry, there's still an option to shell it to oblivion. You will get 10 artillery shots.");
+		AddRequirement(s.requirements, "coin", "", "Coins", 12999);
+		s.spawnNothing = true;
+		s.customButton = true;
+		s.buttonwidth = 1;
+		s.buttonheight = 1;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "UPF Artillery Barrage! (x25)", "$arty25$", "bombardment-barrage-30", "When things go awry, there's still an option to shell it to oblivion. You will get 25 artillery shots with a 25% discount!");
+		AddRequirement(s.requirements, "coin", "", "Coins", 24999);
+		s.spawnNothing = true;
+		s.customButton = true;
+		s.buttonwidth = 1;
+		s.buttonheight = 1;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "UPF Portable Machine Gun!", "$ss_machinegun$", "machinegun-parachute_no_unpack", "Humans disturbing your precious sleep? Mow them down with our Portable Machine Gun!");
+		AddRequirement(s.requirements, "coin", "", "Coins", 2299);
+		
+		s.spawnNothing = true;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "UPF Tank!", "$ss_chickentank$", "chickentank-parachute_no_unpack", "Tired of humans shooting you in face? Drop a tank onto them!");
+		AddRequirement(s.requirements, "coin", "", "Coins", 5999);
+		
+		s.spawnNothing = true;
+	}
+	{
 		ShopItem@ s = addShopItem(this, "UPF Portable SAM System!", "$ss_sam$", "sam-parachute_no_unpack", "A portable surface-to-air missile system used to shoot down aerial targets. Automatically operated!");
 		AddRequirement(s.requirements, "coin", "", "Coins", 4499);
 		
@@ -84,49 +127,7 @@ void onInit(CBlob@ this)
 		s.buttonwidth = 2;
 		s.buttonheight = 2;
 	}
-	{
-		ShopItem@ s = addShopItem(this, "UPF Portable Machine Gun!", "$ss_machinegun$", "machinegun-parachute_no_unpack", "Humans disturbing your precious sleep? Mow them down with our Portable Machine Gun!");
-		AddRequirement(s.requirements, "coin", "", "Coins", 2299);
-		
-		s.spawnNothing = true;
-	}
-	{
-		ShopItem@ s = addShopItem(this, "UPF Tank!", "$ss_chickentank$", "chickentank-parachute_no_unpack", "Tired of humans shooting you in face? Drop a tank onto them!");
-		AddRequirement(s.requirements, "coin", "", "Coins", 5999);
-		
-		s.spawnNothing = true;
-	}
-	{
-		ShopItem@ s = addShopItem(this, "UPF Portable Minefield!", "$ss_minefield$", "minefield", "A brave flock of landmines! No more trespassers!");
-		AddRequirement(s.requirements, "coin", "", "Coins", 799);
-		
-		s.spawnNothing = true;
-	}
-	{
-		ShopItem@ s = addShopItem(this, "UPF Frag Grenades!", "$fraggrenade$", "frag_package", "Angry at humans? Throw a pack of frag grenades at them!");
-		AddRequirement(s.requirements, "coin", "", "Coins", 499);
-		
-		s.spawnNothing = true;
-		s.customButton = true;
-		s.buttonwidth = 1;
-		s.buttonheight = 1;
-	}
-	{
-		ShopItem@ s = addShopItem(this, "UPF Artillery Barrage! (x10)", "$ss_shelling$", "bombardment-barrage-10", "When things go awry, there's still an option to shell it to oblivion. You will get 10 artillery shots.");
-		AddRequirement(s.requirements, "coin", "", "Coins", 12999);
-		s.spawnNothing = true;
-		s.customButton = true;
-		s.buttonwidth = 1;
-		s.buttonheight = 1;
-	}
-	{
-		ShopItem@ s = addShopItem(this, "UPF Artillery Barrage! (x25)", "$ss_shelling$", "bombardment-barrage-30", "When things go awry, there's still an option to shell it to oblivion. You will get 25 artillery shots with a 25% discount!");
-		AddRequirement(s.requirements, "coin", "", "Coins", 24999);
-		s.spawnNothing = true;
-		s.customButton = true;
-		s.buttonwidth = 1;
-		s.buttonheight = 1;
-	}
+	/*
 	{
 		ShopItem@ s = addShopItem(this, "Not a very good idea...", "$ohno$", "nukevent", "UPF transmitters are used to be connected throughout UPF servers, but a good technician always knows a solution!");
 		AddRequirement(s.requirements, "coin", "", "Coins", 31999);
@@ -139,6 +140,7 @@ void onInit(CBlob@ this)
 		s.buttonwidth = 1;
 		s.buttonheight = 1;
 	}
+	*/
 }
 
 void onCommand(CBlob@ this, u8 cmd, CBitStream @params)

@@ -22,7 +22,7 @@ namespace Builder
 		PAGE_ZERO = 0,
 		PAGE_ONE,
 		PAGE_TWO,
-		PAGE_THREE,
+		// PAGE_THREE,
 		// PAGE_FOUR,
 		PAGE_COUNT
 	};
@@ -32,7 +32,7 @@ const string[] PAGE_NAME =
 {
 	"Basic",
 	"Buildings",
-	"Automation",
+	// "Automation",
 	"Miscellaneous",
 	// "Mechanisms"
 };
@@ -67,6 +67,8 @@ void onInit(CInventory@ this)
 		AddIconToken("$"+PAGE_NAME[i]+"$", "BuilderPageIcons.png", Vec2f(48, 24), i);
 	}
 
+	AddIconToken("$"+PAGE_NAME[2]+"$", "BuilderPageIcons.png", Vec2f(48, 24), 3);
+	
 	blob.set_Vec2f("backpack position", Vec2f_zero);
 
 	blob.set_u8("build page", 0);

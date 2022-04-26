@@ -29,8 +29,8 @@ void onInit(CBlob@ this)
 
 	this.set_Vec2f("shop offset", Vec2f(0,1));
 	this.set_Vec2f("shop menu size", Vec2f(10, 8));
-	this.set_string("shop description", "Forge");
-	this.set_u8("shop icon", 15);
+	this.set_string("shop description", "Sell guns of your enemies!");
+	this.set_u8("shop icon", 25);
 
 		{
 		ShopItem@ s = addShopItem(this, "Low caliber ammo for a gold ingot", "$icon_pistolammo$", "mat_goldingot-1", "Sell pistol ammo", true);
@@ -97,8 +97,8 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Sell Cock19 for 3 gold ingots", "$cock19$", "mat_goldingot-3", "Sell Cock19");
-		AddRequirement(s.requirements, "blob", "cock19", "Cock19", 1);
+		ShopItem@ s = addShopItem(this, "Sell Cock 19 for 3 gold ingots", "$cock$", "mat_goldingot-3", "Sell Cock 19");
+		AddRequirement(s.requirements, "blob", "cock", "Cock 19", 1);
 
 		s.customButton = true;
 		s.buttonwidth = 1;
@@ -107,8 +107,8 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Sell Cock19B for 5 gold ingots", "$cock19b$", "mat_goldingot-5", "Sell Cock19B");
-		AddRequirement(s.requirements, "blob", "cock19b", "Cock19B", 1);
+		ShopItem@ s = addShopItem(this, "Sell Cock 19 M79 for 5 gold ingots", "$cockl$", "mat_goldingot-5", "Sell Cock 19 M79");
+		AddRequirement(s.requirements, "blob", "cockl", "Cock 19 M79", 1);
 
 		s.customButton = true;
 		s.buttonwidth = 1;
@@ -159,8 +159,8 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Sell AK-47 for 8 gold ingots", "$ak47$", "mat_goldingot-8", "Sell AK-47");
-		AddRequirement(s.requirements, "blob", "ak47", "AK-47", 1);
+		ShopItem@ s = addShopItem(this, "Sell AK-47 for 8 gold ingots", "$bnak$", "mat_goldingot-8", "Sell AK-47");
+		AddRequirement(s.requirements, "blob", "bnak", "AK-47", 1);
 
 		s.customButton = true;
 		s.buttonwidth = 2;
@@ -189,8 +189,8 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Sell TAR-21 for 10 gold ingots", "$tar21$", "mat_goldingot-10", "Sell TAR-21");
-		AddRequirement(s.requirements, "blob", "tar21", "TAR-21", 1);
+		ShopItem@ s = addShopItem(this, "Sell TAR-21 for 10 gold ingots", "$tar$", "mat_goldingot-10", "Sell TAR-21");
+		AddRequirement(s.requirements, "blob", "tar", "TAR-21", 1);
 
 		s.customButton = true;
 		s.buttonwidth = 2;
@@ -199,8 +199,8 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}	
 	{
-		ShopItem@ s = addShopItem(this, "Sell TAR-21B for 15 gold ingots", "$tar21b$", "mat_goldingot-15", "Sell TAR-21B");
-		AddRequirement(s.requirements, "blob", "tar21b", "TAR-21B", 1);
+		ShopItem@ s = addShopItem(this, "Sell TAR-21 M79 for 15 gold ingots", "$tarl$", "mat_goldingot-15", "Sell TAR-21 M79");
+		AddRequirement(s.requirements, "blob", "tarl", "TAR-21 M79", 1);
 
 		s.customButton = true;
 		s.buttonwidth = 2;
@@ -209,8 +209,8 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Sell XM8 for 15 gold ingots", "$xm8$", "mat_goldingot-15", "Sell XM8");
-		AddRequirement(s.requirements, "blob", "xm8", "XM8", 1);
+		ShopItem@ s = addShopItem(this, "Sell XM8 for 15 gold ingots", "$xm$", "mat_goldingot-15", "Sell XM8");
+		AddRequirement(s.requirements, "blob", "xm", "XM8", 1);
 
 		s.customButton = true;
 		s.buttonwidth = 2;
@@ -219,8 +219,18 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Sell XM8v2 for 25 gold ingots", "$xm8v2$", "mat_goldingot-25", "Sell XM8v2");
-		AddRequirement(s.requirements, "blob", "xm8v2", "XM8v2", 1);
+		ShopItem@ s = addShopItem(this, "Sell XM8 M36 for 25 gold ingots", "$xmas$", "mat_goldingot-25", "Sell XM8 M36");
+		AddRequirement(s.requirements, "blob", "xmas", "XM8 M36", 1);
+
+		s.customButton = true;
+		s.buttonwidth = 2;
+		s.buttonheight = 1;
+
+		s.spawnNothing = true;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "Sell Macrogun for 9 gold ingots", "$macrogun$", "mat_goldingot-9", "Sell Macrogun");
+		AddRequirement(s.requirements, "blob", "macrogun", "Macrogun", 1);
 
 		s.customButton = true;
 		s.buttonwidth = 2;
@@ -233,7 +243,7 @@ void onInit(CBlob@ this)
 		AddRequirement(s.requirements, "blob", "dp27", "DP-27", 1);
 
 		s.customButton = true;
-		s.buttonwidth = 3;
+		s.buttonwidth = 2;
 		s.buttonheight = 1;
 
 		s.spawnNothing = true;
@@ -299,8 +309,8 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Sell SVD for 12 gold ingots", "$SVD$", "mat_goldingot-12", "Sell SVD");
-		AddRequirement(s.requirements, "blob", "SVD", "SVD", 1);
+		ShopItem@ s = addShopItem(this, "Sell SVD for 12 gold ingots", "$svd$", "mat_goldingot-12", "Sell SVD");
+		AddRequirement(s.requirements, "blob", "svd", "SVD", 1);
 
 		s.customButton = true;
 		s.buttonwidth = 2;
@@ -329,8 +339,8 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Sell AMR-12 for 50 gold ingots", "$amr$", "mat_goldingot-50", "Sell AMR-12");
-		AddRequirement(s.requirements, "blob", "amr", "AMR-12", 1);
+		ShopItem@ s = addShopItem(this, "Sell AMR-127 for 50 gold ingots", "$amr$", "mat_goldingot-50", "Sell AMR-12");
+		AddRequirement(s.requirements, "blob", "amr", "UPF AMR-12", 1);
 
 		s.customButton = true;
 		s.buttonwidth = 2;
@@ -339,8 +349,8 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Sell AMR-13 for 100 gold ingots", "$amr13$", "mat_goldingot-100", "Sell AMR-13");
-		AddRequirement(s.requirements, "blob", "amr13", "AMR-13", 1);
+		ShopItem@ s = addShopItem(this, "Sell AMR-13 for 100 gold ingots", "$bamr$", "mat_goldingot-100", "Sell AMR-13");
+		AddRequirement(s.requirements, "blob", "bamr", "AMR-13", 1);
 
 		s.customButton = true;
 		s.buttonwidth = 2;
@@ -451,6 +461,16 @@ void onInit(CBlob@ this)
 	{
 		ShopItem@ s = addShopItem(this, "Sell R.E.K.T. 9000 for 250 gold ingots", "$rekt$", "mat_goldingot-250", "Sell R.E.K.T. 9000");
 		AddRequirement(s.requirements, "blob", "rekt", "R.E.K.T. 9000", 1);
+
+		s.customButton = true;
+		s.buttonwidth = 2;
+		s.buttonheight = 1;
+
+		s.spawnNothing = true;
+	}	
+	{
+		ShopItem@ s = addShopItem(this, "Sell Ruhm 250 gold ingots", "$ruhm$", "mat_goldingot-250", "Sell Ruhm");
+		AddRequirement(s.requirements, "blob", "ruhm", "Ruhm", 1);
 
 		s.customButton = true;
 		s.buttonwidth = 2;

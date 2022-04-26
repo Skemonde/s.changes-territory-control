@@ -3,7 +3,7 @@
 #include "BuilderCommon.as";
 #include "PlacementCommon.as";
 #include "Help.as";
-#include "CommonBuilderBlocks.as";
+#include "CommonEngineerBlocks.as";
 
 namespace Builder
 {
@@ -14,7 +14,7 @@ namespace Builder
 		PAGE_SELECT = 32,
 
 		make_block = 58,
-		make_reserved = 99
+		make_reserved = 98
 	};
 
 	enum Page
@@ -40,7 +40,7 @@ const string[] PAGE_NAME =
 const u8 GRID_SIZE = 48;
 const u8 GRID_PADDING = 12;
 
-const Vec2f MENU_SIZE(6, 9);
+const Vec2f MENU_SIZE(6, 7);
 const u32 SHOW_NO_BUILD_TIME = 90;
 
 void onInit(CInventory@ this)
@@ -51,7 +51,7 @@ void onInit(CInventory@ this)
 	if(!blob.exists(blocks_property))
 	{
 		BuildBlock[][] blocks;
-		addCommonBuilderBlocks(blocks);
+		addCommonBuilderBlocks(blocks, 7);
 		blob.set(blocks_property, blocks);
 	}
 
@@ -85,25 +85,29 @@ void MakeBlocksMenu(CInventory@ this, const Vec2f &in INVENTORY_CE)
 	CBlob@ blob = this.getBlob();
 	if(blob is null) return;
 
-	BuildBlock[][]@ blocks;
-	blob.get(blocks_property, @blocks);
+	int teamnum = blob.getTeamNum();
+	if (blob.getTeamNum() > 6) teamnum = 7;
+
+	BuildBlock[][] blocks;
+	addCommonBuilderBlocks(blocks, teamnum);
+	blob.get(blocks_property, blocks);
 	if(blocks is null) return;
 
 	const Vec2f MENU_CE = Vec2f(0, MENU_SIZE.y * -GRID_SIZE - GRID_PADDING + 48) + INVENTORY_CE;
 
-	CGridMenu@ menu = CreateGridMenu(MENU_CE, blob, MENU_SIZE, "Build");
+	const u8 PAGE = blob.get_u8("build page");
+
+	CGridMenu@ menu = CreateGridMenu(MENU_CE, blob, MENU_SIZE, PAGE_NAME[PAGE]);
 	if(menu !is null)
 	{
 		menu.deleteAfterClick = false;
-
-		const u8 PAGE = blob.get_u8("build page");
 
 		for(u8 i = 0; i < blocks[PAGE].length; i++)
 		{
 			BuildBlock@ b = blocks[PAGE][i];
 			if(b is null) continue;
 
-			CGridButton@ button = menu.AddButton(b.icon, "\n" + b.description, Builder::make_block + i);
+			CGridButton@ button = menu.AddButton(b.icon, PAGE_NAME[PAGE], Builder::make_block + i);
 			if(button is null) continue;
 
 			button.selectOneOnClick = true;
@@ -111,6 +115,7 @@ void MakeBlocksMenu(CInventory@ this, const Vec2f &in INVENTORY_CE)
 			CBitStream missing;
 			if(hasRequirements(this, b.reqs, missing))
 			{
+				//print("true");
 				button.hoverText = b.description + "\n" + getButtonRequirementsText(b.reqs, false);
 			}
 			else
@@ -198,7 +203,7 @@ void onCommand(CInventory@ this, u8 cmd, CBitStream@ params)
 
 	if(cmd >= Builder::make_block && cmd < Builder::make_reserved)
 	{
-		const bool isServer = getNet().isServer();
+		const bool is_server = isServer();
 
 		BuildBlock[][]@ blocks;
 		if(!blob.get(blocks_property, @blocks)) return;
@@ -213,7 +218,7 @@ void onCommand(CInventory@ this, u8 cmd, CBitStream@ params)
 			if(!canBuild(blob, @blocks[PAGE], i)) return;
 
 			// put carried in inventory thing first
-			if(isServer)
+			if(is_server)
 			{
 				CBlob@ carryBlob = blob.getCarriedBlob();
 				if(carryBlob !is null)
@@ -292,9 +297,11 @@ void onCommand(CInventory@ this, u8 cmd, CBitStream@ params)
 void onRender(CSprite@ this)
 {
 	CMap@ map = getMap();
-
 	CBlob@ blob = this.getBlob();
 	CBlob@ localBlob = getLocalPlayerBlob();
+
+	if(map is null || blob is null || localBlob is null) return;
+
 	if(localBlob is blob)
 	{
 		// no build zone show

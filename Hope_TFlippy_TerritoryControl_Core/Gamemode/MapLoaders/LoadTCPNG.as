@@ -62,6 +62,11 @@ namespace tc_colors
 		color_iron_platform_right 	= 0xffcccccb,
 		color_iron_platform_down 	= 0xffcccccc,
 		color_iron_platform_left 	= 0xffcccccd,
+		
+		color_iron_halfblock_up     = 0xff888885,
+		color_iron_halfblock_right  = 0xff888886,
+		color_iron_halfblock_down   = 0xff888887,
+		color_iron_halfblock_left   = 0xff888888,
 
 		color_glass = 0xff6d95a1,
 		color_glass_bg = 0xff5a7a83,
@@ -348,13 +353,33 @@ class TCPNGLoader : PNGLoader
 			case tc_colors::color_iron_platform_down:
 			{
 				map.SetTile(offset, CMap::tile_biron);
-				spawnBlob(map, "iron_platform", offset, -1, true, Vec2f_zero,  90);
+				spawnBlob(map, "iron_platform", offset, -1, true, Vec2f_zero,  180);
 				break;
 			}
 			case tc_colors::color_iron_platform_left:
 			{
 				map.SetTile(offset, CMap::tile_biron);
-				spawnBlob(map, "iron_platform", offset, -1, true, Vec2f_zero,  90);
+				spawnBlob(map, "iron_platform", offset, -1, true, Vec2f_zero,  270);
+				break;
+			}
+			case tc_colors::color_iron_halfblock_up:
+			{
+				spawnBlob(map, "iron_halfblock", offset, -1, true);
+				break;
+			}
+			case tc_colors::color_iron_halfblock_right:
+			{
+				spawnBlob(map, "iron_halfblock", offset, -1, true, Vec2f_zero,  90);
+				break;
+			}
+			case tc_colors::color_iron_halfblock_down:
+			{
+				spawnBlob(map, "iron_halfblock", offset, -1, true, Vec2f_zero,  180);
+				break;
+			}
+			case tc_colors::color_iron_halfblock_left:
+			{
+				spawnBlob(map, "iron_halfblock", offset, -1, true, Vec2f_zero,  270);
 				break;
 			}
 			case tc_colors::color_zapper_chicken:

@@ -18,8 +18,8 @@ void onTick(CBlob@ this)
 			CBlob@ blob = hoomans[i];
 			if (blob.getPlayer() !is null && blob !is null && !this.isAttached())
 			{
-				int random = XORRandom(1000); // 0.05% for a tick
-				if (5 > random && !blob.hasTag("injected")) 
+				int random = XORRandom(100000); // 0.0001% for a tick
+				if (10 > random && !blob.hasTag("injected")) 
 				{
 					if (!blob.hasScript("Rippioed.as")) blob.AddScript("Rippioed.as");
 					blob.set_f32("rippioed", 0.50f + blob.get_f32("rippioed") * 2.00f);
