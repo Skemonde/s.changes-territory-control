@@ -51,7 +51,7 @@ void onInit(CBlob@ this)
 	if (sprite !is null)
 	{
 		sprite.SetEmitSound("InductionFurnace_Loop.ogg");
-		sprite.SetEmitSoundVolume(0.90f);
+		sprite.SetEmitSoundVolume(0.40f);
 		sprite.SetEmitSoundSpeed(1.0f);
 		sprite.SetEmitSoundPaused(false);
 	}

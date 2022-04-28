@@ -59,7 +59,9 @@ void onInit(CSprite@ this)
 
 void onTick(CSprite@ this)
 {
-	if (!sus) {
+	CBlob@ blob = this.getBlob();
+	
+	if (blob.hasTag("cogs")) {
 		if(this.getSpriteLayer("gear1") !is null){
 			this.getSpriteLayer("gear1").RotateBy(5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.0f,0.0f));
 	}
@@ -69,16 +71,16 @@ void onTick(CSprite@ this)
 		if(this.getSpriteLayer("gear3") !is null){
 			this.getSpriteLayer("gear3").RotateBy(5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.0f,0.0f));
 	}
-	} else if (sus) {
+	} else {
 		if(this.getSpriteLayer("gear1") !is null){
 			this.getSpriteLayer("gear1").RotateBy(0, Vec2f(0.0f,0.0f));
-		}
+	}
 		if(this.getSpriteLayer("gear2") !is null){
-			this.getSpriteLayer("gear1").RotateBy(0, Vec2f(0.0f,0.0f));
-		}
+			this.getSpriteLayer("gear2").RotateBy(0, Vec2f(0.0f,0.0f));
+	}
 		if(this.getSpriteLayer("gear3") !is null){
-			this.getSpriteLayer("gear1").RotateBy(0, Vec2f(0.0f,0.0f));
-		}
+			this.getSpriteLayer("gear3").RotateBy(0, Vec2f(0.0f,0.0f));
+	}
 	}
 }
 
@@ -99,6 +101,8 @@ class AssemblerItem
 
 void onInit(CBlob@ this)
 {
+	this.Tag("cogs");
+	
 	AssemblerItem[] items;
 	{
 		AssemblerItem i("mat_pistolammo", 50, "Low Caliber Bullets (50)");
@@ -318,7 +322,7 @@ void AssemblerMenu(CBlob@ this, CBlob@ caller)
 	}
 }
 
-void onCommand( CBlob@ this, u8 cmd, CBitStream @params )
+void onCommand( CBlob@ this, u8 cmd, CBitStream @params)
 {
 	if (cmd == this.getCommandID("set"))
 	{
@@ -331,12 +335,18 @@ void onCommand( CBlob@ this, u8 cmd, CBitStream @params )
 		bool newState = params.read_bool();
 		this.set_bool("state", newState);
 		this.getSprite().SetEmitSoundPaused(!newState);
+		
 		if (this.get_bool("state"))
 		{
 			this.getSprite().PlaySound("LeverToggle.ogg", 2.0f, 1.2f);
 		} else {
 			this.getSprite().PlaySound("LeverToggle.ogg", 2.0f, 0.8f);
 		}
+		
+		if (this.hasTag("cogs"))
+			this.Untag("cogs");
+		else
+			this.Tag("cogs");
 	}
 }
 
