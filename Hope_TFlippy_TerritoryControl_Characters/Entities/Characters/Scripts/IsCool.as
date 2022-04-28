@@ -11,5 +11,5 @@ bool IsCool(string username)
 			//username=="digga"||
             username=="PURPLExeno"||
 			username=="TheCustomerMan"||
-			username=="NoahTheLegend";
+			username=="FrankStain";
 }
