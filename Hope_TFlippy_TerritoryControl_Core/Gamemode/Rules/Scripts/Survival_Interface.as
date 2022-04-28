@@ -211,8 +211,8 @@ void onRenderScoreboard(CRules@ this)
 			SColor customCol = grey;
 			const s32 ping_in_ms = s32(p.getPing() * 1000.0f / 30.0f);
 			const u16 coins = p.getCoins();
-			const string lowUsername = p.getUsername().toLower();
-			const string rank = getRank(lowUsername, customCol, p);
+			const string username = p.getUsername();
+			const string rank = getRank(username, customCol, p);
 			//const string clan = this.exists("clanData"+lowUsername) ? this.get_string("clanData"+lowUsername) : "";
 			const string characterName = (p.getClantag().length > 0 ? p.getClantag() + " " : "") + p.getCharacterName();
 			SColor playercolour = teamColourArray[p.getTeamNum() % teamColourArray.length];
@@ -490,7 +490,7 @@ void onRenderScoreboard(CRules@ this)
 		f32 width = 100;
 		f32 height = 40;
 
-		const string text = "Go to Vamist's Discord Server";
+		const string text = "Go to Discord Server";
 
 		Vec2f dim;
 		GUI::GetTextDimensions(text, dim);
@@ -513,7 +513,7 @@ void onRenderScoreboard(CRules@ this)
 			{
 				Sound::Play("option");
 
-				OpenWebsite("https://discord.gg/ZSazrXz");
+				OpenWebsite("https://discord.gg/UTGf3Zh8");
 				// Engine::AcceptWebsiteOpen(true);
 				// Menu::CloseAllMenus();
 			}
@@ -595,7 +595,7 @@ void onRenderScoreboard(CRules@ this)
 			{
 				Sound::Play("option");
 
-				OpenWebsite("https://github.com/TFlippy/kag_territorycontrol");
+				OpenWebsite("https://github.com/franktc1/territory-control");
 				// Engine::AcceptWebsiteOpen(true);
 				// Menu::CloseAllMenus();
 			}
@@ -636,7 +636,7 @@ void onRenderScoreboard(CRules@ this)
 			{
 				Sound::Play("option");
 
-				OpenWebsite("https://change.vamist.dev/tc/");
+				OpenWebsite("https://discord.com/channels/939523236700508200/939523360956751912");
 				// Engine::AcceptWebsiteOpen(true);
 				// Menu::CloseAllMenus();
 			}
@@ -683,107 +683,115 @@ void drawHoverExplanation(int hovered_accolade, int hovered_age, int hovered_tie
 string getRank(string &in username, SColor &out col, CPlayer@ p)
 {
 
+	if (username == "FrankStain") 
+	{
+			col = SColor(255, 102, 255, 147);
+			return "Server Host";
+	} else if (username == "TheCustomerMan" || username == "PURPLExeno") {
+			col = SColor(255, 244, 122, 66);
+	 		return "Super Administrator";
+	}
 	// Note for anybody in the future:
 	// Usernames are lower case
 	// To get the hash of your username, do:
 	// print('username'.getHash()+''); in rcon locally
 
-	switch(username.getHash())
-	{
-		case -739620667: // vamist
-		{
-			col = SColor(255, 102, 255, 147);
-			return "Server Host";
-		}
-		break;
+	// switch(username.getHash())
+	// {
+	// 	case -739620667: // vamist
+	// 	{
+	// 		col = SColor(255, 102, 255, 147);
+	// 		return "Server Host";
+	// 	}
+	// 	break;
 
-		case -1006374661: // tflippy
-		{
-			col = SColor(255, 247, 255, 102);
-			return "TC Creator";
-		}
-		break;
+	// 	case -1006374661: // tflippy
+	// 	{
+	// 		col = SColor(255, 247, 255, 102);
+	// 		return "TC Creator";
+	// 	}
+	// 	break;
 
-		case 2037779103: // digga
-		{
-			col = SColor(255,255,100,100);
-			return "Community Manager";
-		}
+	// 	case 2037779103: // digga
+	// 	{
+	// 		col = SColor(255,255,100,100);
+	// 		return "Community Manager";
+	// 	}
 
-		case 916202166: // pirate-rob
-		{
-			col = SColor(255, 117, 166, 244);
-			return "RoS Creator";
-		}
+	// 	case 916202166: // pirate-rob
+	// 	{
+	// 		col = SColor(255, 117, 166, 244);
+	// 		return "RoS Creator";
+	// 	}
 
-		case 1793967571: // merser433
-		case -1980129081: // goldenguy
-		case -1959624089: // koi_
-		case 1002491121: // jammer312
-		case -210526304: // mrhobo
-		case -675232681: // wunarg
-		{
-			col = SColor(255, 95, 151, 239);
-			return "TC Developer";
-		}
-		break;
+	// 	case 1793967571: // merser433
+	// 	case -1980129081: // goldenguy
+	// 	case -1959624089: // koi_
+	// 	case 1002491121: // jammer312
+	// 	case -210526304: // mrhobo
+	// 	case -675232681: // wunarg
+	// 	{
+	// 		col = SColor(255, 95, 151, 239);
+	// 		return "TC Developer";
+	// 	}
+	// 	break;
 
-		case -1913766845: // cesar0
-		case -445244992: // sylw
-		case 306188315: // sjd360
-		case 494034411: // turtlecake
-		case -608852120: // hobey
-		case 926613433: // blackguy123
-		case -1384627824: // oolmbalol
-		case -1483665587: // zable
-		case -803033509: // garodil
-		case -1628567952: // betelgeuse0
-		case -1012336410: // megawaffle2000
-		{
-			col = SColor(255, 247, 156, 44);
-			return "TC Contributor";
-		}
-		break;
+	// 	case -1913766845: // cesar0
+	// 	case -445244992: // sylw
+	// 	case 306188315: // sjd360
+	// 	case 494034411: // turtlecake
+	// 	case -608852120: // hobey
+	// 	case 926613433: // blackguy123
+	// 	case -1384627824: // oolmbalol
+	// 	case -1483665587: // zable
+	// 	case -803033509: // garodil
+	// 	case -1628567952: // betelgeuse0
+	// 	case -1012336410: // megawaffle2000
+	// 	{
+	// 		col = SColor(255, 247, 156, 44);
+	// 		return "TC Contributor";
+	// 	}
+	// 	break;
 
-		case 498824156: // gokke
-		case -1528101978: // ollimarrex
-		case 1931891399: // sniper2001
-		{
-			col = SColor(255, 244, 122, 66);
-			return "Super Administrator";
-		}
+	// 	case 498824156: // gokke
+	// 	case -1528101978: // ollimarrex
+	// 	case 1931891399: // sniper2001
+	// 	{
+	// 		col = SColor(255, 244, 122, 66);
+	// 		return "Super Administrator";
+	// 	}
 
-		case -1913960806: // geti
-		case 1613635087: // mm
-		case -702206699: // flieslikeabrick
-		case 1839286352: // furai
-		case -1618040870: // jrgp
-		case 745727592: // asu
-		{
-			col = SColor(255, 196, 86, 247);
-			return "KAG Developer";
-		}
-		break;
+	// 	case -1913960806: // geti
+	// 	case 1613635087: // mm
+	// 	case -702206699: // flieslikeabrick
+	// 	case 1839286352: // furai
+	// 	case -1618040870: // jrgp
+	// 	case 745727592: // asu
+	// 	{
+	// 		col = SColor(255, 196, 86, 247);
+	// 		return "KAG Developer";
+	// 	}
+	// 	break;
 
-		//Some patreon thing for the future maybe
+	// 	//Some patreon thing for the future maybe
 
-		default:
-		{
-			if (p !is null)
-			{
-				CSecurity@ security = getSecurity();
-				if (!(security.checkAccess_Feature(p, "patreon")))
-				{
-					return "";
-				}
-				else
-				{
-					col = SColor(255, 241, 196, 15);
-					return "Patreon Supporter";
-				}
-			}
-			return "";
-		}
-	}
+	// 	default:
+	// 	{
+	// 		if (p !is null)
+	// 		{
+	// 			CSecurity@ security = getSecurity();
+	// 			if (!(security.checkAccess_Feature(p, "patreon")))
+	// 			{
+	// 				return "";
+	// 			}
+	// 			else
+	// 			{
+	// 				col = SColor(255, 241, 196, 15);
+	// 				return "Patreon Supporter";
+	// 			}
+	// 		}
+	// 		return "";
+	// 	}
+	// }
 	return "";
 }
