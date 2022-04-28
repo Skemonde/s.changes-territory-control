@@ -194,7 +194,7 @@ void GetButtonsFor(CBlob@ this, CBlob@ caller)
 
 	if (isInventoryAccessible(this, caller))
 	{
-		this.set_Vec2f("shop offset", Vec2f(4, 0));
+		this.set_Vec2f("shop offset", Vec2f(8, 0));
 		this.set_bool("shop available", this.isOverlapping(caller));
 
 		CBitStream params;
@@ -211,7 +211,7 @@ void GetButtonsFor(CBlob@ this, CBlob@ caller)
 				if (canPickup(item))
 				{
 					params.write_u16(caller.getNetworkID());
-					CButton@ buttonOwner = caller.CreateGenericButton(28, Vec2f(-10, 0), this, this.getCommandID("sv_store"), "Store", params);
+					CButton@ buttonOwner = caller.CreateGenericButton(28, Vec2f(0, -10), this, this.getCommandID("sv_store"), "Store", params);
 					break;
 				}
 			}

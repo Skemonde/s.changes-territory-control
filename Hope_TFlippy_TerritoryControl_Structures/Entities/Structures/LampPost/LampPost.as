@@ -63,7 +63,9 @@ void SetState(CBlob@ this, bool inState)
 void GetButtonsFor(CBlob@ this, CBlob@ caller)
 {
 	if (this.getMap().rayCastSolid(caller.getPosition(), this.getPosition())) return;
-	
+	if (this.isOverlapping(caller))
+	{
 	CBitStream params;
 	CButton@ buttonEject = caller.CreateGenericButton((this.get_bool("isActive") ? 27 : 23), Vec2f(-0.5f, -4), this, this.getCommandID("sv_toggle"), (this.get_bool("isActive") ? "Turn Off" : "Turn On"), params);
+	}
 }

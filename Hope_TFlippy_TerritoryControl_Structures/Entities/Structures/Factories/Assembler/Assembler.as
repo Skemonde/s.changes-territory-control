@@ -1,13 +1,15 @@
 ﻿#include "MakeMat.as";
 #include "Requirements.as";
 
+bool sus;
+
 void onInit(CSprite@ this)
 {
 	// Building
 	this.SetZ(-50);
 
 	this.SetEmitSound("assembler_loop.ogg");
-	this.SetEmitSoundVolume(1.0f);
+	this.SetEmitSoundVolume(0.4f);
 	this.SetEmitSoundSpeed(0.5f);
 	this.SetEmitSoundPaused(false);
 
@@ -57,14 +59,28 @@ void onInit(CSprite@ this)
 
 void onTick(CSprite@ this)
 {
-	if(this.getSpriteLayer("gear1") !is null){
-		this.getSpriteLayer("gear1").RotateBy(5, Vec2f(0.0f,0.0f));
+	CBlob@ blob = this.getBlob();
+	
+	if (blob.hasTag("cogs")) {
+		if(this.getSpriteLayer("gear1") !is null){
+			this.getSpriteLayer("gear1").RotateBy(5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.0f,0.0f));
 	}
-	if(this.getSpriteLayer("gear2") !is null){
-		this.getSpriteLayer("gear2").RotateBy(-5, Vec2f(0.0f,0.0f));
+		if(this.getSpriteLayer("gear2") !is null){
+			this.getSpriteLayer("gear2").RotateBy(-5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.0f,0.0f));
 	}
-	if(this.getSpriteLayer("gear3") !is null){
-		this.getSpriteLayer("gear3").RotateBy(5, Vec2f(0.0f,0.0f));
+		if(this.getSpriteLayer("gear3") !is null){
+			this.getSpriteLayer("gear3").RotateBy(5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.0f,0.0f));
+	}
+	} else {
+		if(this.getSpriteLayer("gear1") !is null){
+			this.getSpriteLayer("gear1").RotateBy(0, Vec2f(0.0f,0.0f));
+	}
+		if(this.getSpriteLayer("gear2") !is null){
+			this.getSpriteLayer("gear2").RotateBy(0, Vec2f(0.0f,0.0f));
+	}
+		if(this.getSpriteLayer("gear3") !is null){
+			this.getSpriteLayer("gear3").RotateBy(0, Vec2f(0.0f,0.0f));
+	}
 	}
 }
 
@@ -85,6 +101,8 @@ class AssemblerItem
 
 void onInit(CBlob@ this)
 {
+	this.Tag("cogs");
+	
 	AssemblerItem[] items;
 	{
 		AssemblerItem i("mat_pistolammo", 50, "Low Caliber Bullets (50)");
@@ -234,26 +252,38 @@ void onInit(CBlob@ this)
 	}
 	this.set("items", items);
 
-
 	this.set_TileType("background tile", CMap::tile_castle_back);
 	this.getShape().getConsts().mapCollisions = false;
 	this.getCurrentScript().tickFrequency = 60;
 
 	this.Tag("builder always hit");
-	this.Tag("change team on fort capture");
+	this.Tag("change team on fort capture");	
+	this.set_bool("state", true);
+	
 	this.addCommandID("set");
+	this.addCommandID("state");	
 
-	this.set_u8("crafting",0);
+	this.set_u8("crafting", 0);
 	
 	this.Tag("ignore extractor");
 }
 
 void GetButtonsFor( CBlob@ this, CBlob@ caller )
 {
-	CBitStream params;
-	params.write_u16(caller.getNetworkID());
-
-	CButton@ button = caller.CreateGenericButton(15, Vec2f(0,-8), this, AssemblerMenu, "Set Item");
+	if (!caller.isOverlapping(this)) return;
+	{
+		CBitStream params;
+		params.write_u16(caller.getNetworkID());
+	
+		CButton@ button = caller.CreateGenericButton(15, Vec2f(0, -16), this, AssemblerMenu, "Set Item");
+	}
+	{
+		bool state = this.get_bool("state");
+		CBitStream params;
+		params.write_bool(!state);
+		caller.CreateGenericButton((state ? 27 : 23), Vec2f(8, -8), this, 
+			this.getCommandID("state"), getTranslatedString(state ? "TURN OFF" : "TURN ON"), params);
+	}
 }
 
 void AssemblerMenu(CBlob@ this, CBlob@ caller)
@@ -292,12 +322,31 @@ void AssemblerMenu(CBlob@ this, CBlob@ caller)
 	}
 }
 
-void onCommand( CBlob@ this, u8 cmd, CBitStream @params )
+void onCommand( CBlob@ this, u8 cmd, CBitStream @params)
 {
 	if (cmd == this.getCommandID("set"))
 	{
 		u8 setting = params.read_u8();
 		this.set_u8("crafting", setting);
+	}
+	else if (cmd == this.getCommandID("state"))
+	{
+		sus = this.get_bool("state");//since every assembler share this bool (it's global) every assembler stops their animation if only one set the bool to false :C
+		bool newState = params.read_bool();
+		this.set_bool("state", newState);
+		this.getSprite().SetEmitSoundPaused(!newState);
+		
+		if (this.get_bool("state"))
+		{
+			this.getSprite().PlaySound("LeverToggle.ogg", 2.0f, 1.2f);
+		} else {
+			this.getSprite().PlaySound("LeverToggle.ogg", 2.0f, 0.8f);
+		}
+		
+		if (this.hasTag("cogs"))
+			this.Untag("cogs");
+		else
+			this.Tag("cogs");
 	}
 }
 
@@ -305,7 +354,13 @@ void onCommand( CBlob@ this, u8 cmd, CBitStream @params )
 
 void onTick(CBlob@ this)
 {
-	AssemblerItem item = getItems(this)[this.get_u8("crafting")];
+	if (!this.get_bool("state")) return;
+	int crafting = this.get_u8("crafting");
+
+	AssemblerItem[]@ items = getItems(this);
+	if (items.length == 0) return;
+
+	AssemblerItem item = items[crafting];
 	CInventory@ inv = this.getInventory();
 
 
@@ -333,9 +388,15 @@ void onTick(CBlob@ this)
 void onCollision(CBlob@ this, CBlob@ blob, bool solid)
 {
 	if (blob is null) return;
+
+	int crafting = this.get_u8("crafting");
+
 	bool isMat = false;
 
-	AssemblerItem item = getItems(this)[this.get_u8("crafting")];
+	AssemblerItem[]@ items = getItems(this);
+	if (items.length == 0) return;
+
+	AssemblerItem item = items[crafting];
 	CBitStream bs = item.reqs;
 	bs.ResetBitIndex();
 	string text, requiredType, name, friendlyName;
