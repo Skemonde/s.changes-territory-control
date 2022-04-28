@@ -9,7 +9,7 @@ void onInit(CSprite@ this)
 	this.SetZ(-50);
 
 	this.SetEmitSound("ChickenAssembler_Loop.ogg");
-	this.SetEmitSoundVolume(1.0f);
+	this.SetEmitSoundVolume(0.4f);
 	this.SetEmitSoundSpeed(0.9f);
 	this.SetEmitSoundPaused(false);
 }
@@ -104,8 +104,10 @@ void onInit(CBlob@ this)
 
 	this.Tag("builder always hit");
 	this.Tag("change team on fort capture");
+	this.set_bool("state", true);
 
 	this.addCommandID("set");
+	this.addCommandID("state");
 
 	this.set_u8("crafting", 0);
 
@@ -114,10 +116,20 @@ void onInit(CBlob@ this)
 
 void GetButtonsFor( CBlob@ this, CBlob@ caller )
 {
-	CBitStream params;
-	params.write_u16(caller.getNetworkID());
+	if (!caller.isOverlapping(this)) return;
+	{
+		CBitStream params;
+		params.write_u16(caller.getNetworkID());
 
-	CButton@ button = caller.CreateGenericButton(15, Vec2f(0,-8), this, ChickenAssemblerMenu, "Set Item");
+		CButton@ button = caller.CreateGenericButton(15, Vec2f(0, -16), this, ChickenAssemblerMenu, "Set Item");
+	}
+	{
+		bool state = this.get_bool("state");
+		CBitStream params;
+		params.write_bool(!state);
+		caller.CreateGenericButton((state ? 27 : 23), Vec2f(12, -8), this, 
+			this.getCommandID("state"), getTranslatedString(state ? "TURN OFF" : "TURN ON"), params);
+	}
 }
 
 void ChickenAssemblerMenu(CBlob@ this, CBlob@ caller)
@@ -163,11 +175,24 @@ void onCommand( CBlob@ this, u8 cmd, CBitStream @params )
 		u8 setting = params.read_u8();
 		this.set_u8("crafting", setting);
 	}
+	else if (cmd == this.getCommandID("state"))
+	{
+		bool newState = params.read_bool();
+		this.set_bool("state", newState);
+		this.getSprite().SetEmitSoundPaused(!newState);
+		if (this.get_bool("state"))
+		{
+			this.getSprite().PlaySound("LeverToggle.ogg", 2.0f, 1.2f);
+			this.getSprite().PlaySound("ChargeLanceCycle.ogg", 2.0f, 1.5f);
+		} else {
+			this.getSprite().PlaySound("LeverToggle.ogg", 2.0f, 0.8f);
+		}
+	}
 }
 
 void onTick(CBlob@ this)
 {
-
+	if (!this.get_bool("state")) return;
 	int crafting = this.get_u8("crafting");
 
 	AssemblerItem[]@ items = getItems(this);
@@ -185,7 +210,7 @@ void onTick(CBlob@ this)
 			// CBlob @mat = server_CreateBlob(item.resultname, this.getTeamNum(), this.getPosition());
 			// mat.server_SetQuantity(item.resultcount);
 
-			CBlob@ blob = server_MakeCrate(item.resultname, item.title, 0, 250, this.getPosition(), true, item.resultcount);
+			CBlob@ blob = server_MakeCrate(item.resultname, item.title, 0, this.getTeamNum(), this.getPosition(), true, item.resultcount);
 			
 			server_TakeRequirements(inv, item.reqs);
 		}

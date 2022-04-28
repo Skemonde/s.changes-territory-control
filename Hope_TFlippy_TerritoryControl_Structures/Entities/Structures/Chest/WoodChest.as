@@ -56,7 +56,7 @@ void GetButtonsFor(CBlob@ this, CBlob@ caller)
 	if(inv.getItemsCount() > 0)
 	{
 		params.write_u16(caller.getNetworkID());
-		CButton@ buttonOwner = caller.CreateGenericButton(28, Vec2f(0, 8), this, this.getCommandID("sv_store"), "Store", params);
+		CButton@ buttonOwner = caller.CreateGenericButton(28, Vec2f(0, -10), this, this.getCommandID("sv_store"), "Store", params);
 	}
 }
 
