@@ -23,3 +23,16 @@ void onInit(CBlob@ this)
 	}
 }
 
+void onAttach(CBlob@ this, CBlob@ attached, AttachmentPoint @attachedPoint)
+{
+	CSprite@ sprite = this.getSprite();
+	sprite.SetEmitSoundPaused(false);
+}
+
+void onThisAddToInventory(CBlob@ this, CBlob@ inventoryBlob)
+{
+	if (inventoryBlob is null) return;
+
+	CSprite@ sprite = this.getSprite();
+	sprite.SetEmitSoundPaused(true);
+}
