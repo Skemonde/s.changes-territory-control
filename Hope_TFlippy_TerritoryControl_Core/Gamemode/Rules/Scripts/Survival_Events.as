@@ -6,22 +6,22 @@ void onInit(CRules@ this)
 	this.set_u32("lastMeteor", time);
 	this.set_u32("lastWreckage", time);
 	this.set_u32("lastCapsule", time);
-	this.set_u32("lastnuke", time);
-	this.set_u32("nuketimer", XORRandom(50*30)+10*30);
-	this.set_u32("timetonuke", 1);
-	this.set_bool("timetonukego", false);
-	this.set_bool("stillnuking?", false);
-	this.set_u32("random", XORRandom(80000)+30000);
-	this.set_bool("activated", false);
-	this.set_bool("alwaysnight", false);
-	this.set_bool("cancelnight", false);
+//	this.set_u32("lastnuke", time);
+//	this.set_u32("nuketimer", XORRandom(50*30)+10*30);
+//	this.set_u32("timetonuke", 1);
+//	this.set_bool("timetonukego", false);
+//	this.set_bool("stillnuking?", false);
+//	this.set_u32("random", XORRandom(80000)+30000);
+//	this.set_bool("activated", false);
+//	this.set_bool("alwaysnight", false);
+//	this.set_bool("cancelnight", false);
 
 
-	this.set_u32("nightevent", XORRandom(11));
+//	this.set_u32("nightevent", XORRandom(11));
 	this.addCommandID("callputin");
 	this.addCommandID("alwaysnightevent");
 	this.addCommandID("alwaysnighteventcancel");
-	//nightevent in chatcommands
+//	nightevent in chatcommands
 }
 
 void onRestart(CRules@ this)
@@ -29,23 +29,23 @@ void onRestart(CRules@ this)
 	u32 time = getGameTime();
 	this.set_u32("lastMeteor", time);
 	this.set_u32("lastWreckage",time);
-	this.set_u32("lastnuke", time);
-	this.set_u32("lastCapsule", time);
-	this.set_u32("nuketimer", XORRandom(50*30)+10*30);
-	this.set_u32("timetonuke", 1);
-	this.set_bool("timetonukego", false);
-	this.set_bool("stillnuking?", false);
-	this.set_u32("random", XORRandom(80000)+30000);
-	this.set_bool("activated", false);
-	this.set_bool("nightcall", false);
-	this.set_bool("alwaysnight", false);
-	this.set_bool("cancelnight", false);
-	
-	this.set_u32("nightevent", XORRandom(11));
+//	this.set_u32("lastnuke", time);
+//	this.set_u32("lastCapsule", time);
+//	this.set_u32("nuketimer", XORRandom(50*30)+10*30);
+//	this.set_u32("timetonuke", 1);
+//	this.set_bool("timetonukego", false);
+//	this.set_bool("stillnuking?", false);
+//	this.set_u32("random", XORRandom(80000)+30000);
+//	this.set_bool("activated", false);
+//	this.set_bool("nightcall", false);
+//	this.set_bool("alwaysnight", false);
+//	this.set_bool("cancelnight", false);
+//	
+//	this.set_u32("nightevent", XORRandom(11));
 	this.addCommandID("callputin");
 	this.addCommandID("nightevent");
 	this.addCommandID("alwaysnightevent");
-	this.addCommandID("alwaysnighteventcancel");
+//	this.addCommandID("alwaysnighteventcancel");
 }
 
 void onTick(CRules@ this)
@@ -87,6 +87,7 @@ void onTick(CRules@ this)
 			this.set_u32("lastCapsule", time);
     	}
 		*/
+/*		
 		if (getGameTime() == this.get_u32("random") && !this.get_bool("timetonukego") || this.get_bool("activated") && !this.get_bool("timetonukego"))
 		{
 			this.set_bool("activated", false);
@@ -101,7 +102,7 @@ void onTick(CRules@ this)
 			CBitStream params;
 			this.SendCommand(getRules().getCommandID("nukevent"), params);
 		}
-
+*/
 		this.set_bool("activated", false);
 
 		if (this.get_bool("timetonukego"))
@@ -118,7 +119,7 @@ void onTick(CRules@ this)
 				this.set_bool("timetonukego", false);
 			}
 		}
-
+/*
 		if (this.get_u32("timetonuke") < 1)
 		{
 			if (this.get_u32("nuketimer") > 0) this.set_u32("nuketimer", this.get_u32("nuketimer") - 1);
@@ -136,7 +137,7 @@ void onTick(CRules@ this)
 			//printf("stopped");
 			this.set_bool("stillnuking?", false);
 		}
-
+*/
 		//else if (this.get_u32("nightevent") != 0 && getGameTime() < 120) this.daycycle_speed = 20;
 
 		if ((this.get_u32("nightevent") == 1 || this.get_bool("alwaysnight")) && !this.get_bool("raining") && XORRandom(500) == 0)
