@@ -259,6 +259,12 @@ void onInit(CBlob@ this)
 	this.Tag("builder always hit");
 	this.Tag("change team on fort capture");	
 	this.set_bool("state", true);
+	bool state = this.get_bool("state");
+	
+	//this should prevent cogs of a turned-off assembler from rotating after player's relogs a server
+	if (state == false) {
+		this.Untag("cogs");
+	}	//
 	
 	this.addCommandID("set");
 	this.addCommandID("state");	
