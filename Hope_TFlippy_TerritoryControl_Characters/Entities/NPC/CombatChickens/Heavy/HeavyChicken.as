@@ -19,8 +19,8 @@ void onInit(CBlob@ this)
 	this.set_f32("chaseDistance", 200);
 	this.set_f32("maxDistance", 400);
 
-	this.set_f32("inaccuracy", 0.00f);
-	this.set_u8("reactionTime", 10);
+	this.set_f32("inaccuracy", 0.01f);
+	this.set_u8("reactionTime", 30);
 	this.set_u8("attackDelay", 0);
 	this.set_bool("bomber", true);
 	this.set_bool("raider", true);
@@ -45,152 +45,171 @@ void onInit(CBlob@ this)
 
 		string gun_config;
 		string ammo_config;
-
-		if (XORRandom(100) < 1)
+		
+		if (XORRandom(500) < 1)
 		{
-			gun_config = "rekt";
-			ammo_config = "mat_gatlingammo";
-
+			gun_config = "ruhm";
+			ammo_config = "mat_rifleammo";
+	
 			this.set_u8("reactionTime", 0);
 			this.set_u8("attackDelay", 0);
-			this.set_f32("chaseDistance", 800);
-			this.set_f32("minDistance", 0);
-			this.set_f32("maxDistance", 800);
-			this.set_f32("inaccuracy", 0.05f);
+			this.set_f32("chaseDistance", 1536);
+			this.set_f32("minDistance", 256);
+			this.set_f32("maxDistance", 1536);
+			this.set_f32("inaccuracy", 0.005f);
 		}
 		else
 		{
-			switch(XORRandom(20))
+			if (XORRandom(100) < 1)
 			{
-				case 0:
-				case 1:
-				case 2:
-					gun_config = "assaultrifle";
-					ammo_config = "mat_rifleammo";
-
-					this.set_u8("attackDelay", 0);
-					this.set_u8("reactionTime", 5);
-					this.set_f32("chaseDistance", 100);
-					this.set_f32("minDistance", 24);
-					this.set_f32("maxDistance", 500);
-					this.set_bool("bomber", true);
-
-					break;
-
-				case 3:
-				case 4:
-					gun_config = "flamethrower";
-					ammo_config = "mat_oil";
-
-					this.set_u8("reactionTime", 30);
-					this.set_u8("attackDelay", 0);
-					this.set_f32("chaseDistance", 100);
-					this.set_f32("minDistance", 64);
-					this.set_f32("maxDistance", 200);
-
-					break;
-
-				case 5:
-				case 6:
-				case 7:
-					gun_config = "minigun";
-					ammo_config = "mat_gatlingammo";
-
-					this.set_u8("reactionTime", 15);
-					this.set_u8("attackDelay", 0);
-					this.set_f32("chaseDistance", 40);
-					this.set_f32("minDistance", 24);
-					this.set_f32("maxDistance", 300);
-					this.set_bool("bomber", false);
-					this.set_f32("inaccuracy", 0.08f);
-
-					break;
-
-				case 8:
-				case 9:
-					gun_config = "sniper";
-					ammo_config = "mat_rifleammo";
-
-					this.set_u8("reactionTime", 45);
-					this.set_u8("attackDelay", 0);
-					this.set_f32("chaseDistance", 1337); // No chasing, they're snipers
-					this.set_f32("minDistance", 64);
-					this.set_f32("maxDistance", 800);
-					this.set_bool("bomber", false);
-					this.set_f32("inaccuracy", 0.025f);
-
-					break;
-
-				case 10:
-				case 11:
-					gun_config = "amr";
-					ammo_config = "mat_rifleammo";
-
-					this.set_u8("reactionTime", 30);
-					this.set_u8("attackDelay", 90);
-					this.set_f32("chaseDistance", 1337);
-					this.set_f32("minDistance", 64);
-					this.set_f32("maxDistance", 800);
-					this.set_bool("bomber", false);
-					this.set_f32("inaccuracy", 0.125f);
-
-					break;
-
-				case 12:
-				case 13:
-					gun_config = "grenadelauncher";
-					ammo_config = "mat_grenade";
-
-					this.set_u8("reactionTime", 10);
-					this.set_u8("attackDelay", 20);
-					this.set_f32("chaseDistance", 250);
-					this.set_f32("minDistance", 100);
-					this.set_f32("maxDistance", 700);
-					this.set_bool("bomber", true);
-					this.set_f32("inaccuracy", 0.02f);
-
-					break;
-
-				case 14:
-				case 15:
-					gun_config = "raygun";
-					ammo_config = "mat_mithril";
-
-					this.set_u8("reactionTime", 10);
-					this.set_u8("attackDelay", 0);
-					this.set_f32("chaseDistance", 600);
-					this.set_f32("minDistance", 10);
-					this.set_f32("maxDistance", 800);
-					this.set_f32("inaccuracy", 0.00f);
-
-					break;
-
-				// case 14:
-					// gun_config = "mininukelauncher";
-					// ammo_config = "mat_mininuke";
-
-					// this.set_u8("reactionTime", 30);
-					// this.set_u8("attackDelay", 300);
-					// this.set_f32("chaseDistance", 500);
-					// this.set_f32("minDistance", 400);
-					// this.set_f32("maxDistance", 600);
-					// this.set_f32("inaccuracy", 0.00f);
-
-					// break;
-
-				default:
-					gun_config = "autoshotgun";
-					ammo_config = "mat_shotgunammo";
-
-					this.set_u8("reactionTime", 10);
-					this.set_u8("attackDelay", 5);
-					this.set_f32("chaseDistance", 50);
-					this.set_f32("minDistance", 8);
-					this.set_f32("maxDistance", 400);
-					this.set_bool("bomber", true);
-					this.set_f32("inaccuracy", 0.001f);
-
-					break;
+				gun_config = "rekt";
+				ammo_config = "mat_gatlingammo";
+	
+				this.set_u8("reactionTime", 0);
+				this.set_u8("attackDelay", 0);
+				this.set_f32("chaseDistance", 768);
+				this.set_f32("minDistance", 128);
+				this.set_f32("maxDistance", 768);
+				this.set_f32("inaccuracy", 0.05f);
+			}
+			else
+			{
+				switch(XORRandom(30))
+				{
+					case 0:
+					case 1:
+					case 2:
+						gun_config = "assaultrifle";
+						ammo_config = "mat_rifleammo";
+		
+						this.set_u8("attackDelay", 2);
+						this.set_f32("chaseDistance", 128);
+						this.set_f32("minDistance", 128);
+						this.set_f32("maxDistance", 512);
+						this.set_bool("bomber", false);
+		
+						break;
+	
+					case 3:
+					case 4:
+						gun_config = "flamethrower";
+						ammo_config = "mat_oil";
+	
+						this.set_f32("chaseDistance", 88);
+						this.set_f32("minDistance", 128);
+						this.set_f32("maxDistance", 256);
+	
+						break;
+	
+					case 5:
+					case 6:
+					case 7:
+						gun_config = "minigun";
+						ammo_config = "mat_gatlingammo";
+		
+						this.set_f32("chaseDistance", 88);
+						this.set_f32("minDistance", 128);
+						this.set_f32("maxDistance", 256);
+						this.set_f32("inaccuracy", 0.08f);
+						this.set_bool("bomber", false);
+		
+						break;
+	
+					case 8:
+					case 9:
+						gun_config = "sniper";
+						ammo_config = "mat_rifleammo";
+		
+						this.set_u8("attackDelay", 30);
+						this.set_f32("chaseDistance", 1337); // No chasing, they're snipers // is this a meme number huh?
+						this.set_f32("minDistance", 192);
+						this.set_f32("maxDistance", 768);
+						this.set_f32("inaccuracy", 0.025f);
+						this.set_bool("bomber", false);
+		
+						break;
+	
+					case 10:
+					case 11:
+						gun_config = "amr";
+						ammo_config = "mat_rifleammo";
+		
+						this.set_u8("attackDelay", 90);
+						this.set_f32("chaseDistance", 1337);
+						this.set_f32("minDistance", 192);
+						this.set_f32("maxDistance", 768);
+						this.set_f32("inaccuracy", 0.025f);
+						this.set_bool("bomber", false);
+		
+						break;
+	
+					case 12:
+					case 13:
+						gun_config = "grenadelauncher";
+						ammo_config = "mat_grenade";
+	
+						this.set_u8("attackDelay", 20);
+						this.set_f32("chaseDistance", 128);
+						this.set_f32("minDistance", 192);
+						this.set_f32("maxDistance", 256);
+						this.set_f32("inaccuracy", 0.02f);
+	
+						break;
+	
+					case 14:
+					case 15:
+						gun_config = "raygun";
+						ammo_config = "mat_mithril";
+	
+						this.set_f32("chaseDistance", 192);
+						this.set_f32("minDistance", 192);
+						this.set_f32("maxDistance", 768);
+						this.set_f32("inaccuracy", 0.00f);
+	
+						break;
+						
+					case 16:
+					case 17:
+					case 18:
+					case 19:
+					case 20:
+						gun_config = "autoshotgun";
+						ammo_config = "mat_shotgunammo";
+		
+						this.set_u8("attackDelay", 10);
+						this.set_f32("chaseDistance", 88);
+						this.set_f32("minDistance", 128);
+						this.set_f32("maxDistance", 512);
+						this.set_f32("inaccuracy", 0.025f);
+						this.set_bool("bomber", false);
+		
+						break;
+	
+					// case 14:
+						// gun_config = "mininukelauncher";
+						// ammo_config = "mat_mininuke";
+	
+						// this.set_u8("reactionTime", 30);
+						// this.set_u8("attackDelay", 300);
+						// this.set_f32("chaseDistance", 500);
+						// this.set_f32("minDistance", 400);
+						// this.set_f32("maxDistance", 600);
+						// this.set_f32("inaccuracy", 0.00f);
+	
+						// break;
+	
+					default:
+						gun_config = "xmas";
+						ammo_config = "mat_rifleammo";
+						
+						this.set_u8("attackDelay", 2);
+						this.set_f32("chaseDistance", 128);
+						this.set_f32("minDistance", 256);
+						this.set_f32("maxDistance", 512);
+						this.set_bool("bomber", true);
+						
+						break;
+				}
 			}
 		}
 
