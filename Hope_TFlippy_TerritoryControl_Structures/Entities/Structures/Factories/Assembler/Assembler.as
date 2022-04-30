@@ -1,5 +1,11 @@
-﻿#include "MakeMat.as";
+﻿#include "MakeCrate.as";
 #include "Requirements.as";
+#include "ShopCommon.as";
+#include "Descriptions.as";
+#include "CheckSpam.as";
+#include "CTFShopCommon.as";
+#include "MakeMat.as";
+#include "MakeSeed.as";
 
 bool sus;
 
@@ -12,6 +18,12 @@ void onInit(CSprite@ this)
 	this.SetEmitSoundVolume(0.4f);
 	this.SetEmitSoundSpeed(0.5f);
 	this.SetEmitSoundPaused(false);
+	
+	CBlob@ blob = this.getBlob();
+	if (!blob.hasTag("cogs"))
+	{
+		this.SetEmitSoundPaused(true);
+	}
 
 	{
 		this.RemoveSpriteLayer("gear1");
@@ -261,6 +273,8 @@ void onInit(CBlob@ this)
 	this.set_bool("state", true);
 	bool state = this.get_bool("state");
 	
+	CSprite@ sprite = this.getSprite();
+	
 	//this should prevent cogs of a turned-off assembler from rotating after player's relogs a server
 	if (state == false) {
 		this.Untag("cogs");
@@ -276,6 +290,7 @@ void onInit(CBlob@ this)
 
 void GetButtonsFor( CBlob@ this, CBlob@ caller )
 {
+	this.set_bool("shop available", getGameTime() >= this.get_u32("next use"));
 	if (!caller.isOverlapping(this)) return;
 	{
 		CBitStream params;
@@ -283,7 +298,7 @@ void GetButtonsFor( CBlob@ this, CBlob@ caller )
 	
 		CButton@ button = caller.CreateGenericButton(15, Vec2f(0, -16), this, AssemblerMenu, "Set Item");
 	}
-	{
+	{		
 		bool state = this.get_bool("state");
 		CBitStream params;
 		params.write_bool(!state);
@@ -353,6 +368,9 @@ void onCommand( CBlob@ this, u8 cmd, CBitStream @params)
 			this.Untag("cogs");
 		else
 			this.Tag("cogs");
+		
+		this.set_bool("shop available", false);
+		this.set_u32("next use", getGameTime() + 3);
 	}
 }
 

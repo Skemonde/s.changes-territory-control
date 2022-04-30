@@ -22,7 +22,7 @@ void onInit(CBlob@ this)
 	this.set_f32("maxDistance", 400);
 
 	this.set_f32("inaccuracy", 0.01f);
-	this.set_u8("reactionTime", 20);
+	this.set_u8("reactionTime", 0);
 	this.set_u8("attackDelay", 0);
 	this.set_bool("bomber", false);
 	this.set_bool("raider", false);
@@ -60,12 +60,10 @@ void onInit(CBlob@ this)
 				gun_config = "cock";
 				ammo_config = "mat_pistolammo";
 
-				this.set_u8("reactionTime", 0);
 				this.set_u8("attackDelay", 6);
-				this.set_f32("chaseDistance", 64);
-				this.set_f32("minDistance", 64);
-				this.set_f32("maxDistance", 400);
-				this.set_f32("inaccuracy", 0.25f);
+				this.set_f32("chaseDistance", 88);
+				this.set_f32("minDistance", 128);
+				this.set_f32("maxDistance", 512);
 
 				break;
 
@@ -73,15 +71,36 @@ void onInit(CBlob@ this)
 				gun_config = "c96";
 				ammo_config = "mat_rifleammo";
 
-				this.set_u8("reactionTime", 0);
 				this.set_u8("attackDelay", 10);
 				this.set_f32("chaseDistance", 192); 
 				this.set_f32("minDistance", 192);
-				this.set_f32("maxDistance", 800);
-				this.set_f32("inaccuracy", 0);
+				this.set_f32("maxDistance", 768);
 
 				break;
+			
+			case 2:
+				gun_config = "fuger";
+				ammo_config = "mat_pistolammo";
+
+				this.set_u8("attackDelay", 3);
+				this.set_f32("chaseDistance", 88);
+				this.set_f32("minDistance", 128);
+				this.set_f32("maxDistance", 512);
+
+				break;
+			
+			case 3:
+				gun_config = "pdw";
+				ammo_config = "mat_pistolammo";
+
+				this.set_u8("attackDelay", 1);
+				this.set_f32("chaseDistance", 88);
+				this.set_f32("minDistance", 128);
+				this.set_f32("maxDistance", 512);
 				
+				break;
+				
+			/*
 			case 2:
 				gun_config = "sar";
 				ammo_config = "mat_rifleammo";
@@ -95,28 +114,16 @@ void onInit(CBlob@ this)
 				break;
 
 			case 3:
-			case 4:
-				gun_config = "pdw";
-				ammo_config = "mat_pistolammo";
-				
-				this.set_u8("attackDelay", 1);
-				this.set_u8("reactionTime", 30);
-				this.set_f32("chaseDistance", 100);
-				this.set_f32("minDistance", 8);
-				this.set_f32("maxDistance", 300);
-				
-				break;		
+			*/
 
 			default:
 				gun_config = "beagle";
 				ammo_config = "mat_rifleammo";
 
-				this.set_u8("reactionTime", 2);
 				this.set_u8("attackDelay", 2);
-				this.set_f32("chaseDistance", 100);
-				this.set_f32("minDistance", 32);
-				this.set_f32("maxDistance", 300);
-				this.set_f32("inaccuracy", 0);
+				this.set_f32("chaseDistance", 88);
+				this.set_f32("minDistance", 128);
+				this.set_f32("maxDistance", 512);
 				break;
 		}
 
