@@ -7,7 +7,7 @@
 
 #include "CustomBlocks.as";
 
-void onInit(CBlob@ this)
+void onInit(CBlob@ this, bool open)
 {
 	this.getShape().SetRotationsAllowed(false);
 	this.getSprite().getConsts().accurateLighting = true;
@@ -15,6 +15,18 @@ void onInit(CBlob@ this)
 	this.Tag("blocks sword");
 	this.Tag("door");
 	this.Tag("blocks water");
+	
+	CSprite@ sprite = this.getSprite();
+	if (open)
+	{
+		sprite.SetZ(-100.0f);
+		sprite.SetAnimation("open");
+		this.getShape().getConsts().collidable = false;
+		this.getCurrentScript().tickFrequency = 3;
+		
+		this.getSprite().PlaySound("/Blastdoor_Buzzer.ogg", 1.00f, 1.00f);
+		// this.getSprite().PlaySound("/Blastdoor_Open.ogg", 1.00f, 1.00f);
+	}
 }
 
 void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
