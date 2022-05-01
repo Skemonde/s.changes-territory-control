@@ -65,6 +65,16 @@ void onInit(CBlob@ this)
 	CSprite@ sprite = this.getSprite();
 	CSpriteLayer@ arm = sprite.addSpriteLayer("arm", "ZepplinGatling.png", 24, 16);
 	
+	getMap().server_AddMovingSector(Vec2f(32.0f, 55.0f), Vec2f(-12.0f, 0.0f), "ladder", this.getNetworkID());
+	getMap().server_AddMovingSector(Vec2f(22.0f, 55.0f), Vec2f(-12.0f, 0.0f), "ladder", this.getNetworkID());
+	getMap().server_AddMovingSector(Vec2f(12.0f, 55.0f), Vec2f(-12.0f, 0.0f), "ladder", this.getNetworkID());
+	getMap().server_AddMovingSector(Vec2f(2.0f, 55.0f), Vec2f(-12.0f, 0.0f), "ladder", this.getNetworkID());
+	getMap().server_AddMovingSector(Vec2f(-8.0f, 55.0f), Vec2f(-12.0f, 0.0f), "ladder", this.getNetworkID());
+	getMap().server_AddMovingSector(Vec2f(-18.0f, 55.0f), Vec2f(-12.0f, 0.0f), "ladder", this.getNetworkID());
+	getMap().server_AddMovingSector(Vec2f(-28.0f, 55.0f), Vec2f(-12.0f, 0.0f), "ladder", this.getNetworkID());
+	getMap().server_AddMovingSector(Vec2f(-38.0f, 55.0f), Vec2f(-12.0f, 0.0f), "ladder", this.getNetworkID());
+	getMap().server_AddMovingSector(Vec2f(-48.0f, 55.0f), Vec2f(-12.0f, 0.0f), "ladder", this.getNetworkID());//awful fix, I know
+	
 	if (arm !is null)
 	{
 		{
