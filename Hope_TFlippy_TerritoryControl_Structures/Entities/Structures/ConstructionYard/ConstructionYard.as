@@ -26,13 +26,14 @@ void onInit(CBlob@ this)
 	AddIconToken("$icon_mortar$", "Icon_Vehicles.png", Vec2f(24, 24), 3);
 	AddIconToken("$icon_incendiarymortar$", "IncendiaryMortar_Icon.png", Vec2f(24, 24), 0);
 	AddIconToken("$icon_howitzer$", "Icon_Vehicles.png", Vec2f(24, 24), 4);
+	AddIconToken("$icon_zeppelin$", "Zepplin.png", Vec2f(181, 90), 0);
 
 	AddIconToken("$mat_ironingot$", "Material_IronIngot.png", Vec2f(16, 16), 1);
 	AddIconToken("$antiair", "AntiAC_top.png", Vec2f(32, 16), 3);
 
 	// SHOP
 	this.set_Vec2f("shop offset", Vec2f(0, 8));
-	this.set_Vec2f("shop menu size", Vec2f(12, 10));
+	this.set_Vec2f("shop menu size", Vec2f(12, 13));
 	this.set_string("shop description", "Buy");
 	this.set_u8("shop icon", 25);
 
@@ -270,7 +271,19 @@ void onInit(CBlob@ this)
 		s.buttonwidth = 2;
 		s.buttonheight = 2;
 	}
-	*/
+	*/	
+	{
+		ShopItem@ s = addShopItem(this, "Zeppelin", "$icon_zeppelin$", "zepplin", "$icon_zeppelin$\n\n\n\n\n\n\n\n\n\n\n" + "A large zeppelin.\n\nCan shoot from gatling.\nUses gatling ammo.", false, false);
+		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 48);
+		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 24);
+		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 1250);
+		AddRequirement(s.requirements, "coin", "", "Coins", 3000);
+
+		//s.crate_icon = 0;
+		s.customButton = true;
+		s.buttonwidth = 8;
+		s.buttonheight = 3;
+	}
 }
 
 void onChangeTeam(CBlob@ this, const int oldTeam)
