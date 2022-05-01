@@ -91,7 +91,7 @@ void onInit(CBlob@ this)
 	AddIconToken("$quarters_burger$", "Quarters.png", Vec2f(24, 24), 9);
 	AddIconToken("$rest$", "InteractionIcons.png", Vec2f(32, 32), 29);
 	AddIconToken("$beer$", "Beer.png", Vec2f(8, 8), 0);
-	AddIconToken("$ganjatea$", "Food.png", Vec2f(16, 16), 2);
+	AddIconToken("$ganjatea$", "Tea.png", Vec2f(10, 6), 2);
 
 	//load config
 	if (getRules().exists("ctf_costs_config"))
