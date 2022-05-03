@@ -4,7 +4,7 @@
 
 //most of the code is in BomberCommon.as
 
-const u32 shootDelay = 12; // Ticks
+const u32 shootDelay = 9; // Ticks
 const f32 damage = 15.0f;
 const Vec2f arm_offset = Vec2f(-26, 50);
 
@@ -49,6 +49,16 @@ void onInit(CBlob@ this)
 		                  Vec2f(0.0f, 35.0f) - pos_off
 		                };
 		this.getShape().AddShape(shape);
+	}
+	
+	
+	{
+		Vec2f[] shape = { Vec2f( 110.0f,  35.0f ) -pos_off,
+						  Vec2f( 105.0f,  35.0f ) -pos_off,
+						  Vec2f( 105.0f,  63.0f ) -pos_off,
+						  Vec2f( 110.0f,  63.0f ) -pos_off 
+						};
+		this.getShape().AddShape( shape );
 	}
 	
 	Vehicle_SetupWeapon(this, v,
