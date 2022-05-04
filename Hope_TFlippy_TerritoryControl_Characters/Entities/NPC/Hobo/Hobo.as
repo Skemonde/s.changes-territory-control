@@ -178,7 +178,7 @@ void onInit(CBlob@ this)
 	if (rand.NextRanged(100) < 50)
 	{
 		ShopItem@ s = addShopItem(this, "firejob", "$icon_firejob$", "firejob", "fucking tie it to your neck and launch it ya cunt");
-		AddRequirement(s.requirements, "coin", "", "Coins", 5000 + rand.NextRanged(5575));
+		AddRequirement(s.requirements, "coin", "", "Coins", 2000 + rand.NextRanged(2575));
 		s.spawnNothing = true;
 	}
 
@@ -257,6 +257,13 @@ void onInit(CBlob@ this)
 	{
 		ShopItem@ s = addShopItem(this, "some retarded shite", "$icon_oof$", "oof", "it's a rake or some shit now get the fuck out before i gouge your eyes out");
 		AddRequirement(s.requirements, "coin", "", "Coins", 1 + rand.NextRanged(1000));
+		s.spawnNothing = true;
+	}
+
+	if (rand.NextRanged(100) < 30)
+	{
+		ShopItem@ s = addShopItem(this, "vehry neat stufff phe GHAa", "$icon_illegalshit$", "illegalgunpart", "ok so now listen carefully my dear this is illegal as fUCK");
+		AddRequirement(s.requirements, "coin", "", "Coins", 6000 + rand.NextRanged(1000));
 		s.spawnNothing = true;
 	}
 
@@ -447,6 +454,7 @@ void addTokens(CBlob@ this)
 	AddIconToken("$icon_firework$", "Firework.png", Vec2f(16, 24), 0, teamnum);
 	AddIconToken("$icon_trader$", "TraderCoot.png", Vec2f(16, 16), 0, teamnum);
 	AddIconToken("$icon_sawrocket$", "Material_SawRocket.png", Vec2f(8, 24), 0, teamnum);
+	AddIconToken("$icon_illegalshit$", "IllegalGunPart.png", Vec2f(10, 6), 0, teamnum);
 }
 
 int getRandomCost(Random@ random, int min, int max, int rounding = 10)
