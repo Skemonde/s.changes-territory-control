@@ -121,6 +121,7 @@ void onInit(CBlob@ this)
 		AddRequirement(s.requirements, "coin", "", "Coins", 2000);
         AddRequirement(s.requirements, "blob", "xm", "UPF XM8", 1);
 		AddRequirement(s.requirements, "blob", "carbine", "UPF Carbine", 1);
+		AddRequirement(s.requirements, "blob", "illegalgunpart", "Illegal Gun Part", 1);
         AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 36);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 24);
         
@@ -130,6 +131,7 @@ void onInit(CBlob@ this)
         ShopItem@ s = addShopItem(this, "UPF Suppressed AK-47", "$silencedak$", "silencedak", "Reassemble two very good guns into better one! Uses highcal rounds.");
         AddRequirement(s.requirements, "blob", "silencedrifle", "UPF Suppressed Rifle", 1);
 		AddRequirement(s.requirements, "blob", "bnak", "AK-47", 1);
+		AddRequirement(s.requirements, "blob", "illegalgunpart", "Illegal Gun Part", 1);
 		
         s.spawnNothing = true;
     }
@@ -198,6 +200,7 @@ void addTokens(CBlob@ this)
     AddIconToken("$mat_pistolammo$", "Material_PistolAmmo.png", Vec2f(16, 16), 0, teamnum);
     AddIconToken("$cockl$", "Cock19M79.png", Vec2f(11, 9), 0, teamnum);
     AddIconToken("$tarl$", "Tar21M79.png", Vec2f(21, 11), 0, teamnum);
+	AddIconToken("$illegalgunpart$", "IllegalGunPart.png", Vec2f(10, 6), 0, teamnum);
 }
 
 void GetButtonsFor(CBlob@ this, CBlob@ caller)
