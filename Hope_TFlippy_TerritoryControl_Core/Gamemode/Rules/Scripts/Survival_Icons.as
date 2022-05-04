@@ -179,6 +179,12 @@ void ReloadIcons(CRules@ this)
 	AddIconToken("$icon_grenadelauncher$", "GrenadeLauncher.png", Vec2f(16, 8), 0);
 	AddIconToken("$icon_mininukelauncher$", "MiniNukeLauncher.png", Vec2f(40, 8), 0);
 	AddIconToken("$icon_blazethrower$", "Blazethrower.png", Vec2f(24, 8), 0);
+	
+	// Library (blueprints)
+	AddIconToken("$bp_automation_advanced$", "Blueprints.png", Vec2f(16, 16), 16);
+	AddIconToken("$bp_energetics$", "Blueprints.png", Vec2f(16, 16), 17);
+	AddIconToken("$bp_chemistry$", "Blueprints.png", Vec2f(16, 16), 18);
+	AddIconToken("$bp_weapons$", "Blueprints.png", Vec2f(16, 16), 19);
 
 	// Bandits
 	AddIconToken("$ratburger$", "RatBurger.png", Vec2f(16, 16), 0);
