@@ -43,7 +43,7 @@ void onInit(CBlob@ this)
 		string gun_config;
 		string ammo_config;
 
-		switch(XORRandom(25))
+		switch(XORRandom(22))
 		{
 			case 0:
 			case 1:
@@ -66,7 +66,7 @@ void onInit(CBlob@ this)
 				gun_config = "shotgun";
 				ammo_config = "mat_shotgunammo";
 
-				this.set_u8("attackDelay", 10);
+				this.set_u8("attackDelay", 35);
 				this.set_f32("chaseDistance", 88);
 				this.set_f32("minDistance", 128);
 				this.set_f32("maxDistance", 256);
@@ -86,8 +86,6 @@ void onInit(CBlob@ this)
 				break;
 
 			case 10:
-			case 11:
-			case 12:
 				gun_config = "sniper";
 				ammo_config = "mat_rifleammo";
 
@@ -99,7 +97,9 @@ void onInit(CBlob@ this)
 				this.set_bool("bomber", false);
 
 				break;
-
+			
+			case 11:
+			case 12:
 			case 13:
 				gun_config = "autoshotgun";
 				ammo_config = "mat_shotgunammo";
@@ -145,7 +145,7 @@ void onInit(CBlob@ this)
 				gun_config = "macrogun";
 				ammo_config = "mat_gatlingammo";
 
-				this.set_f32("chaseDistance", 768);
+				this.set_f32("chaseDistance", 128);
 				this.set_f32("minDistance", 192);
 				this.set_f32("maxDistance", 512);
 				this.set_f32("inaccuracy", 0.03f);
@@ -154,42 +154,33 @@ void onInit(CBlob@ this)
 				break;
 
 			default:
-				gun_config = "xm";
+				gun_config = "tar";
 				ammo_config = "mat_rifleammo";
 
-				this.set_u8("attackDelay", 2);
-				this.set_f32("chaseDistance", 88);
+				this.set_u8("attackDelay", 1);
+				this.set_f32("chaseDistance", 128);
 				this.set_f32("minDistance", 128);
-				this.set_f32("maxDistance", 256);
-				this.set_bool("bomber", true);
+				this.set_f32("maxDistance", 512);
 
 				break;
 		}
 
-		for (int i = 0; i < 4; i++)
-		{
-			CBlob@ ammo = server_CreateBlob(ammo_config, this.getTeamNum(), this.getPosition());
-			ammo.server_SetQuantity(ammo.maxQuantity);
-			this.server_PutInInventory(ammo);
-		}
+		// gun and ammo
+		CBlob@ ammo = server_CreateBlob(ammo_config, this.getTeamNum(), this.getPosition());
+		ammo.server_SetQuantity(ammo.maxQuantity * 2);
+		this.server_PutInInventory(ammo);
 
 		CBlob@ gun = server_CreateBlob(gun_config, this.getTeamNum(), this.getPosition());
-		if(gun !is null)
+		if (gun !is null)
 		{
 			this.server_Pickup(gun);
-
-			if (gun.hasCommandID("cmd_gunReload"))
+			
+			if (gun.hasCommandID("reload"))
 			{
 				CBitStream stream;
-				gun.SendCommand(gun.getCommandID("cmd_gunReload"), stream);
+				gun.SendCommand(gun.getCommandID("reload"), stream);
 			}
 		}
-
-		// CBrain@ brain = this.getBrain();
-		// if (brain !is null)
-		// {
-
-		// }
 	}
 }
 
