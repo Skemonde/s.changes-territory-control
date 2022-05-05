@@ -12,6 +12,12 @@ void onInit(CSprite@ this)
 	this.SetEmitSoundVolume(0.4f);
 	this.SetEmitSoundSpeed(0.9f);
 	this.SetEmitSoundPaused(false);
+	
+	CBlob@ blob = this.getBlob();
+	if (!blob.hasTag("CA_is_on"))
+	{
+		this.SetEmitSoundPaused(true);
+	}
 }
 
 class AssemblerItem
@@ -31,6 +37,8 @@ class AssemblerItem
 
 void onInit(CBlob@ this)
 {
+	this.Tag("CA_is_on");
+
 	AssemblerItem[] items;
 	{
 		AssemblerItem i("assaultrifle", 2, "UPF Assault Rifle (4)");
@@ -75,17 +83,30 @@ void onInit(CBlob@ this)
 		items.push_back(i);
 	}
 	{
+		AssemblerItem i("mat_battery", 200, "Voltron Battery Plus (200)");
+		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 2);
+		AddRequirement(i.reqs, "blob", "mat_copperingot", "Copper Ingot", 1);
+		AddRequirement(i.reqs, "blob", "mat_mithril", "Mithril", 25);
+		AddRequirement(i.reqs, "blob", "mat_sulphur", "Sulphur", 25);
+		items.push_back(i);
+	}
+	{
+		AssemblerItem i("samrpg", 1, "SAM RPG (1)");
+		AddRequirement(i.reqs, "blob", "mat_steelingot", "Steel Ingot", 42);
+		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 100);
+		AddRequirement(i.reqs, "blob", "mat_copperingot", "Copper Ingot", 30);
+		items.push_back(i);
+	}
+	{
 		AssemblerItem i("mat_sammissile", 4, "SAM Missile (4)");
 		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 4);
 		AddRequirement(i.reqs, "blob", "mat_methane", "Methane", 25);
 		items.push_back(i);
 	}
 	{
-		AssemblerItem i("mat_battery", 200, "Voltron Battery Plus (200)");
-		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 2);
-		AddRequirement(i.reqs, "blob", "mat_copperingot", "Copper Ingot", 1);
-		AddRequirement(i.reqs, "blob", "mat_mithril", "Mithril", 25);
-		AddRequirement(i.reqs, "blob", "mat_sulphur", "Sulphur", 25);
+		AssemblerItem i("incendiarymortar", 1, "Incendiary Mortar (1)");
+		AddRequirement(i.reqs, "blob", "mat_steelingot", "Steel Ingot", 16);
+		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 4);
 		items.push_back(i);
 	}
 	{
@@ -105,7 +126,12 @@ void onInit(CBlob@ this)
 	this.Tag("builder always hit");
 	this.Tag("change team on fort capture");
 	this.set_bool("state", true);
-
+	bool state = this.get_bool("state");
+	
+	if (state == false) {
+		this.Untag("CA_is_on");
+	}
+	
 	this.addCommandID("set");
 	this.addCommandID("state");
 
@@ -136,7 +162,7 @@ void ChickenAssemblerMenu(CBlob@ this, CBlob@ caller)
 {
 	if(caller.isMyPlayer())
 	{
-		CGridMenu@ menu = CreateGridMenu(getDriver().getScreenCenterPos() + Vec2f(0.0f, 0.0f), this, Vec2f(4, 5), "Set Assembly");
+		CGridMenu@ menu = CreateGridMenu(getDriver().getScreenCenterPos() + Vec2f(0.0f, 0.0f), this, Vec2f(4, 6), "Set Assembly");
 		if (menu !is null)
 		{
 			AssemblerItem[] items = getItems(this);
@@ -187,6 +213,11 @@ void onCommand( CBlob@ this, u8 cmd, CBitStream @params )
 		} else {
 			this.getSprite().PlaySound("LeverToggle.ogg", 2.0f, 0.8f);
 		}
+		
+		if (this.hasTag("CA_is_on"))
+			this.Untag("CA_is_on");
+		else
+			this.Tag("CA_is_on");
 	}
 }
 
