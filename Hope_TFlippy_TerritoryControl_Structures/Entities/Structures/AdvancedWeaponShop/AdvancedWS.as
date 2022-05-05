@@ -72,10 +72,10 @@ void onInit(CBlob@ this)
 	}
 	*/
 	{
-		ShopItem@ s = addShopItem(this, "Shotgun", "$icon_shotgun$", "shotgun", "A short-ranged weapon that deals devastating damage.\n\nUses Shotgun Shells.");
-		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 120);
-		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 4);
-		AddRequirement(s.requirements, "coin", "", "Coins", 500);
+		ShopItem@ s = addShopItem(this, "Bazooka", "$icon_bazooka$", "bazooka", "A long tube capable of shooting rockets. Make sure nobody is standing behind it.\n\nUses Small Rockets.");
+		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 5);
+		AddRequirement(s.requirements, "blob", "mat_copperingot", "Copper Ingot", 2);
+		AddRequirement(s.requirements, "coin", "", "Coins", 400);
 
 		s.customButton = true;
 		s.buttonwidth = 2;
@@ -84,7 +84,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
     {
-		ShopItem@ s = addShopItem(this, "Brand-new AK-47", "$bnak$", "bnak", "Popular russian weapon.\n\nUses highcal rounds.");
+		ShopItem@ s = addShopItem(this, "Brand-new AK-47", "$bnak$", "bnak", "Popular russian weapon.\n\nUses Highcal Rounds.");
 		AddRequirement(s.requirements, "coin", "", "Coins", 1500);
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 250);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 24);
@@ -97,7 +97,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{	
-		ShopItem@ s = addShopItem(this, "Sniper Rifle Dragunova", "$svd$", "svd", "A strong semi-auto half-sniper rifle.\n\nUses highcal rounds.");
+		ShopItem@ s = addShopItem(this, "Sniper Rifle Dragunova", "$svd$", "svd", "A strong semi-auto half-sniper rifle.\n\nUses Highcal Rounds.");
 		AddRequirement(s.requirements, "coin", "", "Coins", 2500);
 		AddRequirement(s.requirements, "blob",  "mat_wood", "Wood", 300);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 16);
@@ -208,7 +208,7 @@ void onInit(CBlob@ this)
 	}
 	*/
 	{
-		ShopItem@ s = addShopItem(this, "RP-46", "$rp46$", "rp46", "Powerful machinegun with slow fire rate and medium accuracy.\n\nUses highcal rounds.");
+		ShopItem@ s = addShopItem(this, "RP-46", "$rp46$", "rp46", "Powerful machinegun with slow fire rate and medium accuracy.\n\nUses Highcal Rounds.");
 		AddRequirement(s.requirements, "coin", "", "Coins", 2500);
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 100);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 16);
@@ -221,7 +221,7 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "TKB-521", "$tkb521$", "tkb521", "A nice machinegun with a big magazine and medium damage.\n\nUses highcal rounds.");
+		ShopItem@ s = addShopItem(this, "TKB-521", "$tkb521$", "tkb521", "A nice machinegun with a big magazine and medium damage.\n\nUses Highcal Rounds.");
 		AddRequirement(s.requirements, "coin", "", "Coins", 2750);
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 200);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 8);
