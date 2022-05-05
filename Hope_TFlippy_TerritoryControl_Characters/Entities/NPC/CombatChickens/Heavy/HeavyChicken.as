@@ -74,7 +74,7 @@ void onInit(CBlob@ this)
 			}
 			else
 			{
-				switch(XORRandom(30))
+				switch(XORRandom(24))
 				{
 					case 0:
 					case 1:
@@ -198,7 +198,7 @@ void onInit(CBlob@ this)
 	
 						// break;
 	
-					default:
+/*					default:
 						gun_config = "xmas";
 						ammo_config = "mat_rifleammo";
 						
@@ -208,35 +208,39 @@ void onInit(CBlob@ this)
 						this.set_f32("maxDistance", 512);
 						this.set_bool("bomber", true);
 						
+						break; */
+					
+					default:
+						gun_config = "xm";
+						ammo_config = "mat_rifleammo";
+		
+						this.set_u8("attackDelay", 2);
+						this.set_f32("chaseDistance", 88);
+						this.set_f32("minDistance", 128);
+						this.set_f32("maxDistance", 256);
+						this.set_bool("bomber", true);
+		
 						break;
 				}
 			}
 		}
 
-		for (int i = 0; i < 4; i++)
-		{
-			CBlob@ ammo = server_CreateBlob(ammo_config, this.getTeamNum(), this.getPosition());
-			ammo.server_SetQuantity(ammo.maxQuantity);
-			this.server_PutInInventory(ammo);
-		}
+		// gun and ammo
+		CBlob@ ammo = server_CreateBlob(ammo_config, this.getTeamNum(), this.getPosition());
+		ammo.server_SetQuantity(ammo.maxQuantity * 2);
+		this.server_PutInInventory(ammo);
 
 		CBlob@ gun = server_CreateBlob(gun_config, this.getTeamNum(), this.getPosition());
-		if(gun !is null)
+		if (gun !is null)
 		{
 			this.server_Pickup(gun);
-
-			if (gun.hasCommandID("cmd_gunReload"))
+			
+			if (gun.hasCommandID("reload"))
 			{
 				CBitStream stream;
-				gun.SendCommand(gun.getCommandID("cmd_gunReload"), stream);
+				gun.SendCommand(gun.getCommandID("reload"), stream);
 			}
 		}
-
-		// CBrain@ brain = this.getBrain();
-		// if (brain !is null)
-		// {
-
-		// }
 	}
 }
 

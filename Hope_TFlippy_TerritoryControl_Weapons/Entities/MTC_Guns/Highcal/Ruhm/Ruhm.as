@@ -43,8 +43,9 @@ void onInit(CBlob@ this)
 	this.Tag("heavy weight");
 	this.Tag("place45");
 }
-
+/*
 void onDie(CBlob@ this)
 {
 	if (isServer()) server_CreateBlob("infernalstone", this.getTeamNum(), this.getPosition());
 }
+*/

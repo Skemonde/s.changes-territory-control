@@ -56,10 +56,10 @@ void ReloadIcons(CRules@ this)
 	AddIconToken("$zapper$", "Zapper.png", Vec2f(24, 24), 0);
 
 	// Ammo
-	AddIconToken("$icon_gatlingammo$", "Material_GatlingAmmo.png", Vec2f(16, 16), 2);
-	AddIconToken("$icon_rifleammo$", "Material_RifleAmmo.png", Vec2f(16, 16), 3);
-	AddIconToken("$icon_shotgunammo$", "Material_ShotgunAmmo.png", Vec2f(16, 16), 3);
-	AddIconToken("$icon_pistolammo$", "Material_PistolAmmo.png", Vec2f(16, 16), 3);
+	AddIconToken("$icon_gatlingammo$", "AmmoIcon_Gatling.png", Vec2f(24, 24), 3);
+	AddIconToken("$icon_rifleammo$", "AmmoIcon_HighCal.png", Vec2f(24, 24), 3);
+	AddIconToken("$icon_shotgunammo$", "AmmoIcon_Shotgun.png", Vec2f(24, 24), 3);
+	AddIconToken("$icon_pistolammo$", "AmmoIcon_LowCal.png", Vec2f(24, 24), 3);
 	AddIconToken("$icon_howitzershell$", "Material_HowitzerShell.png", Vec2f(16, 8), 0);
 
 	// Explosives
@@ -191,7 +191,7 @@ void ReloadIcons(CRules@ this)
 	AddIconToken("$ratfood$", "Rat.png", Vec2f(16, 16), 0);
 	AddIconToken("$faultymine$", "FaultyMine.png", Vec2f(16, 16), 0);
 	AddIconToken("$badger$", "Badger.png", Vec2f(32, 16), 0);
-	AddIconToken("$icon_banditammo$", "Material_BanditAmmo.png", Vec2f(16, 16), 3);
+	AddIconToken("$icon_banditammo$", "AmmoIcon_Bandit.png", Vec2f(24, 24), 3);
 	AddIconToken("$icon_banditpistol$", "BanditPistol.png", Vec2f(16, 8), 0);
 	AddIconToken("$icon_banditrifle$", "BanditRifle.png", Vec2f(24, 16), 0);
 	AddIconToken("$icon_foodcan$", "FoodCan.png", Vec2f(16, 16), 0);

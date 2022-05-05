@@ -73,8 +73,24 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
+		ShopItem@ s = addShopItem(this, "UPF PDW", "$pdw$", "pdw", "UPF PDW. Used for shooting holes into humans.");
+		AddRequirement(s.requirements, "coin", "", "Coins", 1199);
+
+		s.spawnNothing = true;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "UPF Carbine", "$carbine$", "carbine", "UPF Carbine. Used to penetrate humans from afar.");
+		AddRequirement(s.requirements, "coin", "", "Coins", 2299);
+
+		s.spawnNothing = true;
+	}
+	{
 		ShopItem@ s = addShopItem(this, "UPF Assault Rifle", "$assaultrifle$", "assaultrifle", "Assault Rifle. Used to assault humans.");
 		AddRequirement(s.requirements, "coin", "", "Coins", 2999);
+
+		s.customButton = true;
+		s.buttonwidth = 2;
+		s.buttonheight = 1;
 
 		s.spawnNothing = true;
 	}
@@ -85,20 +101,12 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "UPF PDW", "$pdw$", "pdw", "UPF PDW. Used for shooting holes into humans.");
-		AddRequirement(s.requirements, "coin", "", "Coins", 1199);
-
-		s.spawnNothing = true;
-	}
-	{
 		ShopItem@ s = addShopItem(this, "UPF Assault Shotgun", "$autoshotgun$", "autoshotgun", "Automatic Shotgun. Used to destroy humans.");
 		AddRequirement(s.requirements, "coin", "", "Coins", 2499);
 
-		s.spawnNothing = true;
-	}
-	{
-		ShopItem@ s = addShopItem(this, "UPF Carbine", "$carbine$", "carbine", "UPF Carbine. Used to penetrate humans from afar.");
-		AddRequirement(s.requirements, "coin", "", "Coins", 2299);
+		s.customButton = true;
+		s.buttonwidth = 2;
+		s.buttonheight = 1;
 
 		s.spawnNothing = true;
 	}
