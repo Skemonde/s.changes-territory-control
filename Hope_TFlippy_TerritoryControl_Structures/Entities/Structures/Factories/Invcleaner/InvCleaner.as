@@ -1,4 +1,6 @@
 ﻿#include "MakeMat.as";
+#include "FilteringCommon.as";
+#include "Hitters.as";
 
 void onInit(CSprite@ this)
 {
@@ -6,23 +8,52 @@ void onInit(CSprite@ this)
 	this.SetZ(-50);
 
 	this.RemoveSpriteLayer("gear");
-	CSpriteLayer@ gear = this.addSpriteLayer("gear", "Extractor.png" , 16, 16, this.getBlob().getTeamNum(), this.getBlob().getSkinNum());
+	CSpriteLayer@ gear = this.addSpriteLayer("gear", "Cogs.png" , 16, 16, this.getBlob().getTeamNum(), this.getBlob().getSkinNum());
 
 	if (gear !is null)
 	{
 		Animation@ anim = gear.addAnimation("default", 0, false);
-		anim.AddFrame(2);
-		gear.SetOffset(Vec2f(0.0f, -3.0f));
+		anim.AddFrame(1);
+		gear.SetOffset(Vec2f(-0.5f, -9.0f));
 		gear.SetAnimation("default");
-		gear.SetRelativeZ(-60);
+		gear.SetRelativeZ(-5);
 	}
 }
 
+float Reach = 48.0f;
+Vec2f Mid = Vec2f(0,-7);
+
 void onTick(CSprite@ this)
 {
-	if(this.getSpriteLayer("gear") !is null){
-		this.getSpriteLayer("gear").RotateBy(3, Vec2f(0.5f,-0.5f));
+	for(int i = 0;i < this.getSpriteLayerCount();i++){
+		CSpriteLayer@gear = this.getSpriteLayer(i);
+		if(gear !is null){
+			
+			if(gear.name.findFirst("connection_") >= 0){
+				CBlob @connection = getBlobByNetworkID(parseInt(gear.name.substr(11)));
+				if(connection is null){
+					this.RemoveSpriteLayer(gear.name);
+				} else {
+					//if(!connection.getShape().isStatic()){
+						Vec2f dif = (this.getBlob().getPosition()+Mid)-connection.getPosition();
+						dif = Vec2f(-dif.x,dif.y);
+						int dis = Maths::Max(dif.Length(),8);
+						if(dis <= Reach){
+							gear.ResetTransform();
+							gear.ScaleBy(dis/float(gear.getFrameWidth()),1);
+							gear.RotateBy(dif.getAngleDegrees()+180, Vec2f(0.5f,-0.5f));
+							gear.SetOffset(-Vec2f(dif.x/2,dif.y/2)+Mid);
+						} else {
+							this.RemoveSpriteLayer(gear.name);
+						}
+					//}
+				}
+			} else {
+				gear.RotateBy(5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.5f,-0.5f));
+			}
+		}
 	}
+	
 }
 
 void onInit(CBlob@ this)
@@ -31,137 +62,103 @@ void onInit(CBlob@ this)
 	this.getShape().getConsts().mapCollisions = false;
 	this.getCurrentScript().tickFrequency = 10;
 
-	this.set_bool("reversed", false);
-	this.addCommandID("reverse");
-
 	this.Tag("ignore extractor");
 	this.Tag("builder always hit");
 }
 
-void GetButtonsFor(CBlob@ this, CBlob@ caller)
-{
-	CBitStream params;
 
-	if (this !is null)
-	{
-		CButton@ button = caller.CreateGenericButton(17, Vec2f(0, 3.0f), this, this.getCommandID("reverse"), "Reverse logic filter \nAlready reversed: " + this.get_bool("reversed"), params);
-	}
-}
-
-void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
-{
-	if (cmd == this.getCommandID("reverse"))
-	{
-		if (this !is null)
-		{
-			if (!this.get_bool("reversed"))
-				this.set_bool("reversed", true);
-			else
-				this.set_bool("reversed", false);
-			printf("" + this.get_bool("reversed"));
-		}
-	}
-}
 
 void onTick(CBlob@ this)
 {
+	this.getCurrentScript().tickFrequency = 60.0f / (this.exists("gyromat_acceleration") ? this.get_f32("gyromat_acceleration") : 1);
+
 	if (isServer())
 	{
 		CBlob@[] blobs;
-		// if (this.getMap().getBlobsInRadius(this.getPosition(), 32.0f, @blobs))
-		if (getMap().getBlobsInBox(this.getPosition() + Vec2f(-32, -32), this.getPosition() + Vec2f(32, 32), @blobs))
+		if (this.getMap().getBlobsInRadius(this.getPosition()+Mid, Reach, @blobs))
+		//if (getMap().getBlobsInBox(this.getPosition() + Vec2f(-40, -40), this.getPosition() + Vec2f(40, 40), @blobs))
 		{
 			for (uint i = 0; i < blobs.length; i++)
 			{
 				CBlob@ b = blobs[i];
-				if(b.getInventory() !is null && b.hasTag("player") && b.getTeamNum() == this.getTeamNum())
-				{
-					int count = b.getInventory().getItemsCount();
+				if (b.getInventory() !is null && b.hasTag("player") && b.getTeamNum() == this.getTeamNum()) {
 
-					for (int i = 0; i < count; i++)
+					if (b.getInventory().getItemsCount() > 0)
 					{
-						if (!this.get_bool("reversed"))
+						for (int i = 0; i < b.getInventory().getItemsCount(); i++)
 						{
 							CBlob@ item = b.getInventory().getItem(i);
-							if (item !is null && this.hasBlob(item.getName(), 0)
-							|| this.hasBlob(item.getName(), 1)
-							|| this.hasBlob(item.getName(), 2)
-							|| this.hasBlob(item.getName(), 3)
-							|| this.hasBlob(item.getName(), 4)
-							|| this.hasBlob(item.getName(), 5)
-							|| this.hasBlob(item.getName(), 6)
-							|| this.hasBlob(item.getName(), 7)
-							|| this.hasBlob(item.getName(), 8)
-							|| this.hasBlob(item.getName(), 9)
-							|| this.hasBlob(item.getName(), 10)
-							|| this.hasBlob(item.getName(), 11)
-							|| this.hasBlob(item.getName(), 12)
-							|| this.hasBlob(item.getName(), 13)
-							|| this.hasBlob(item.getName(), 14)
-							|| this.hasBlob(item.getName(), 15)
-							|| this.hasBlob(item.getName(), 16))
+							if(server_isItemAccepted(this, item.getName()))
 							{
 								b.server_PutOutInventory(item);
 								item.setPosition(this.getPosition());
-
-								return;
-							}
-						}
-						else if (this.get_bool("reversed"))
-						{
-							CBlob@ item = b.getInventory().getItem(i);
-							if (item !is null && !this.hasBlob(item.getName(), 0)
-							|| !this.hasBlob(item.getName(), 1)
-							|| !this.hasBlob(item.getName(), 2)
-							|| !this.hasBlob(item.getName(), 3)
-							|| !this.hasBlob(item.getName(), 4)
-							|| !this.hasBlob(item.getName(), 5)
-							|| !this.hasBlob(item.getName(), 6)
-							|| !this.hasBlob(item.getName(), 7)
-							|| !this.hasBlob(item.getName(), 8)
-							|| !this.hasBlob(item.getName(), 9)
-							|| !this.hasBlob(item.getName(), 10)
-							|| !this.hasBlob(item.getName(), 11)
-							|| !this.hasBlob(item.getName(), 12)
-							|| !this.hasBlob(item.getName(), 13)
-							|| !this.hasBlob(item.getName(), 14)
-							|| !this.hasBlob(item.getName(), 15)
-							|| !this.hasBlob(item.getName(), 16))
-							{
-								b.server_PutOutInventory(item);
-								item.setPosition(this.getPosition());
-
-								return;
+								break;
 							}
 						}
 					}
-					
-					// if (b.getInventory().getItemsCount() > 0)
-					// {
-						// // return !(this.hasBlob(blob.getName(), 0) || this.hasBlob(blob.getName(), 1));
-					
-						// CBlob@ item = b.getInventory().getItem(0);
+				}
+			}
+		}
+	}
+	
+	if (isClient())
+	{
+		int transferTime =  this.getCurrentScript().tickFrequency;
+		CSprite @sprite = this.getSprite();
+		CBlob@[] blobs;
+		if (this.getMap().getBlobsInRadius(this.getPosition()+Mid, Reach, @blobs))
+		{
+			for (uint i = 0; i < blobs.length; i++)
+			{
+				CBlob@ b = blobs[i];
+				if (b.getInventory() !is null && b.hasTag("player") && b.getTeamNum() == this.getTeamNum()) {
 
-						// b.server_PutOutInventory(item);
-						// item.setPosition(this.getPosition());
-					// }
+					CSpriteLayer @layer = sprite.getSpriteLayer("connection_"+b.getNetworkID());
+
+					Vec2f dif = (this.getPosition()+Mid)-b.getPosition();
+					int dis = Maths::Max(dif.Length(),8);
+					if(layer is null){
+						
+						int frameSpacing = 64/dis;
+						
+						CSpriteLayer@ gear = sprite.addSpriteLayer("connection_"+b.getNetworkID(),"ExtractorPipeR.png",dis,6);
+						if(gear !is null){
+							Animation@ anim = gear.addAnimation("default", transferTime/(dis/2), false);
+							for(int i = 0;i < dis/2+2;i++)anim.AddFrame(i*frameSpacing);
+							
+							//gear.ScaleBy(dif.Length()/64, 1);
+							
+							dif = Vec2f(-dif.x,dif.y);
+							gear.RotateBy(dif.getAngleDegrees()+180, Vec2f(0.5f,-0.5f));
+							gear.SetOffset(-Vec2f(dif.x/2,dif.y/2)+Mid);
+							
+							
+							gear.SetAnimation("default");
+							gear.SetRelativeZ(-10);
+							
+						}
+					} else {
+						CSpriteLayer@ gear = sprite.getSpriteLayer("connection_"+b.getNetworkID());
+						if(gear !is null){
+							Animation @anim = gear.getAnimation("default");
+							if(anim !is null)anim.timer = transferTime/(dis/2);
+							gear.SetFrameIndex(0);
+						}
+					}
 				}
 			}
 		}
 	}
 }
 
-
-void onAddToInventory( CBlob@ this, CBlob@ blob )
+bool isInventoryAccessible(CBlob@ this, CBlob@ forBlob)
 {
-	if(blob.getName() != "gyromat") return;
-
-	this.getCurrentScript().tickFrequency = 10 / (this.exists("gyromat_acceleration") ? this.get_f32("gyromat_acceleration") : 1);
+	return forBlob.isOverlapping(this) && (forBlob.getCarriedBlob() is null || forBlob.getCarriedBlob().getName() == "gyromat");
+	//return (forBlob.isOverlapping(this));
 }
 
-void onRemoveFromInventory(CBlob@ this, CBlob@ blob)
+f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitterBlob, u8 customData)
 {
-	if(blob.getName() != "gyromat") return;
-	
-	this.getCurrentScript().tickFrequency = 10 / (this.exists("gyromat_acceleration") ? this.get_f32("gyromat_acceleration") : 1);
+	if (customData == Hitters::builder) damage *= 10.0f;
+	return damage;
 }

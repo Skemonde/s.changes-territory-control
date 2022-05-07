@@ -14,7 +14,9 @@ void onInit(CBlob@ this)
 
 	this.set_TileType("background tile", CMap::tile_biron);
 	this.getShape().getConsts().mapCollisions = false;
+	
 	this.Tag("builder always hit");
+	this.Tag("extractable");
 
 	this.getCurrentScript().tickFrequency = 10;
 	this.getSprite().SetZ(-10.0f);
@@ -43,12 +45,12 @@ void onInit(CBlob@ this)
 
 	{
 		sprite.RemoveSpriteLayer("gear1");
-		CSpriteLayer@ gear = sprite.addSpriteLayer("gear1", "ChemLab.png" , 18, 18, sprite.getBlob().getTeamNum(), sprite.getBlob().getSkinNum());
+		CSpriteLayer@ gear = sprite.addSpriteLayer("gear1", "Cogs.png" , 16, 16, sprite.getBlob().getTeamNum(), sprite.getBlob().getSkinNum());
 
 		if (gear !is null)
 		{
 			Animation@ anim = gear.addAnimation("default", 0, false);
-			anim.AddFrame(3);
+			anim.AddFrame(2);
 			gear.SetOffset(Vec2f(-15.0f, -10.0f));
 			gear.SetAnimation("default");
 			gear.SetRelativeZ(-60);
@@ -57,12 +59,12 @@ void onInit(CBlob@ this)
 
 	{
 		sprite.RemoveSpriteLayer("gear2");
-		CSpriteLayer@ gear = sprite.addSpriteLayer("gear2", "ChemLab.png" , 18, 18, sprite.getBlob().getTeamNum(), sprite.getBlob().getSkinNum());
+		CSpriteLayer@ gear = sprite.addSpriteLayer("gear2", "Cogs.png" , 16, 16, sprite.getBlob().getTeamNum(), sprite.getBlob().getSkinNum());
 
 		if (gear !is null)
 		{
 			Animation@ anim = gear.addAnimation("default", 0, false);
-			anim.AddFrame(3);
+			anim.AddFrame(2);
 			gear.SetOffset(Vec2f(15.0f, -10.0f));
 			gear.SetAnimation("default");
 			gear.SetRelativeZ(-60);
@@ -73,10 +75,10 @@ void onInit(CBlob@ this)
 void onTick(CSprite@ this)
 {
 	if(this.getSpriteLayer("gear1") !is null){
-		this.getSpriteLayer("gear1").RotateBy(5, Vec2f(0.0f,0.0f));
+		this.getSpriteLayer("gear1").RotateBy(5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.0f,0.0f));
 	}
 	if(this.getSpriteLayer("gear2") !is null){
-		this.getSpriteLayer("gear2").RotateBy(-5, Vec2f(0.0f,0.0f));
+		this.getSpriteLayer("gear2").RotateBy(-5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.0f,0.0f));
 	}
 }
 
@@ -694,17 +696,18 @@ void onRender(CSprite@ this)
 
 void onTick(CBlob@ this)
 {
+	this.getCurrentScript().tickFrequency = 30.0f / (this.exists("gyromat_acceleration") ? this.get_f32("gyromat_acceleration") : 1);
 
-  const u32 time = this.get_u32(timing);
-  if (time > 0) {
-     this.add_u32(timing, -1);
-  }
-  else {
-    this.set_u32(timing, time_max);
-    React(this);
-  }
-
-  if (this.hasTag("dead")) return;
+	const u32 time = this.get_u32(timing);
+	if (time > 0) {
+	this.add_u32(timing, -1);
+	}
+	else {
+	this.set_u32(timing, time_max);
+	React(this);
+	}
+	
+	if (this.hasTag("dead")) return;
 
 	CInventory@ inv = this.getInventory();
 	if (inv !is null)

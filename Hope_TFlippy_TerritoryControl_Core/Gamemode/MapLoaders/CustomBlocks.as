@@ -224,6 +224,7 @@ namespace CMap
 		tile_mossyconcrete_d4,
 		
 		tile_bconcrete = 512 + 144,
+		
 		tile_bconcrete_v0,
 		tile_bconcrete_v1,
 		tile_bconcrete_v2,
@@ -342,6 +343,11 @@ bool isTileBConcrete(TileType tile)
 	return tile >= CMap::tile_bconcrete && tile <= CMap::tile_bconcrete_v14;
 }
 
+bool isTileReinforcedConcrete(TileType tile)
+{
+	return tile >= CMap::tile_reinforcedconcrete && tile <= CMap::tile_reinforcedconcrete_d15;
+}
+
 bool isTileMossyConcrete(TileType tile)
 {
 	return tile >= CMap::tile_mossyconcrete && tile <= CMap::tile_mossyconcrete_d4;
@@ -350,6 +356,11 @@ bool isTileMossyConcrete(TileType tile)
 bool isTileMossyBConcrete(TileType tile)
 {
 	return tile >= CMap::tile_mossybconcrete && tile <= CMap::tile_mossybconcrete_d4;
+}
+
+bool isTilePlasteel(TileType tile)
+{
+	return tile >= CMap::tile_plasteel && tile <= CMap::tile_plasteel_d14;
 }
 
 bool isTileKudzu(TileType tile)

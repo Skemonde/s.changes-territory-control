@@ -8,6 +8,7 @@ string getButtonRequirementsText(CBitStream& inout bs,bool missing)
 	u16 quantity=0;
 	bs.ResetBitIndex();
 
+	text += "\nRequires:\n";
 	while (!bs.isBufferEnd())
 	{
 		ReadRequirement(bs,requiredType,name,friendlyName,quantity);
@@ -93,6 +94,7 @@ string getButtonRequirementsText(CBitStream& inout bs,bool missing)
 				text += quantityColor;
 			}
 		}
+		text += "\n";
 	}
 
 	return text;
@@ -229,6 +231,11 @@ bool hasRequirements(CInventory@ inv1, CInventory@ inv2, CBitStream &inout bs, C
 				for (int i = 0; i< baseBlobs.length; i++)
 				{
 					sum += baseBlobs[i].getBlobCount(blobName);
+					if(baseBlobs[i].exists("compactor_resource")){
+						if(baseBlobs[i].get_string("compactor_resource") == blobName){
+							sum += baseBlobs[i].get_u32("compactor_quantity");
+						}
+					}
 				}
 			}
 			
@@ -427,6 +434,14 @@ void server_TakeRequirements(CInventory@ inv1, CInventory@ inv2, CBitStream &ino
 					u16 hold = taken;
 					taken += Maths::Min(baseBlobs[i].getBlobCount(blobName), quantity - taken);
 					baseBlobs[i].TakeBlob(blobName, quantity - hold);
+					if(baseBlobs[i].exists("compactor_resource")){
+						if(baseBlobs[i].get_string("compactor_resource") == blobName){
+							int dif = Maths::Min(baseBlobs[i].get_u32("compactor_quantity"), quantity - taken);
+							taken += dif;
+							baseBlobs[i].sub_u32("compactor_quantity",dif);
+							baseBlobs[i].Sync("compactor_quantity",true);
+						}
+					}
 				}
 			}
 		}

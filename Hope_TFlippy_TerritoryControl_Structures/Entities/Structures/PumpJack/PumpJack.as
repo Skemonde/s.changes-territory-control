@@ -13,6 +13,7 @@ void onInit(CBlob@ this)
 	this.getShape().getConsts().mapCollisions = false;
 
 	this.Tag("change team on fort capture");
+	this.Tag("extractable");
 	this.addCommandID("write");
 	//this.set_Vec2f("nobuild extend",Vec2f(0.0f, 8.0f));
 
@@ -121,7 +122,7 @@ CBlob@ FindStorage(u8 team)
 
 void GetButtonsFor(CBlob@ this, CBlob@ caller)
 {
-	this.set_bool("shop available", this.isOverlapping(caller));
+	this.set_bool("shop available", false);
 
 	if (caller is null) return;
 	if (!this.isOverlapping(caller)) return;

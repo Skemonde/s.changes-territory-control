@@ -7,8 +7,8 @@ void onInit(CBlob @ this)
 
 	this.getShape().SetRotationsAllowed(false);
 	this.Tag("place norotate");
-	// this.Tag("ignore extractor");
 	this.Tag("builder always hit");
+	this.Tag("extractable");
 
 	this.getCurrentScript().tickFrequency = 15;
 
@@ -16,7 +16,7 @@ void onInit(CBlob @ this)
 	if (sprite !is null)
 	{
 		sprite.SetEmitSound("Treecapicator_Idle.ogg");
-		sprite.SetEmitSoundVolume(0.10f);
+		sprite.SetEmitSoundVolume(0.1f);
 		sprite.SetEmitSoundSpeed(1.0f);
 		sprite.SetEmitSoundPaused(false);
 	}

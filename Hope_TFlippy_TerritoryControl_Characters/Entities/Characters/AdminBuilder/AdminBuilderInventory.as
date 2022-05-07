@@ -24,6 +24,7 @@ namespace Builder
 		PAGE_TWO,
 		PAGE_THREE,
 		PAGE_FOUR,
+		//PAGE_FIVE,
 		PAGE_COUNT
 	};
 }
@@ -35,12 +36,13 @@ const string[] PAGE_NAME =
 	"Automation",
 	"Miscellaneous",
 	"Mechanisms",
+	"Rob's Sussies"
 };
 
 const u8 GRID_SIZE = 48;
 const u8 GRID_PADDING = 12;
 
-const Vec2f MENU_SIZE(6, 8);
+const Vec2f MENU_SIZE(6, 7);
 const u32 SHOW_NO_BUILD_TIME = 90;
 
 void onInit(CInventory@ this)
@@ -64,7 +66,7 @@ void onInit(CInventory@ this)
 
 	for(u8 i = 0; i < Builder::PAGE_COUNT; i++)
 	{
-		AddIconToken("$"+PAGE_NAME[i]+"$", "BuilderPageIcons.png", Vec2f(48, 24), i);
+		AddIconToken("$"+PAGE_NAME[i]+"$", "GoldenEngineerPageIcons.png", Vec2f(48, 24), i);
 	}
 
 	blob.set_Vec2f("backpack position", Vec2f_zero);

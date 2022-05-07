@@ -281,7 +281,7 @@ void onInit(CBlob@ this)
 
 		//s.crate_icon = 0;
 		s.customButton = true;
-		s.buttonwidth = 8;
+		s.buttonwidth = 12;
 		s.buttonheight = 3;
 	}
 }

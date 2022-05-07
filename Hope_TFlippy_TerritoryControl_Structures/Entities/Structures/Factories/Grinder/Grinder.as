@@ -40,6 +40,7 @@ void onInit(CSprite@ this)
 void onInit(CBlob@ this)
 {
 	this.Tag("builder always hit");
+	this.Tag("extractable");
 
 	this.getShape().SetOffset(Vec2f(0, 4));
 

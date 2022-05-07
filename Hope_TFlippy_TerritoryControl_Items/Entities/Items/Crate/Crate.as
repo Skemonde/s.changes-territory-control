@@ -32,6 +32,8 @@ void onInit(CBlob@ this)
 	//this.addCommandID("getin");
 	//this.addCommandID("getout");
 	this.addCommandID("stop unpack");
+	this.Tag("crate");
+	this.Tag("extractable");
 
 	u8 frame = 0;
 	
@@ -43,7 +45,7 @@ void onInit(CBlob@ this)
 	{
 		this.getSprite().SetAnimation("chicken");
 	}
-	else if (this.hasTag("team crate"))
+	else if (this.getTeamNum() < 7 && this.getTeamNum() > -1)
 	{
 		this.getSprite().SetAnimation("team");
 	}
@@ -511,7 +513,7 @@ void onCollision(CBlob@ this, CBlob@ blob, bool solid)
 		TryToAttachCargo(this, blob);
 	}
 	
-	if (blob !is null ? !blob.isCollidable() : !solid) return;
+	if(!solid)return;
 
 	f32 vellen = this.getOldVelocity().Length();
 
