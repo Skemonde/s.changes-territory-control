@@ -116,6 +116,29 @@ void onInit(CBlob@ this)
 		AddRequirement(i.reqs, "blob", "mat_sulphur", "Sulphur", 25);
 		items.push_back(i);
 	}
+	{
+		AssemblerItem i("mat_hshell", 8, "HATC Shell (8)");
+		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 32);
+		AddRequirement(i.reqs, "blob", "mat_sulphur", "Sulphur", 500);
+		items.push_back(i);
+	}
+	{
+		AssemblerItem i("advancedcruisemissile", 1, "Advanced Cruise Missile (1)");
+		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 32);
+		AddRequirement(i.reqs, "blob", "mat_methane", "Methane", 50);
+		AddRequirement(i.reqs, "blob", "mat_fuel", "Fuel", 50);
+		AddRequirement(i.reqs, "blob", "mat_sulphur", "Sulphur", 200);
+		AddRequirement(i.reqs, "blob", "mat_steelingot", "Steel Ingot", 16);
+		items.push_back(i);
+	}
+	{
+		AssemblerItem i("hatc", 1, "HATC");
+		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 54);
+		AddRequirement(i.reqs, "blob", "mat_steelingot", "Steel Ingot", 32);
+		AddRequirement(i.reqs, "blob", "mat_copperwire", "Copper Wire", 30);
+		AddRequirement(i.reqs, "blob", "mat_battery", "Voltron Battery Plus", 100);
+		items.push_back(i);
+	}
 
 	this.set("items", items);
 
@@ -162,7 +185,7 @@ void ChickenAssemblerMenu(CBlob@ this, CBlob@ caller)
 {
 	if(caller.isMyPlayer())
 	{
-		CGridMenu@ menu = CreateGridMenu(getDriver().getScreenCenterPos() + Vec2f(0.0f, 0.0f), this, Vec2f(4, 6), "Set Assembly");
+		CGridMenu@ menu = CreateGridMenu(getDriver().getScreenCenterPos() + Vec2f(0.0f, 0.0f), this, Vec2f(4, 8), "Set Assembly");
 		if (menu !is null)
 		{
 			AssemblerItem[] items = getItems(this);
