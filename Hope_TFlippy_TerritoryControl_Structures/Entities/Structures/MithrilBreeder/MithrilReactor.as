@@ -7,6 +7,8 @@
 
 void onInit(CBlob@ this)
 {
+	this.Tag("extractable");
+	
 	CSprite@ sprite = this.getSprite();
 	if (sprite !is null)
 	{

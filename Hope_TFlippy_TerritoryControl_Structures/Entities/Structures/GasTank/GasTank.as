@@ -6,6 +6,7 @@ void onInit(CBlob@ this)
 	this.getShape().getConsts().mapCollisions = false;
 
 	this.Tag("builder always hit");
+	this.Tag("extractable");
 	this.Tag("change team on fort capture");
 	this.Tag("gas_tank");
 }

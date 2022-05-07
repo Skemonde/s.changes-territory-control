@@ -13,6 +13,7 @@ void onInit(CBlob@ this)
 	this.set_TileType("background tile", CMap::tile_castle_back);
 	
 	this.Tag("builder always hit");
+	this.Tag("extractable");
 	this.Tag("change team on fort capture");
 }
 

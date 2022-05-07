@@ -11,6 +11,7 @@ void onInit(CBlob@ this)
 	this.getShape().getConsts().mapCollisions = false;
 	this.getCurrentScript().tickFrequency = 30;
 	this.Tag("builder always hit");
+	this.Tag("extractable");
 
 	this.addCommandID("sv_store");
 

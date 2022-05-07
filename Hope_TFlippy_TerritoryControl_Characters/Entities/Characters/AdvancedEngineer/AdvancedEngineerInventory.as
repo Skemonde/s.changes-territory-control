@@ -3,7 +3,7 @@
 #include "BuilderCommon.as";
 #include "PlacementCommon.as";
 #include "Help.as";
-#include "CommonAlienBlocks.as";
+#include "AlienBuilderBlocks.as";
 
 namespace Builder
 {

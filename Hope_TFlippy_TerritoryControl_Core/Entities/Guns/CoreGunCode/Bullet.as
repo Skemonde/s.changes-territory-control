@@ -220,15 +220,22 @@ class Bullet
                         }
                         else
                         {
-                            if (map.isTileGroundStuff(tile.type))
-                            {
-                                //Bullet resistance
-                                if (XORRandom(4) < 3) map.server_DestroyTile(hitpos, damage * 0.25f);
-                            }
-                            else
-                            {
-                                map.server_DestroyTile(hitpos, damage * 0.25f);
-                            }
+							if(isTilePlasteel(tile.type)){ ///Plasteel does not take bullet damage
+							} else
+							if(isTileGlass(tile.type)){ ///Glass is instantly destroyed when shot
+								for (int i = 0; i < 2; i++)map.server_DestroyTile(hitpos, damage * 0.25f);
+							} else
+								if (map.isTileWood(tile.type)){
+									map.server_DestroyTile(hitpos, damage * 0.25f);
+							} else
+							if (map.isTileGroundStuff(tile.type) || isTileReinforcedConcrete(tile.type)){ ///Earth and reinforced concrete are very resistant to bullet fire
+							if (XORRandom(8) < 1)map.server_DestroyTile(hitpos, damage * 0.25f);
+							} else
+							if (isTileKudzu(tile.type) || isTileConcrete(tile.type) || isTileMossyConcrete(tile.type)){ ///Concrete and leaves are somewhat resistant to bullet fire
+							if (XORRandom(4) < 1)map.server_DestroyTile(hitpos, damage * 0.25f);
+							} else {
+							if (XORRandom(2) < 1)map.server_DestroyTile(hitpos, damage * 0.25f); ///Everything else takes about 2 hits before it takes damage
+							}
                         }
                     }
 
@@ -238,7 +245,7 @@ class Bullet
                         {
                             ParticleBulletHit("DustSmall.png", hitpos, -dir.Angle() - 90);
                         }
-                        else if (map.isTileCastle(tile.type) || isTileConcrete(tile.type))
+                        else if (map.isTileCastle(tile.type) || isTileConcrete(tile.type) || isTileReinforcedConcrete(tile.type))
                         {
                             ParticleBulletHit("Smoke.png", hitpos, -dir.Angle() - 90);
                         }

@@ -249,7 +249,7 @@ void RenderTeamInventoryHUD(CBlob@ this)
 			}
 
 			CInventory@ inv = baseBlob.getInventory();
-			if (inv is null) return;
+			if (inv is null)continue;
 
 			for (int j = 0; j < inv.getItemsCount(); j++)
 			{
@@ -297,6 +297,37 @@ void RenderTeamInventoryHUD(CBlob@ this)
 			}
 		}
 
+		for (int i = 0; i < baseBlobs.length; i++) ///Loop through again for compactors, since compactors don't store the item, they can't add new entries, dumb system
+		{
+			CBlob@ baseBlob = baseBlobs[i];
+			if (baseBlob.getTeamNum() != playerTeam)
+			{
+				continue;
+			}
+
+			if ((baseBlob.getPosition() - this.getPosition()).Length() < 250.0f)
+			{
+				closeEnough = true;
+			}
+
+			if(baseBlob.exists("compactor_quantity")){
+				string compactResource = baseBlob.get_string("compactor_resource");
+
+				if(!compactResource.empty()){
+					for (int k = 0; k < itemsToShow.length; k++)
+					{
+
+						if (itemsToShow[k].getName() == compactResource)
+						{
+
+							itemAmounts[k] = itemAmounts[k]+baseBlob.get_u32("compactor_quantity")*2;
+							break;
+						}
+					}
+				}
+			}
+		}
+		
 		bool storageAccessible = closeEnough && storageEnabled;
 
 		GUI::DrawIcon("GUI/jslot.png", 0, Vec2f(32, 32), Vec2f((getScreenWidth() - 54), 8) + hudPos);

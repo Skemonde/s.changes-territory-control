@@ -53,6 +53,21 @@ void Vehicle_onFire(CBlob@ this, VehicleInfo@ v, CBlob@ bullet, const u8 charge)
 {
 	
 }
+/*
+bool isInventoryAccessible(CBlob@ this, CBlob@ byBlob)
+{
+	CBlob@ carried = byBlob.getCarriedBlob();
+	if (carried !is null){
+		if (carried.getName() != "gyromat")
+		return false;
+	}
+	return true;
+}
+*/
+bool isInventoryAccessible(CBlob@ this,CBlob@ forBlob)
+{
+	return forBlob.getCarriedBlob().getName()!="gyromat";
+}
 
 bool Vehicle_canFire(CBlob@ this, VehicleInfo@ v, bool isActionPressed, bool wasActionPressed, u8 &out chargeValue)
 {

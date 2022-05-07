@@ -35,6 +35,7 @@ void onInit(CBlob@ this)
 	this.getShape().getConsts().mapCollisions = false;
 
 	this.Tag("builder always hit");
+	this.Tag("extractable");
 	this.Tag("change team on fort capture");
 
 	this.getCurrentScript().tickFrequency = 300;
@@ -107,9 +108,9 @@ void onInit(CBlob@ this)
 	}
 	{
 		ShopItem@ s = addShopItem(this, "Shotgun", "$icon_shotgun$", "shotgun", "A short-ranged weapon that deals devastating damage.\n\nUses Shotgun Shells.");
+		AddRequirement(s.requirements, "coin", "", "Coins", 500);
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 120);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 4);
-		AddRequirement(s.requirements, "coin", "", "Coins", 500);
 
 		s.customButton = true;
 		s.buttonwidth = 2;

@@ -14,12 +14,14 @@ void onInit(CBlob@ this)
 
 	this.set_TileType("background tile", CMap::tile_castle_back);
 	this.getShape().getConsts().mapCollisions = false;
-	this.getCurrentScript().tickFrequency = 90;
+	this.getCurrentScript().tickFrequency = 30.0f;
 
 	this.inventoryButtonPos = Vec2f(0, 0);
 	this.set_bool("reversed", false);
 	this.addCommandID("reverse");
+	
 	this.Tag("builder always hit");
+	this.Tag("extractable");
 
 	this.set_string("fetcher_resource", "");
 	this.set_string("fetcher_resource_name", "");
@@ -39,13 +41,15 @@ void client_UpdateName(CBlob@ this)
 
 void onTick(CBlob@ this)
 {
+	this.getCurrentScript().tickFrequency = 30.0f / (this.exists("gyromat_acceleration") ? this.get_f32("gyromat_acceleration") : 1);
+	
 	string resource_name = this.get_string("fetcher_resource");
 	if (!this.getInventory().isFull() && resource_name != "")
 	{
 		u8 my_team = this.getTeamNum();
 
 		CBlob@[] blobs;
-		if (getMap().getBlobsInRadius(this.getPosition(), 64, @blobs))
+		if (getMap().getBlobsInRadius(this.getPosition(), 48, @blobs))
 		{
 			for (uint i = 0; i < blobs.length; i++)
 			{
@@ -66,6 +70,7 @@ void onTick(CBlob@ this)
 						if (this.get_bool("reversed"))
 						{
 							item.server_Die();
+							if (isClient()) this.getSprite().PlaySound("bridge_open.ogg");
 						}
 						else
 						{
@@ -81,6 +86,7 @@ void onTick(CBlob@ this)
 					if (this.get_bool("reversed"))
 					{
 						b.server_Die();
+						if (isClient()) this.getSprite().PlaySound("bridge_open.ogg");
 					}
 					else
 					{
@@ -114,7 +120,7 @@ void GetButtonsFor( CBlob@ this, CBlob@ caller )
 	}
 	if (this !is null)
 	{
-		CButton@ button = caller.CreateGenericButton(17, Vec2f(0, 8.0f), this, this.getCommandID("reverse"), "Reverse logic filter \nTo make fetcher destroy absorbed items \n Radius: 6 blocks from edges \nAlready reversed: " + this.get_bool("reversed"), params);
+		CButton@ button = caller.CreateGenericButton(17, Vec2f(0, 8.0f), this, this.getCommandID("reverse"), "Reverse logic filter \nTo make fetcher destroy absorbed items \nRadius: 6 blocks from edges \nIt's already reversed: " + this.get_bool("reversed"), params);
 	}
 }
 

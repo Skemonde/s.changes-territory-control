@@ -22,6 +22,7 @@ void onInit(CBlob@ this)
 	this.inventoryButtonPos = Vec2f(7, 13);
 
 	this.Tag("builder always hit");
+	this.Tag("extractable");
 
 	this.getCurrentScript().tickFrequency = 10;
 	this.getSprite().SetZ(-10.0f);

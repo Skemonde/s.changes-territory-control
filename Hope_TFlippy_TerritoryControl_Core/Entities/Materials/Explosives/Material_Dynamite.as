@@ -2,6 +2,7 @@
 void onInit(CBlob@ this)
 {
 	this.Tag("explosive");
+	this.Tag("hopperable");
 	this.set_bool("lite", true);
 }
 

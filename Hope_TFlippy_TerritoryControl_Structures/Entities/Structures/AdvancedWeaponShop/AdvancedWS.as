@@ -73,9 +73,9 @@ void onInit(CBlob@ this)
 	*/
 	{
 		ShopItem@ s = addShopItem(this, "Bazooka", "$icon_bazooka$", "bazooka", "A long tube capable of shooting rockets. Make sure nobody is standing behind it.\n\nUses Small Rockets.");
+		AddRequirement(s.requirements, "coin", "", "Coins", 400);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 5);
 		AddRequirement(s.requirements, "blob", "mat_copperingot", "Copper Ingot", 2);
-		AddRequirement(s.requirements, "coin", "", "Coins", 400);
 
 		s.customButton = true;
 		s.buttonwidth = 2;
@@ -108,9 +108,9 @@ void onInit(CBlob@ this)
 	}
 	{
 		ShopItem@ s = addShopItem(this, "Grenade Launcher", "$icon_grenadelauncher$", "grenadelauncher", "A short-ranged weapon that launches grenades.\n\nUses Grenades.");
+		AddRequirement(s.requirements, "coin", "", "Coins", 800);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 12);
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 200);
-		AddRequirement(s.requirements, "coin", "", "Coins", 800);
 
 		s.customButton = true;
 		s.buttonwidth = 2;
@@ -120,10 +120,10 @@ void onInit(CBlob@ this)
 	}
 	{
 		ShopItem@ s = addShopItem(this, "Gauss Rifle", "$icon_gaussrifle$", "gaussrifle", "A modified toy used to kill people.\n\nUses Steel Ingots.");
+		AddRequirement(s.requirements, "coin", "", "Coins", 850);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 10);
 		AddRequirement(s.requirements, "blob", "mat_mithril", "Mithril", 50);
 		AddRequirement(s.requirements, "blob", "mat_copperwire", "Copper Wire", 10);
-		AddRequirement(s.requirements, "coin", "", "Coins", 850);
 
 		s.customButton = true;
 		s.buttonwidth = 2;
@@ -133,9 +133,9 @@ void onInit(CBlob@ this)
 	}
 	{
 		ShopItem@ s = addShopItem(this, "Scorcher", "$icon_flamethrower$", "flamethrower", "A tool used for incinerating plants, buildings and people.\n\nUses Oil.");
+		AddRequirement(s.requirements, "coin", "", "Coins", 600);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 5);
 		AddRequirement(s.requirements, "blob", "mat_copperingot", "Copper Ingot", 1);
-		AddRequirement(s.requirements, "coin", "", "Coins", 600);
 
 		s.customButton = true;
 		s.buttonwidth = 2;
@@ -145,9 +145,9 @@ void onInit(CBlob@ this)
 	}
 	{
 		ShopItem@ s = addShopItem(this, "Blazethrower", "$icon_blazethrower$", "blazethrower", "A Scorcher modification providing support for gaseous fuels.\n\nUses Fuel.");
+		AddRequirement(s.requirements, "coin", "", "Coins", 900);
 		AddRequirement(s.requirements, "blob", "flamethrower", "Scorcher", 1);
 		AddRequirement(s.requirements, "blob", "mat_copperingot", "Copper Ingot", 5);
-		AddRequirement(s.requirements, "coin", "", "Coins", 900);
 
 		s.customButton = true;
 		s.buttonwidth = 2;
@@ -157,8 +157,8 @@ void onInit(CBlob@ this)
 	}
 	{
 		ShopItem@ s = addShopItem(this, "Acidthrower", "$icon_acidthrower$", "acidthrower", "A tool used for dissolving plants, buildings and people.\n\nUses Acid.");
-		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 10);
 		AddRequirement(s.requirements, "coin", "", "Coins", 1250);
+		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 10);
 
 		s.customButton = true;
 		s.buttonwidth = 2;
@@ -168,9 +168,9 @@ void onInit(CBlob@ this)
 	}
 	{
 		ShopItem@ s = addShopItem(this, "L.O.L. Warhead Launcher", "$icon_mininukelauncher$", "mininukelauncher", "Are people bullying you again? Remember, there still is the nuclear option.\n\nUses L.O.L. Warheads.");
+		AddRequirement(s.requirements, "coin", "", "Coins", 2000);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 20);
 		AddRequirement(s.requirements, "blob", "mat_copperingot", "Copper Ingot", 10);
-		AddRequirement(s.requirements, "coin", "", "Coins", 2000);
 
 		s.customButton = true;
 		s.buttonwidth = 2;

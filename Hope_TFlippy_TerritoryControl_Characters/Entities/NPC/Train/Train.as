@@ -85,7 +85,7 @@ void onTick(CBlob@ this)
 	{
 		if (!this.hasTag("stop train"))
 		{
-			UpdateMinimap(this, 25);
+			UpdateMinimap(this, 17);
 			sprite.SetEmitSoundPaused(true);
 			// this.setPosition(Vec2f(0, this.getPosition().y));
 

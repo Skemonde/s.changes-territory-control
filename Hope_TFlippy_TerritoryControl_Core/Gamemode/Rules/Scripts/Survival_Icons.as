@@ -29,10 +29,10 @@ void ReloadIcons(CRules@ this)
 	AddIconToken("$icon_paper$", "Paper.png", Vec2f(16, 16), 1);
 
 	// Merchant
-	AddIconToken("$bp_automation_advanced$", "Blueprints.png", Vec2f(16, 16), 0);
-	AddIconToken("$bp_energetics$", "Blueprints.png", Vec2f(16, 16), 1);
-	AddIconToken("$bp_mechanist$", "Blueprints.png", Vec2f(16, 16), 2);
-	AddIconToken("$bp_chemistry$", "Blueprints.png", Vec2f(16, 16), 7);
+//	AddIconToken("$bp_automation_advanced$", "Blueprints.png", Vec2f(16, 16), 0);
+//	AddIconToken("$bp_energetics$", "Blueprints.png", Vec2f(16, 16), 1);
+//	AddIconToken("$bp_mechanist$", "Blueprints.png", Vec2f(16, 16), 2);
+//	AddIconToken("$bp_chemistry$", "Blueprints.png", Vec2f(16, 16), 7);
 	AddIconToken("$mat_goldingot$", "Material_GoldIngot.png", Vec2f(16, 16), 1);
 	AddIconToken("$musicdisc$", "MusicDisc.png", Vec2f(8, 8), 0);
 	AddIconToken("$seed$", "Seed.png",Vec2f(8,8),0);
@@ -160,6 +160,13 @@ void ReloadIcons(CRules@ this)
 	AddIconToken("$icon_lighter$", "Lighter.png", Vec2f(8, 8), 0);
 	AddIconToken("$icon_oof$", "Oof.png", Vec2f(40, 16), 0);
 	AddIconToken("$icon_gyromat$", "Gyromat.png", Vec2f(16, 16), 0);
+	AddIconToken("$icon_wrench$", "Wrench.png", Vec2f(8, 16), 0);
+
+	// Automation
+	AddIconToken("$icon_filter_inspect$", "FilterIcons.png", Vec2f(16, 16), 0);
+	AddIconToken("$icon_filter_add$", "FilterIcons.png", Vec2f(16, 16), 1);
+	AddIconToken("$icon_whitelist$", "FilterIcons.png", Vec2f(16, 16), 2);
+	AddIconToken("$icon_blacklist$", "FilterIcons.png", Vec2f(16, 16), 3);
 
 	// Fabricator
 	AddIconToken("$icon_hoverbike$", "Hoverbike.png", Vec2f(24, 16), 2);

@@ -35,6 +35,7 @@ void onInit(CBlob@ this)
 	this.getShape().getConsts().mapCollisions = false;
 
 	this.Tag("builder always hit");
+	this.Tag("extractable");
 	
 	this.getCurrentScript().tickFrequency = 15;
 	

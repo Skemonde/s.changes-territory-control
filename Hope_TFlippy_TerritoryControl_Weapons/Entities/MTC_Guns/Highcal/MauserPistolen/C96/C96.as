@@ -4,7 +4,7 @@ void onInit(CBlob@ this)
 {
 	GunSettings settings = GunSettings();
 	
-	u32 reloadtime = 6;
+	u32 reloadtime = 4;
 	
 	//General
 	settings.CLIP = 10; //Amount of ammunition in the gun at creation

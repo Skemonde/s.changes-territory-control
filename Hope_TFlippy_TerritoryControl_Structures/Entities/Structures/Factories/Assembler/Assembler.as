@@ -27,7 +27,7 @@ void onInit(CSprite@ this)
 
 	{
 		this.RemoveSpriteLayer("gear1");
-		CSpriteLayer@ gear = this.addSpriteLayer("gear1", "Assembler.png" , 16, 16, this.getBlob().getTeamNum(), this.getBlob().getSkinNum());
+		CSpriteLayer@ gear = this.addSpriteLayer("gear1", "Cogs.png" , 16, 16, this.getBlob().getTeamNum(), this.getBlob().getSkinNum());
 
 		if (gear !is null)
 		{
@@ -41,7 +41,7 @@ void onInit(CSprite@ this)
 
 	{
 		this.RemoveSpriteLayer("gear2");
-		CSpriteLayer@ gear = this.addSpriteLayer("gear2", "Assembler.png" , 16, 16, this.getBlob().getTeamNum(), this.getBlob().getSkinNum());
+		CSpriteLayer@ gear = this.addSpriteLayer("gear2", "Cogs.png" , 16, 16, this.getBlob().getTeamNum(), this.getBlob().getSkinNum());
 
 		if (gear !is null)
 		{
@@ -55,7 +55,7 @@ void onInit(CSprite@ this)
 
 	{
 		this.RemoveSpriteLayer("gear3");
-		CSpriteLayer@ gear = this.addSpriteLayer("gear3", "Assembler.png" , 16, 16, this.getBlob().getTeamNum(), this.getBlob().getSkinNum());
+		CSpriteLayer@ gear = this.addSpriteLayer("gear3", "Cogs.png" , 16, 16, this.getBlob().getTeamNum(), this.getBlob().getSkinNum());
 
 		if (gear !is null)
 		{
