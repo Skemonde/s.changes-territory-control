@@ -44,13 +44,13 @@ void onInit(CBlob@ this)
 	}
 	{
 		ShopItem@ s = addShopItem(this, "UPF Recon Squad!", "$ss_scout_raid$", "scout_raid", "Have you lost something? Order our willing recon squad, and you will sure find what you're looking for!");
-		AddRequirement(s.requirements, "coin", "", "Coins", 1099);
+		AddRequirement(s.requirements, "coin", "", "Coins", 2099);
 		
 		s.spawnNothing = true;
 	}
 	{
 		ShopItem@ s = addShopItem(this, "UPF Assault Squad!", "$ss_soldier_raid$", "soldier_raid", "Get your own soldier... TODAY!");
-		AddRequirement(s.requirements, "coin", "", "Coins", 2599);
+		AddRequirement(s.requirements, "coin", "", "Coins", 4099);
 		
 		s.spawnNothing = true;
 	}
