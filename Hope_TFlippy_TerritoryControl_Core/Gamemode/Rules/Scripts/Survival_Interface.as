@@ -685,11 +685,18 @@ string getRank(string &in username, SColor &out col, CPlayer@ p)
 
 	if (username == "FrankStain") 
 	{
-			col = SColor(255, 102, 255, 147);
-			return "Server Host";
-	} else if (username == "TheCustomerMan" || username == "PURPLExeno") {
-			col = SColor(255, 244, 122, 66);
-	 		return "Super Administrator";
+		col = SColor(255, 102, 255, 147);
+		return "Server Host";
+	} 
+	else if (username == "TheCustomerMan" || username == "PURPLExeno") 
+	{
+		col = SColor(255, 244, 122, 66);
+	 	return "Super Administrator";
+	}
+	else if (username == "NovaTheSun") 
+	{
+		col = SColor(255,255,100,100);
+		return "Administrator";
 	}
 	// Note for anybody in the future:
 	// Usernames are lower case
