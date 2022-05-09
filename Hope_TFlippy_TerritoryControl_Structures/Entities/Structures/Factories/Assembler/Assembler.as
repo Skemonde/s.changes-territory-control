@@ -7,7 +7,7 @@
 #include "MakeMat.as";
 #include "MakeSeed.as";
 
-bool sus;
+//bool sus;
 
 void onInit(CSprite@ this)
 {
@@ -290,7 +290,8 @@ void onInit(CBlob@ this)
 
 void GetButtonsFor( CBlob@ this, CBlob@ caller )
 {
-	this.set_bool("shop available", getGameTime() >= this.get_u32("next use"));
+	bool nospam = getGameTime() >= this.get_u32("next use");
+	
 	if (!caller.isOverlapping(this)) return;
 	{
 		CBitStream params;
@@ -302,8 +303,10 @@ void GetButtonsFor( CBlob@ this, CBlob@ caller )
 		bool state = this.get_bool("state");
 		CBitStream params;
 		params.write_bool(!state);
-		caller.CreateGenericButton((state ? 27 : 23), Vec2f(8, -8), this, 
-			this.getCommandID("state"), getTranslatedString(state ? "TURN OFF" : "TURN ON"), params);
+		
+		if (nospam)
+			caller.CreateGenericButton((state ? 27 : 23), Vec2f(8, -8), this, 
+				this.getCommandID("state"), getTranslatedString(state ? "Turn off" : "Turn on"), params);
 	}
 }
 
@@ -352,7 +355,7 @@ void onCommand( CBlob@ this, u8 cmd, CBitStream @params)
 	}
 	else if (cmd == this.getCommandID("state"))
 	{
-		sus = this.get_bool("state");//since every assembler share this bool (it's global) every assembler stops their animation if only one set the bool to false :C
+		//sus = this.get_bool("state");//since every assembler share this bool (it's global) every assembler stops their animation if only one set the bool to false :C
 		bool newState = params.read_bool();
 		this.set_bool("state", newState);
 		this.getSprite().SetEmitSoundPaused(!newState);
@@ -368,9 +371,8 @@ void onCommand( CBlob@ this, u8 cmd, CBitStream @params)
 			this.Untag("cogs");
 		else
 			this.Tag("cogs");
-		
-		this.set_bool("shop available", false);
-		this.set_u32("next use", getGameTime() + 3);
+			
+		this.set_u32("next use", getGameTime() + 5);
 	}
 }
 
