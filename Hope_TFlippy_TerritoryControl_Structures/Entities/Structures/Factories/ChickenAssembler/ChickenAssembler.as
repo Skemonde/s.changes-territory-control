@@ -165,8 +165,6 @@ void onInit(CBlob@ this)
 
 void GetButtonsFor( CBlob@ this, CBlob@ caller )
 {
-	bool nospam = getGameTime() >= this.get_u32("next use");
-	
 	if (!caller.isOverlapping(this)) return;
 	{
 		CBitStream params;
@@ -178,10 +176,8 @@ void GetButtonsFor( CBlob@ this, CBlob@ caller )
 		bool state = this.get_bool("state");
 		CBitStream params;
 		params.write_bool(!state);
-		
-		if (nospam)
-			caller.CreateGenericButton((state ? 27 : 23), Vec2f(12, -8), this, 
-				this.getCommandID("state"), getTranslatedString(state ? "Turn off" : "Turn on"), params);
+		caller.CreateGenericButton((state ? 27 : 23), Vec2f(12, -8), this, 
+			this.getCommandID("state"), getTranslatedString(state ? "TURN OFF" : "TURN ON"), params);
 	}
 }
 
@@ -245,8 +241,6 @@ void onCommand( CBlob@ this, u8 cmd, CBitStream @params )
 			this.Untag("CA_is_on");
 		else
 			this.Tag("CA_is_on");
-			
-		this.set_u32("next use", getGameTime() + 20);
 	}
 }
 
