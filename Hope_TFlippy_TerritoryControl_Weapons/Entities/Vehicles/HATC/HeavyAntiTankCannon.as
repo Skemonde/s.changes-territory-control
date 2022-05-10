@@ -25,7 +25,7 @@ void onInit(CBlob@ this)
 	                    1, // fire bullets amount
 	                    Vec2f(-6.0f, 2.0f), // fire position offset
 	                    "mat_hshell", // bullet ammo config name
-	                    "railcannonshell", // bullet config name
+	                    "hshell", // bullet config name
 	                    "ChickenTank_Shoot", // fire sound
 	                    "EmptyFire" // empty fire sound
 	                   );
