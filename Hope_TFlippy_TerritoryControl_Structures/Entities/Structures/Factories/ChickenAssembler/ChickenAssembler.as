@@ -7,7 +7,7 @@ void onInit(CSprite@ this)
 {
 	// Building
 	this.SetZ(-50);
-	
+
 	this.SetEmitSound("ChickenAssembler_Loop.ogg");
 	this.SetEmitSoundVolume(0.4f);
 	this.SetEmitSoundSpeed(0.9f);
@@ -38,7 +38,6 @@ class AssemblerItem
 void onInit(CBlob@ this)
 {
 	this.Tag("CA_is_on");
-//	this.server_setTeamNum(250); // it is unnecessary
 
 	AssemblerItem[] items;
 	{
@@ -121,15 +120,16 @@ void onInit(CBlob@ this)
 		AssemblerItem i("mat_hshell", 8, "HATC Shell (8)");
 		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 32);
 		AddRequirement(i.reqs, "blob", "mat_sulphur", "Sulphur", 500);
+		AddRequirement(i.reqs, "blob", "mat_mithrilenriched", "Enriched Mithril", 40);
 		items.push_back(i);
 	}
 	{
 		AssemblerItem i("advancedcruisemissile", 1, "Advanced Cruise Missile (1)");
-		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 32);
-		AddRequirement(i.reqs, "blob", "mat_methane", "Methane", 50);
-		AddRequirement(i.reqs, "blob", "mat_fuel", "Fuel", 50);
-		AddRequirement(i.reqs, "blob", "mat_sulphur", "Sulphur", 200);
-		AddRequirement(i.reqs, "blob", "mat_steelingot", "Steel Ingot", 16);
+		AddRequirement(i.reqs, "blob", "mat_ironingot", "Iron Ingot", 16);
+		AddRequirement(i.reqs, "blob", "mat_methane", "Methane", 25);
+		AddRequirement(i.reqs, "blob", "mat_fuel", "Fuel", 25);
+		AddRequirement(i.reqs, "blob", "mat_sulphur", "Sulphur", 50);
+		AddRequirement(i.reqs, "blob", "mat_steelingot", "Steel Ingot", 8);
 		items.push_back(i);
 	}
 	{
@@ -166,8 +166,6 @@ void onInit(CBlob@ this)
 
 void GetButtonsFor( CBlob@ this, CBlob@ caller )
 {
-	bool nospam = getGameTime() >= this.get_u32("next use");
-	
 	if (!caller.isOverlapping(this)) return;
 	{
 		CBitStream params;
@@ -179,10 +177,8 @@ void GetButtonsFor( CBlob@ this, CBlob@ caller )
 		bool state = this.get_bool("state");
 		CBitStream params;
 		params.write_bool(!state);
-		
-		if (nospam)
-			caller.CreateGenericButton((state ? 27 : 23), Vec2f(12, -8), this, 
-				this.getCommandID("state"), getTranslatedString(state ? "Turn off" : "Turn on"), params);
+		caller.CreateGenericButton((state ? 27 : 23), Vec2f(12, -8), this, 
+			this.getCommandID("state"), getTranslatedString(state ? "TURN OFF" : "TURN ON"), params);
 	}
 }
 
@@ -246,8 +242,6 @@ void onCommand( CBlob@ this, u8 cmd, CBitStream @params )
 			this.Untag("CA_is_on");
 		else
 			this.Tag("CA_is_on");
-			
-		this.set_u32("next use", getGameTime() + 20);
 	}
 }
 
@@ -271,7 +265,7 @@ void onTick(CBlob@ this)
 			// CBlob @mat = server_CreateBlob(item.resultname, this.getTeamNum(), this.getPosition());
 			// mat.server_SetQuantity(item.resultcount);
 
-			CBlob@ blob = server_MakeCrate(item.resultname, item.title, 0, 250, this.getPosition(), true, item.resultcount);
+			CBlob@ blob = server_MakeCrate(item.resultname, item.title, 0, this.getTeamNum(), this.getPosition(), true, item.resultcount);
 			
 			server_TakeRequirements(inv, item.reqs);
 		}
