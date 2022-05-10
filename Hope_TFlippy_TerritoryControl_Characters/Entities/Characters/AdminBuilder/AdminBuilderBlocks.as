@@ -136,6 +136,7 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 	AddIconToken("$icon_rextractor$", "AutomationIcons.png", Vec2f(24, 48), 0, teamnum);
 	AddIconToken("$icon_invcleaner$", "AutomationIcons.png", Vec2f(24, 48), 1, teamnum);
 	AddIconToken("$icon_rhoppacker$", "HoppackerR.png", Vec2f(24, 24), 4, teamnum);
+	AddIconToken("$icon_rcompactor$", "CompactorR.png", Vec2f(24, 32), 0, teamnum);
 
 	//Miscellaneous
 	AddIconToken("$icon_lamppost$", "LampPost.png", Vec2f(8, 24), 0, teamnum);
@@ -811,7 +812,7 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		blocks[2].push_back(b);
 	}
 	{
-		BuildBlock b(0, "rcompactor", "$rcompactor$", "Compactor:\n\nCan store enormous amounts of single resource.\nIs a part of team's remote storage.");
+		BuildBlock b(0, "rcompactor", "$icon_rcompactor$", "Compactor:\n\nCan store enormous amounts of single resource.\nIs a part of team's remote storage.");
 		// AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 300);
 		// AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 250);
 		b.buildOnGround = true;
