@@ -132,7 +132,7 @@ void DoExplosion(CBlob@ this, Vec2f velocity)
 	{
 		// Vec2f jitter = Vec2f((XORRandom(200) - 100) / 200.0f, (XORRandom(200) - 100) / 200.0f);
 		// LinearExplosion(this, Vec2f(velocity.x * jitter.x, velocity.y * jitter.y), 64.0f + XORRandom(32), 48.0f, 8, 40.0f, Hitters::explosion);
-		LinearExplosion(this, velocity.RotateBy((1 - XORRandom(2)) * 0.02f), 1.00f + XORRandom(1), 1.0f, 1, 1.0f, Hitters::explosion);
+		LinearExplosion(this, velocity.RotateBy((50 - XORRandom(100)) * 0.02f), 32.00f + XORRandom(64), 6.0f, 16, 32.0f, Hitters::explosion);
 	}
 	
 	if (isServer())
@@ -142,7 +142,7 @@ void DoExplosion(CBlob@ this, Vec2f velocity)
 		{
 			boom.setPosition(this.getPosition());
 			boom.set_u8("boom_start", 0);
-			boom.set_u8("boom_end", 1);
+			boom.set_u8("boom_end", 4);
 			boom.set_u8("boom_frequency", 1);
 			boom.set_u32("boom_delay", 0);
 			boom.set_u32("flash_delay", 0);
