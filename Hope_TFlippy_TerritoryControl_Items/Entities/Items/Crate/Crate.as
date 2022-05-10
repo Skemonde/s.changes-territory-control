@@ -517,9 +517,16 @@ void onCollision(CBlob@ this, CBlob@ blob, bool solid)
 
 	f32 vellen = this.getOldVelocity().Length();
 
-	if (isServer() && vellen > 5.0f)
-	{
-		Unpack(this);
+	if (this.getName() == "crate") {
+		if (isServer() && vellen > 5.0f)
+		{
+			Unpack(this);
+		}
+	} else {
+		if (isServer() && vellen > 50.0f)
+		{
+			Unpack(this);
+		}
 	}
 }
 
