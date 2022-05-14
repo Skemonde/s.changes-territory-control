@@ -3,8 +3,9 @@
 
 const string[] OffiMaps = {
 	"TFlippy_TC_Reign",
+	"Xeno_Plains&Hills",
 	"Skemonde_TC_Gooby",
-	"Xeno_TC_Graveyard",
+	"Ginger_TC_Bridge",
 	"TFlippy_TC_Mesa",
 	"Ginger_TC_Lagoon",
 	"TFlippy_TC_Bobox",
@@ -26,9 +27,7 @@ const string[] OffiMaps = {
 	"Ginger_TC_Dehydration",
 	"Ginger_TC_Murderholes_V2",
 	"Ginger_TC_Equinox",
-	"Goldy_TC_Netherland_v2", //a bit unstable
 	"Ginger_TC_Aether",
-	"Goldy_TC_Propesko",
 	"Tenshi_TC_WellOiledMachine_v2"
 };
 
@@ -46,17 +45,17 @@ const string[] MemeMaps = {
 };
 
 const string[] OldMaps = {
-	"Ginger_TC_Bridge",
-	"Ginger_TC_Lagoon",
 	"Ginger_TC_Pirates",
 	"Goldy_TC_Sewers_v2",
 	"Imbalol_TC_ChickenKingdom_v2",
 	"Imbalol_TC_OilRig",
 	"Imbalol_TC_UPFCargo",
-	"Sylw_LawrenceSlum",
 	"Tenshi_TC_DeadEchoSeven_v1",
 	"Ginger_TC_Seaside",
+	"Goldy_TC_Netherland_v2", //a bit unstable
 	"TFlippy_TC_Nostalgia"
+	"Goldy_TC_Propesko",
+	"Xeno_TC_Graveyard"
 };
 
 void onInit(CRules@ this)
