@@ -42,4 +42,5 @@ void onInit(CBlob@ this)
 	this.Tag("CustomSoundLoop");
 	this.Tag("heavy weight");
 	this.set_f32("CustomBulletLength", 14.0f);
+	this.set_u8("CustomPenetration", 1);
 }

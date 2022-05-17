@@ -6,9 +6,9 @@ void onInit(CBlob@ this)
 
 	//General
 	//settings.CLIP = 0; //Amount of ammunition in the gun at creation
-	settings.TOTAL = 6; //Max amount of ammo that can be in a clip
+	settings.TOTAL = 1; //Max amount of ammo that can be in a clip
 	settings.FIRE_INTERVAL = 20; //Time in between shots
-	settings.RELOAD_TIME = 10; //Time it takes to reload (in ticks)
+	settings.RELOAD_TIME = 45; //Time it takes to reload (in ticks)
 	settings.AMMO_BLOB = "mat_grenade"; //Ammunition the gun takes
 
 	//Bullet
@@ -32,15 +32,13 @@ void onInit(CBlob@ this)
 	settings.RELOAD_SOUND = "GrenadeLauncherCycle.ogg"; //Sound when reloading
 
 	//Offset
-	settings.MUZZLE_OFFSET = Vec2f(-10, -0.5); //Where the muzzle flash appears
+	settings.MUZZLE_OFFSET = Vec2f(-11, 0.5); //Where the muzzle flash appears
 
 	this.set("gun_settings", @settings);
 
 	//Custom
 	this.set_string("CustomCase", "");
 	this.set_string("CustomFlash", "");
-	//this.set_f32("CustomReloadPitch", 0.65f);
 	this.set_string("ProjBlob", "grenade");
-	this.Tag("CustomSemiAuto");
-	this.Tag("CustomShotgunReload");
+	this.set_u8("clickReload", 0); //'Click' moment after shooting
 }

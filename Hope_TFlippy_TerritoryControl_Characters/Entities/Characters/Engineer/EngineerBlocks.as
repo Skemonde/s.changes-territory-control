@@ -664,33 +664,26 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		blocks[2].push_back(b);
 	}
 	{
-		BuildBlock b(0, "conveyor", "$icon_conveyor$", "Rusty Conveyor Belt:\n\nUsed to transport items.\n$RED$It's a very old thing..$RED$");
-		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 4);
-		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 6);
-		AddRequirement(b.reqs, "blob", "mat_steelingot", "Steel Ingot", 2);
-		blocks[2].push_back(b);
-	}
-	{
-		BuildBlock b(0, "filter", "$icon_filter$", "Rusty Filter:\n\nItems matching the filter won't collide with this.\n$RED$It's a very old thing..$RED$");
+		BuildBlock b(0, "filter", "$icon_filter$", "Rusty Filter:\n\nItems matching the filter won't collide with this. Some think it still can be useful.\n$RED$It's a very old thing..$RED$");
 		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 75);
 		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 25);
-		AddRequirement(b.reqs, "blob", "mat_steelingot", "Steel Ingot", 16);
+		AddRequirement(b.reqs, "blob", "mat_dirt", "Dirt", 30);
 		blocks[2].push_back(b);
 	}
 	{
 		BuildBlock b(0, "extractor", "$icon_extractor$", "Rusty Extractor:\n\nGrabs items from nearby inventories.\n$RED$It's a very old thing..$RED$");
 		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 10);
 		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 20);
-		AddRequirement(b.reqs, "blob", "mat_steelingot", "Steel Ingot", 24);
+		AddRequirement(b.reqs, "blob", "mat_dirt", "Dirt", 60);
 		b.buildOnGround = true;
 		b.size.Set(16, 32);
 		blocks[2].push_back(b);
 	}
 	{
-		BuildBlock b(0, "filterextractor", "$icon_filterextractor$", "Rusty Filtered Extractor:\n\nGrabs specific items from nearby inventories. Slightly slower than the regular extractor.\n$RED$It's a very old thing..$RED$");
+		BuildBlock b(0, "filterextractor", "$icon_filterextractor$", "Rusty Filtered Extractor:\n\nGrabs specific items from nearby inventories. Slightly slower than the rusty extractor.\n$RED$It's a very old thing..$RED$");
 		AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 50);
 		AddRequirement(b.reqs, "blob", "mat_wood", "Wood", 150);
-		AddRequirement(b.reqs, "blob", "mat_steelingot", "Steel Ingot", 24);
+		AddRequirement(b.reqs, "blob", "mat_dirt", "Dirt", 60);
 		b.buildOnGround = true;
 		b.size.Set(24, 32);
 		blocks[2].push_back(b);

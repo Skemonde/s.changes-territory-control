@@ -12,12 +12,12 @@ void onInit(CBlob@ this)
 	settings.AMMO_BLOB = "mat_mithril"; //Ammunition the gun takes
 
 	//Bullet
-	settings.B_PER_SHOT = 3; //Shots per bullet | CHANGE B_SPREAD, otherwise both bullets will come out together
+	settings.B_PER_SHOT = 2; //Shots per bullet | CHANGE B_SPREAD, otherwise both bullets will come out together
 	settings.B_SPREAD = 0; //the higher the value, the more 'uncontrollable' bullets get
 	settings.B_GRAV = Vec2f(0, 0.001); //Bullet gravity drop
 	settings.B_SPEED = 90; //Bullet speed, STRONGLY AFFECTED/EFFECTS B_GRAV
 	settings.B_TTL = 10; //TTL = 'Time To Live' which determines the time the bullet lasts before despawning
-	settings.B_DAMAGE = 1.0f; //1 is 1 heart
+	settings.B_DAMAGE = 1.5f; //1 is 1 heart
 	settings.B_TYPE = HittersTC::plasma; //Type of bullet the gun shoots | hitter
 
 	//Recoil
@@ -41,4 +41,5 @@ void onInit(CBlob@ this)
 	this.set_string("CustomFlash", "MuzzleFlash_Blaster.png");
 	this.set_u8("CustomKnock", 3);
 	this.set_f32("CustomBulletLength", 9.0f);
+	this.set_u8("CustomPenetration", 1);
 }

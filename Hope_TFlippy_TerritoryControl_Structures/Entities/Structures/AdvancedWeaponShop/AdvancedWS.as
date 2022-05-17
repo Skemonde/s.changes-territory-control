@@ -107,9 +107,9 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
-		ShopItem@ s = addShopItem(this, "Grenade Launcher", "$icon_grenadelauncher$", "grenadelauncher", "A short-ranged weapon that launches grenades.\n\nUses Grenades.");
+		ShopItem@ s = addShopItem(this, "Grenade Launcher", "$icon_pagl$", "pagl", "A short-ranged weapon that launches grenades.\n\nUses Grenades.");
 		AddRequirement(s.requirements, "coin", "", "Coins", 800);
-		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 12);
+		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 4);
 		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 200);
 
 		s.customButton = true;
@@ -249,6 +249,7 @@ void addTokens(CBlob@ this)
 	AddIconToken("$tkb521$", "TKB-521.png", Vec2f(34, 14), 0, teamnum);
 	AddIconToken("$m712$", "M712.png", Vec2f(19, 11), 0, teamnum);
 	AddIconToken("$samrpg$", "SAMRPG.png", Vec2f(26, 15), 0, teamnum);
+	AddIconToken("$icon_pagl$", "PumpActionGrenadeLauncher.png", Vec2f(19, 8), 0, teamnum);
 //	AddIconToken("$macrogun$", "Macrogun.png", Vec2f(29, 13), 0, teamnum);
 }
 
