@@ -108,7 +108,7 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream@ params){
 		if(caller !is null)
 		if(caller.isMyPlayer())
 		{
-			CGridMenu@ menu = CreateGridMenu(getDriver().getScreenCenterPos(), this, Vec2f(1, length+1), this.hasTag("whitelist") ? "Whitelist" : "Blacklist");
+			CGridMenu@ menu = CreateGridMenu(getDriver().getScreenCenterPos(), this, Vec2f(1, length+1), this.hasTag("whitelist") ? "Filtered Items will be grabbed" : "Everything but Filtered Items will be grabbed");
 			
 			if (menu !is null){
 				for(int i = 0;i < length;i++){

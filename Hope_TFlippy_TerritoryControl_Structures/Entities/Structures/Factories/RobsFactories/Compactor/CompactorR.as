@@ -82,11 +82,13 @@ void GetButtonsFor( CBlob@ this, CBlob@ caller )
 {
 	CBitStream params;
 	params.write_u16(caller.getNetworkID());
-
-	CButton@ button_withdraw = caller.CreateGenericButton(20, Vec2f(0, 0), this, this.getCommandID("compactor_withdraw"), "Take a stack", params);
-	if (button_withdraw !is null)
-	{
-		button_withdraw.SetEnabled(this.get_u32("compactor_quantity") > 0);
+	
+	if ((this.getTeamNum() < 7 && (caller.getTeamNum() == this.getTeamNum())) || this.getTeamNum() > 6) {
+		CButton@ button_withdraw = caller.CreateGenericButton(20, Vec2f(0, 0), this, this.getCommandID("compactor_withdraw"), "Take a stack", params);
+		if (button_withdraw !is null)
+		{
+			button_withdraw.SetEnabled(this.get_u32("compactor_quantity") > 0);
+		}
 	}
 }
 
