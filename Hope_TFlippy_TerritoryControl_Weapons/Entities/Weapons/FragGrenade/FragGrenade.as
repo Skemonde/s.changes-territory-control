@@ -9,7 +9,7 @@ string[] particles =
 void onInit(CBlob@ this)
 {
 	this.getCurrentScript().tickFrequency = 8;
-	this.server_SetTimeToDie(5);
+	//this.server_SetTimeToDie(5);
 	this.set_bool("map_damage_raycast", true);
 	
 	this.Tag("projectile");
@@ -17,6 +17,9 @@ void onInit(CBlob@ this)
 	this.Tag("map_damage_dirt");
 	
 	this.getSprite().PlaySound("grenade_pinpull.ogg");
+	
+	//this.server_SetTimeToDie(5);
+	this.set_u8("death_timer", 4 + XORRandom(2)); //3-5 seconds PLEASE Don't make it more than 9 seconds
 }
 
 bool doesCollideWithBlob(CBlob@ this, CBlob@ blob)

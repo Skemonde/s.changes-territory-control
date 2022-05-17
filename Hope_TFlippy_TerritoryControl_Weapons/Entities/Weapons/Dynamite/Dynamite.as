@@ -18,7 +18,8 @@ void onInit(CBlob@ this)
 	this.SetLight(true);
 	this.SetLightRadius(48.0f);
 
-	this.server_SetTimeToDie(5);
+	//this.server_SetTimeToDie(5);
+	this.set_u8("death_timer", 6); //PLEASE Don't make it more than 9 seconds
 
 	this.set_bool("map_damage_raycast", true);
 	this.Tag("map_damage_dirt");
