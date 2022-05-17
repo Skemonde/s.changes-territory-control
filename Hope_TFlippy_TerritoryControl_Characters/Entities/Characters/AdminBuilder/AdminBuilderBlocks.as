@@ -940,6 +940,7 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		// AddRequirement(b.reqs, "blob", "mat_steelingot", "Steel Ingot", 2);
 		blocks[2].push_back(b);
 	}
+	/*
 	{
 		BuildBlock b(0, "conveyor", "$icon_conveyor$", "Rusty Conveyor Belt:\n\nUsed to transport items.\n$RED$It's a very old thing..$RED$");
 		// AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 4);
@@ -947,6 +948,7 @@ void addCommonBuilderBlocks(BuildBlock[][]@ blocks, int teamnum = 7)
 		// AddRequirement(b.reqs, "blob", "mat_steelingot", "Steel Ingot", 2);
 		blocks[2].push_back(b);
 	}
+	*/
 	{
 		BuildBlock b(0, "filter", "$icon_filter$", "Rusty Filter:\n\nItems matching the filter won't collide with this.\n$RED$It's a very old thing..$RED$");
 		// AddRequirement(b.reqs, "blob", "mat_stone", "Stone", 75);
