@@ -62,7 +62,7 @@ void onInit(CBlob@ this)
 	}
 	{
         ShopItem@ s = addShopItem(this, "UPF Cock 19", "$cock$", "cock", "Buffed version of fuger.\n\nUses Lowcal Rounds.");
-		AddRequirement(s.requirements, "coin", "", "Coins", 500);
+		//AddRequirement(s.requirements, "coin", "", "Coins", 500);
         AddRequirement(s.requirements, "blob", "fuger", "Fuger", 1);
         AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 16);
 	    AddRequirement(s.requirements, "blob",  "mat_steelingot", "Steel Ingot", 8);
@@ -96,7 +96,7 @@ void onInit(CBlob@ this)
 	*/
 	{
         ShopItem@ s = addShopItem(this, "Klauser Pistole C96", "$c96$", "c96", "Klauser self-loading pistol.\n\nUses Highcal Rounds.");
-		AddRequirement(s.requirements, "coin", "", "Coins", 960);
+		//AddRequirement(s.requirements, "coin", "", "Coins", 960);
 		AddRequirement(s.requirements, "blob", "beagle", "UPF Beagle-20", 1);
 		AddRequirement(s.requirements, "blob",  "mat_steelingot", "Steel Ingot", 4);
         AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 2);
@@ -105,16 +105,16 @@ void onInit(CBlob@ this)
     }
 	{
         ShopItem@ s = addShopItem(this, "Klauser Schnellfeuer Pistole", "$m712$", "m712", "Official modification that makes C96 fully automatic!! (mein Gott..)");
-		AddRequirement(s.requirements, "coin", "", "Coins", 3712);
+		//AddRequirement(s.requirements, "coin", "", "Coins", 3712);
         AddRequirement(s.requirements, "blob", "c96", "Klauser C96", 1);
 		AddRequirement(s.requirements, "blob", "pdw", "UPF PDW", 1);
-//		AddRequirement(s.requirements, "blob", "illegalgunpart", "Illegal Gun Part", 1);
+		AddRequirement(s.requirements, "blob", "illegalgunpart", "Definitely Legal Gun Part", 1);
 		
         s.spawnNothing = true;
     }
     {
         ShopItem@ s = addShopItem(this, "UPF TAR-21", "$tar$", "tar", "Strong automatic rifle for killing peasants.\n\nUses Highcal Rounds.");
-		AddRequirement(s.requirements, "coin", "", "Coins", 750);
+		//AddRequirement(s.requirements, "coin", "", "Coins", 750);
         AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 12);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 16);
         AddRequirement(s.requirements, "blob", "sar", "UPF SAR-12", 1);
@@ -129,7 +129,7 @@ void onInit(CBlob@ this)
 	}
     {
         ShopItem@ s = addShopItem(this, "UPF XM8", "$xm$", "xm", "Strong automatical rifle.\n\nUses Highcal Rounds.");
-		AddRequirement(s.requirements, "coin", "", "Coins", 1500);
+		//AddRequirement(s.requirements, "coin", "", "Coins", 1500);
         AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 16);
 		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 24);
         AddRequirement(s.requirements, "blob", "assaultrifle", "UPF Assault Rifle", 1);
@@ -167,10 +167,10 @@ void onInit(CBlob@ this)
 	*/
     {
 		ShopItem@ s = addShopItem(this, "UPF AMR-13", "$bamr$", "bamr", "AMR's bigger brother.\n\nUses Highcal Rounds.");
-		AddRequirement(s.requirements, "coin", "", "Coins", 4000);
+		//AddRequirement(s.requirements, "coin", "", "Coins", 4000);
         AddRequirement(s.requirements, "blob", "amr", "AMR-127", 1);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 24);
-		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 36);
+		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 116);
 		
         s.spawnNothing = true;
 	}
@@ -190,9 +190,10 @@ void onInit(CBlob@ this)
 	*/
 	{
         ShopItem@ s = addShopItem(this, "Ruhm the Sniper Machine Gun", "$ruhm$", "ruhm", "Have you heard of infernal stone? Finest scientists from UPF have shed both blood and tears to find a way to use it!\n\nUses Highcal Rounds.");
-		AddRequirement(s.requirements, "coin", "", "Coins", 7000);
+		//AddRequirement(s.requirements, "coin", "", "Coins", 7000);
 		AddRequirement(s.requirements, "blob", "sniper", "UPF Sniper Rifle", 1);
 		AddRequirement(s.requirements, "blob", "minigun", "UPF Megagun", 1);
+		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 140);
 		AddRequirement(s.requirements, "blob", "infernalstone", "Infernal Stone", 1);
 
 		s.customButton = true;
