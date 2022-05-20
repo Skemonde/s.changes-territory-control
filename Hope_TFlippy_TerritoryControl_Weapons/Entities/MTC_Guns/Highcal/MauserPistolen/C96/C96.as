@@ -4,13 +4,11 @@ void onInit(CBlob@ this)
 {
 	GunSettings settings = GunSettings();
 	
-	u32 reloadtime = 4;
-	
 	//General
-	settings.CLIP = 10; //Amount of ammunition in the gun at creation
+	//settings.CLIP = 0; //Amount of ammunition in the gun at creation
 	settings.TOTAL = 10; //Max amount of ammo that can be in a clip
 	settings.FIRE_INTERVAL = 4; //Time in between shots
-	settings.RELOAD_TIME = reloadtime; //Time it takes to reload (in ticks)
+	settings.RELOAD_TIME = 5; //Time it takes to reload (in ticks)
 	settings.AMMO_BLOB = "mat_rifleammo"; //Ammunition the gun takes
 
 	//Bullet
@@ -41,9 +39,9 @@ void onInit(CBlob@ this)
 	//Custom
 	this.set_f32("scope_zoom", 0.050f);
 	this.set_f32("CustomShootVolume", 1.5f);
-	//this.set_u8("CustomPenetration", 2);
+	this.set_string("CustomCase", "PistolCase.png");
+	this.set_u8("CustomPenetration", 1);
 	
 	this.Tag("CustomSemiAuto");
 	this.Tag("CustomShotgunReload");
-	this.set_f32("CustomBulletLength", 9.0f);
 }

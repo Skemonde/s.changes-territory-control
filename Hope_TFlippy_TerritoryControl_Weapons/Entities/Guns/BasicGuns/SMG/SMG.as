@@ -5,7 +5,7 @@ void onInit(CBlob@ this)
 	GunSettings settings = GunSettings();
 
 	//General
-	//settings.CLIP = 0; //Amount of ammunition in the gun at creation
+	settings.CLIP = 30; //Amount of ammunition in the gun at creation
 	settings.TOTAL = 30; //Max amount of ammo that can be in a clip
 	settings.FIRE_INTERVAL = 2; //Time in between shots
 	settings.RELOAD_TIME = 45; //Time it takes to reload (in ticks)
@@ -35,5 +35,4 @@ void onInit(CBlob@ this)
 	settings.MUZZLE_OFFSET = Vec2f(-16, -2); //Where the muzzle flash appears
 
 	this.set("gun_settings", @settings);
-	this.set_f32("CustomBulletLength", 9.0f);
 }
