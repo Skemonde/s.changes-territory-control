@@ -5,10 +5,10 @@ void onInit(CBlob@ this)
 	GunSettings settings = GunSettings();
 
 	//General
-	//settings.CLIP = 0; //Amount of ammunition in the gun at creation
-	settings.TOTAL = 5; //Max amount of ammo that can be in a clip
-	settings.FIRE_INTERVAL = 40; //Time in between shots
-	settings.RELOAD_TIME = 55; //Time it takes to reload (in ticks)
+	settings.CLIP = 8; //Amount of ammunition in the gun at creation
+	settings.TOTAL = 8; //Max amount of ammo that can be in a clip
+	settings.FIRE_INTERVAL = 15; //Time in between shots
+	settings.RELOAD_TIME = 10; //Time it takes to reload (in ticks)
 	settings.AMMO_BLOB = "mat_rifleammo"; //Ammunition the gun takes
 
 	//Bullet
@@ -16,8 +16,8 @@ void onInit(CBlob@ this)
 	//settings.B_SPREAD = 0; //the higher the value, the more 'uncontrollable' bullets get
 	settings.B_GRAV = Vec2f(0, 0.001); //Bullet gravity drop
 	settings.B_SPEED = 90; //Bullet speed, STRONGLY AFFECTED/EFFECTS B_GRAV
-	settings.B_TTL = 100; //TTL = 'Time To Live' which determines the time the bullet lasts before despawning
-	settings.B_DAMAGE = 4.0f; //1 is 1 heart
+	settings.B_TTL = 20; //TTL = 'Time To Live' which determines the time the bullet lasts before despawning
+	settings.B_DAMAGE = 2.5f; //1 is 1 heart
 	settings.B_TYPE = HittersTC::bullet_high_cal; //Type of bullet the gun shoots | hitter
 
 	//Recoil
@@ -28,8 +28,8 @@ void onInit(CBlob@ this)
 	settings.G_BACK_T = 6; //Should we recoil the arm back time? (aim goes up, then back down with this, if > 0, how long should it last)
 
 	//Sound
-	settings.FIRE_SOUND = "RifleFire.ogg"; //Sound when shooting
-	settings.RELOAD_SOUND = "RifleReload.ogg"; //Sound when reloading
+	settings.FIRE_SOUND = "LeverRifle_Fire.ogg"; //Sound when shooting
+	settings.RELOAD_SOUND = "LeverRifle_load.ogg"; //Sound when reloading
 
 	//Offset
 	settings.MUZZLE_OFFSET = Vec2f(-19, -2); //Where the muzzle flash appears
@@ -37,8 +37,7 @@ void onInit(CBlob@ this)
 	this.set("gun_settings", @settings);
 
 	//Custom
-	this.set_string("CustomCycle", "RifleCycle");
-	this.set_u8("CustomKnock", 6);
-	this.set_u8("CustomPenetration", 2);
+	this.set_string("CustomCycle", "LeverRifle_Cycle");
+	this.Tag("CustomShotgunReload");
 	this.set_f32("CustomBulletLength", 14.0f);
 }

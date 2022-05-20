@@ -20,7 +20,7 @@ const u8[] resourceYields =
 	20,
 	10,
 	4,
-	50
+	20
 };
 
 void onInit(CBlob@ this)
@@ -108,9 +108,9 @@ void onInit(CBlob@ this)
 	}
 	{
 		ShopItem@ s = addShopItem(this, "Shotgun", "$icon_shotgun$", "shotgun", "A short-ranged weapon that deals devastating damage.\n\nUses Shotgun Shells.");
-		AddRequirement(s.requirements, "coin", "", "Coins", 500);
-		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 120);
-		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 4);
+		AddRequirement(s.requirements, "coin", "", "Coins", 1000); //500c
+		//AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 120); //324c
+		//AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 4); //200c
 
 		s.customButton = true;
 		s.buttonwidth = 2;
@@ -120,10 +120,10 @@ void onInit(CBlob@ this)
 	}
 	{
 		ShopItem@ s = addShopItem(this, "Boomstick", "$icon_boomstick$", "boomstick", "You see this? A boomstick! The twelve-gauge double-barreled Bobington.\n\nUses Shotgun Shells.");
-		AddRequirement(s.requirements, "coin", "", "Coins", 300);
-		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 8);
-		AddRequirement(s.requirements, "blob", "mat_copperingot", "Copper Ingot", 2);
-		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 6);
+		AddRequirement(s.requirements, "coin", "", "Coins", 700); //300c
+		//AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 8); //80c
+		//AddRequirement(s.requirements, "blob", "mat_copperingot", "Copper Ingot", 2); //20c
+		//AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 6); //300c
 
 		s.customButton = true;
 		s.buttonwidth = 2;
@@ -139,10 +139,10 @@ void onInit(CBlob@ this)
 	}
 	{
 		ShopItem@ s = addShopItem(this, "DP-27", "$dp27$", "dp27", "A cheap machinegun that was primary used in WW2 by russians.\n\nUses Gatling Ammo.");
-		AddRequirement(s.requirements, "coin", "", "Coins", 1000);
-		AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 150);
-		AddRequirement(s.requirements, "blob", "mat_copperingot", "Copper Ingot", 2);
-		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 8);
+		AddRequirement(s.requirements, "coin", "", "Coins", 2800); //1000c
+		//AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 150); //405c
+		//AddRequirement(s.requirements, "blob", "mat_copperingot", "Copper Ingot", 2); //20c
+		//AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 8);	//400c
 
 		s.customButton = true;
 		s.buttonwidth = 4;

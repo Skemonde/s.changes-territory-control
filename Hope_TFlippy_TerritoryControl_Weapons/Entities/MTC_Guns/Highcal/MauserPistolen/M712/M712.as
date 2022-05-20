@@ -16,12 +16,12 @@ void onInit(CBlob@ this)
 	settings.B_SPREAD = 10; //the higher the value, the more 'uncontrollable' bullets get
 	settings.B_GRAV = Vec2f(0, 0.003); //Bullet gravity drop
 	settings.B_SPEED = 80; //Bullet speed, STRONGLY AFFECTED/EFFECTS B_GRAV
-	settings.B_TTL = 12; //TTL = 'Time To Live' which determines the time the bullet lasts before despawning
+	settings.B_TTL = 8; //TTL = 'Time To Live' which determines the time the bullet lasts before despawning
 	settings.B_DAMAGE = 2.250f; //1 is 1 heart
 	settings.B_TYPE = HittersTC::shotgun; //Type of bullet the gun shoots | hitter
 
 	//Recoil
-	settings.G_RECOIL = -7; //0 is default, adds recoil aiming up
+	settings.G_RECOIL = -14; //0 is default, adds recoil aiming up
 	settings.G_RANDOMX = true; //Should we randomly move x
 	settings.G_RANDOMY = true; //Should we randomly move y, it ignores g_recoil
 	settings.G_RECOILT = 3; //How long should recoil last, 10 is default, 30 = 1 second (like ticks)
@@ -39,21 +39,14 @@ void onInit(CBlob@ this)
 	//Custom
 	this.set_f32("scope_zoom", 0.050f);
 	this.set_f32("CustomShootVolume", 1.5f);
-	//this.set_u8("CustomPenetration", 2);
-	this.set_f32("CustomBulletLength", 9.0f);
+	this.set_string("CustomCase", "PistolCase.png");
 	
 	CSprite@ sprite = this.getSprite();
 	sprite.RewindEmitSound();
 	sprite.SetEmitSound("KEAK_CARRADINE");
 	sprite.SetEmitSoundSpeed(1);
-	sprite.SetEmitSoundVolume(0.400);
+	sprite.SetEmitSoundVolume(0.800);
 	sprite.SetEmitSoundPaused(false);
-}
-
-void onDetach(CBlob@ this, CBlob@ detached, AttachmentPoint @attachedPoint)
-{
-	CSprite@ sprite = this.getSprite();
-	sprite.SetEmitSoundPaused(true);
 }
 
 void onAttach(CBlob@ this, CBlob@ attached, AttachmentPoint @attachedPoint)
@@ -65,5 +58,5 @@ void onAttach(CBlob@ this, CBlob@ attached, AttachmentPoint @attachedPoint)
 void onDie(CBlob@ this)
 {
 	CSprite@ sprite = this.getSprite();
-	sprite.SetEmitSound("");
+	sprite.SetEmitSoundPaused(true);
 }

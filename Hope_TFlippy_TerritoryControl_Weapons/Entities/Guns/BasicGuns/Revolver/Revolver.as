@@ -5,7 +5,7 @@ void onInit(CBlob@ this)
 	GunSettings settings = GunSettings();
 
 	//General
-	//settings.CLIP = 0; //Amount of ammunition in the gun at creation
+	settings.CLIP = 6; //Amount of ammunition in the gun at creation
 	settings.TOTAL = 6; //Max amount of ammo that can be in a clip
 	settings.FIRE_INTERVAL = 5; //Time in between shots
 	settings.RELOAD_TIME = 55; //Time it takes to reload (in ticks)
@@ -37,5 +37,4 @@ void onInit(CBlob@ this)
 	this.Tag("CustomSemiAuto");
 
 	this.set("gun_settings", @settings);
-	this.set_f32("CustomBulletLength", 9.0f);
 }

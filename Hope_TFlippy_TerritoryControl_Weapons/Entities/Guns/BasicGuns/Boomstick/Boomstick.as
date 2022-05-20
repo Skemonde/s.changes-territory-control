@@ -38,5 +38,4 @@ void onInit(CBlob@ this)
 
 	//Custom
 	this.Tag("CustomSemiAuto");
-	this.set_f32("CustomBulletLength", 9.0f);
 }

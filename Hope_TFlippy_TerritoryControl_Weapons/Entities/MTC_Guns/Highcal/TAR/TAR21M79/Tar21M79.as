@@ -28,7 +28,7 @@ void onInit(CBlob@ this)
 	settings.G_BACK_T = 3; //Should we recoil the arm back time? (aim goes up, then back down with this, if > 0, how long should it last)
 
 	//Sound
-	settings.FIRE_SOUND = "LeverRifle_Fire.ogg"; //Sound when shooting
+	settings.FIRE_SOUND = "RevolverFire.ogg"; //Sound when shooting
 	//settings.RELOAD_SOUND = "SMGReload.ogg"; //Sound when reloading
 
 	//Offset
@@ -85,7 +85,7 @@ void onTick(CBlob@ this)
 			laser.ScaleBy(Vec2f(length / 32.0f - 0.4, 1.0f));
 			laser.TranslateBy(Vec2f(length / 2 - 7, 0.0f));
 			laser.RotateBy((flip ? 180 : 0), Vec2f());
-			if (holder.isMyPlayer()) laser.SetVisible(true);
+			laser.SetVisible(true);
 		}
 	}
 	else
