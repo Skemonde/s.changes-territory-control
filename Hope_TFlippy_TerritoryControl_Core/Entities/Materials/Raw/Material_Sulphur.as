@@ -14,7 +14,7 @@ string[] particles =
 void onInit(CBlob@ this)
 {
 	this.maxQuantity = 500;
-	
+	this.set_u8("death_threshold", 50);
 	this.set_bool("map_damage_raycast", true);
 	this.set_Vec2f("explosion_offset", Vec2f(0, 0));
 	this.set_f32("bomb angle", 90);
