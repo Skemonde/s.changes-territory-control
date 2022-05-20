@@ -40,6 +40,7 @@ void onInit(CBlob@ this)
 	this.set_f32("scope_zoom", 0.450f);
 	this.set_u8("CustomKnock", 3);
 	this.set_f32("CustomBulletLength", 10.0f);
+	this.set_u8("CustomPenetration", 1);
 	this.Tag("heavy weight");
 	this.Tag("place45");
 }
