@@ -6,9 +6,8 @@ void onTick(CBlob@ this)
 {
 	if (isServer()) 
 	{
-		if (this.getQuantity() >= this.get_u8("death_threshold")) return;
-		
-		if (!this.isOnGround()) {
+		if (!this.isOnGround()) 
+		{
 			this.set_u32("death_date", getGameTime() + (60 * 30)); // 1 minute for all
 			return;
 		}

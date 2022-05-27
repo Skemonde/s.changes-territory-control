@@ -7,7 +7,6 @@ void onInit(CBlob@ this)
 
 	this.maxQuantity = 50;
 	this.set_u8("fuel_energy", 20);
-	this.set_u8("death_threshold", 50);
 
 	this.getCurrentScript().tickFrequency = 1;
 }
