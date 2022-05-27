@@ -10,7 +10,6 @@ void onInit(CBlob@ this)
 
 	this.maxQuantity = 250;
 
-	this.set_u8("death_threshold", 30);
 	this.getCurrentScript().tickFrequency = 1;
 	this.getCurrentScript().runFlags |= Script::tick_not_inwater | Script::tick_not_ininventory;
 
