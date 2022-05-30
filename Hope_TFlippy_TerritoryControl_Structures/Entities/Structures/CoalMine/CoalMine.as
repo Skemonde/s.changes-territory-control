@@ -37,6 +37,7 @@ void onInit(CBlob@ this)
 	this.Tag("teamlocked tunnel");
 	this.Tag("change team on fort capture");
 	this.Tag("extractable");
+	this.Tag("can be captured by neutral");
 
 	this.Tag("upkeep building");
 	this.set_u8("upkeep cap increase", 0);
