@@ -208,8 +208,8 @@ void Blend(CBlob@ this, CBlob@ blob)
 				u32 quantity = blob.getQuantity();
 
 				MakeMat(this, this.getPosition(), "mat_dirt", 		quantity * 0.65f + XORRandom(quantity * 0.25f));
-				MakeMat(this, this.getPosition(), "mat_sulphur", 	XORRandom(quantity * 0.10f));
-				MakeMat(this, this.getPosition(), "mat_copper", 	XORRandom(quantity * 0.10f));
+				MakeMat(this, this.getPosition(), "mat_sulphur", 	XORRandom(quantity * 0.30f));
+				MakeMat(this, this.getPosition(), "mat_copper", 	XORRandom(quantity * 0.20f));
 			}
 
 			if (isClient())
