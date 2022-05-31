@@ -45,7 +45,7 @@ void onInit(CBlob@ this)
 	{
 		ShopItem@ s = addShopItem(this, "Engineer's Tools", "$icon_engineertools$", "engineertools", "Engineer's Tools for real engineers.", true);
 		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 4);
-		AddRequirement(s.requirements, "coin", "", "Coins", 1000);
+		AddRequirement(s.requirements, "coin", "", "Coins", 750);
 
 		s.spawnNothing = true;
 	}
