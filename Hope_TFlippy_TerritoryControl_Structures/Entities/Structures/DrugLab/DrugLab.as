@@ -163,6 +163,7 @@ void React(CBlob@ this)
 			CBlob@ protopopovBulb_blob = inv.getItem("protopopovbulb");
 			CBlob@ vodka_blob = inv.getItem("vodka");
 			CBlob@ fiks_blob = inv.getItem("fiks");
+			CBlob@ love_blob = inv.getItem("love");
 			CBlob@ grain_blob = inv.getItem("grain");
 			CBlob@ rippio_blob = inv.getItem("rippio");
 			CBlob@ ganja_blob = inv.getItem("mat_ganja");
@@ -184,6 +185,7 @@ void React(CBlob@ this)
 			bool hasProtopopovBulb = protopopovBulb_blob !is null;
 			bool hasVodka = vodka_blob !is null;
 			bool hasFiks = fiks_blob !is null;
+			bool hasLove = love_blob !is null;
 			bool hasGrain = grain_blob !is null;
 			bool hasRippio = rippio_blob !is null;
 			bool hasGanja = ganja_blob !is null;
@@ -572,7 +574,7 @@ void React(CBlob@ this)
 				this.getSprite().PlaySound("DrugLab_Create_Solid.ogg", 1.00f, 1.00f);
 			}
 
-			if (pressure < 100000 && heat > 500 && hasAcid && hasCoal && acid_count >= 25 && sulphur_count >= 100 && coal_count >= 10)
+			if (pressure < 100000 && heat > 500 && hasAcid && hasCoal && acid_count >= 25 && sulphur_count >= 50 && coal_count >= 10)
 			{
 				if (isServer())
 				{
@@ -628,6 +630,21 @@ void React(CBlob@ this)
 					ShakeScreen(100.0f, 15, this.getPosition());
 					this.getSprite().PlaySound("DrugLab_Create_Acidic.ogg", 1.00f, 1.00f);
 				}
+			}
+
+			if (pressure < 100000 && heat >= 500 && hasAcid && hasLove && hasMustard && acid_count >= 25 && mustard_count >= 50)
+			{
+				if (isServer())
+				{
+					acid_blob.server_SetQuantity(Maths::Max(acid_blob.getQuantity() - 25, 0));
+					mustard_blob.server_SetQuantity(Maths::Max(mustard_blob.getQuantity() - 50, 0));
+					love_blob.server_Die();
+
+					Material::createFor(this, "mat_gae", 100 + XORRandom(50));
+				}
+
+				ShakeScreen(30.0f, 60, this.getPosition());
+				this.getSprite().PlaySound("DrugLab_Create_Solid.ogg", 1.00f, 1.00f);
 			}
 		}
 	}
