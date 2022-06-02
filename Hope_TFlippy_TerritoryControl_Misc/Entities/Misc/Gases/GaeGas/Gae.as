@@ -30,18 +30,20 @@ void onTick(CBlob@ this)
 		for (uint i = 0; i < blobSize; i++)
 		{
 			CBlob@ blob = blobsInRadius[i];
-			if (blob is null || !blob.hasTag("flesh") || blob.hasTag("gas") || blob.hasTag("gas immune") || !blob.isCollidable() || !blob.hasTag("human") || blob.hasTag("gaed")) { break; }
-
-			if (!blob.hasScript("GaeEffect.as")) blob.AddScript("GaeEffect.as");
-
-			if (isClient() && blob.isMyPlayer())
-			{	
-				getMap().CreateSkyGradient("skygradient_dew.png");
-				
-				CSprite@ sprite = blob.getSprite();
-				sprite.SetEmitSound("IWillSurvive.ogg");
-				sprite.SetEmitSoundVolume(1.00f);
-				sprite.SetEmitSoundPaused(false);
+			if (blob is null || !blob.hasTag("flesh") || blob.hasTag("gas") || blob.hasTag("gas immune") || !blob.isCollidable() || !blob.hasTag("human") || blob.hasTag("transformed")) 
+			{ 
+				break; 
+			} 
+			else
+			{
+				if (!blob.hasScript("GaeEffect.as")) 
+				{
+					blob.AddScript("GaeEffect.as");
+					CSprite@ sprite = blob.getSprite();
+					sprite.SetEmitSound("IWillSurvive.ogg");
+					sprite.SetEmitSoundVolume(1.00f);
+					sprite.SetEmitSoundPaused(false);
+				}
 			}
 		}
 	}

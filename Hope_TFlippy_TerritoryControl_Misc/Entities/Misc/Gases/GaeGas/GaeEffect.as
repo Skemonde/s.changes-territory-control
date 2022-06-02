@@ -12,8 +12,6 @@ void onInit(CBlob@ this)
 {
 	this.add_f32("gae_effect", 1.00f);
 	this.set_f32("voice pitch", 2.20f);
-	this.Tag("gaed");
-				
 	getMap().CreateSkyGradient("skygradient_gae.png");
 }
 
@@ -32,24 +30,27 @@ void onTick(CBlob@ this)
 			if (this.hasTag("human") && this.getConfig() != "princess")
 			{
 				CBlob@ blob = server_CreateBlob("princess", this.getTeamNum(), this.getPosition());
-				if (this.getPlayer() !is null) blob.server_SetPlayer(this.getPlayer());
-				Sound::Play("GaeQuestion.ogg");
+				blob.set_f32("voice pitch", 2.20f);
+				if (this.getPlayer() !is null) 
+				{
+					blob.server_SetPlayer(this.getPlayer());
+					Sound::Play("GaeQuestion.ogg");
+					getMap().CreateSkyGradient("skygradient_gae.png");
+				}
+
 			}
 			
 			this.Tag("transformed");
 			this.server_Die();
 		}
-	
-		if (isClient() && this.isMyPlayer()) getMap().CreateSkyGradient("skygradient.png");
-		this.getCurrentScript().runFlags |= Script::remove_after_this;
 	}
 	else
 	{
 		RunnerMoveVars@ moveVars;
 		if (this.get("moveVars", @moveVars))
 		{
-			moveVars.walkFactor *= 1.20f - (withdrawal * 1.50f);
-			moveVars.jumpFactor *= 1.50f - (withdrawal * 2.00f);
+			moveVars.walkFactor *= 2.00f - (withdrawal * 1.50f);
+			moveVars.jumpFactor *= 2.00f - (withdrawal * 2.00f);
 		}	
 		
 		if (true_level < 0.20f)
