@@ -74,7 +74,7 @@ void onAddToInventory(CBlob@ this, CBlob@ blob)
 			if (blobname == "mat_gae")
 			{
 				sprite.SetFrameIndex(12);
-				this.SetInventoryIcon(sprite.getConsts().filename, 14, Vec2f(16, 32));
+				this.SetInventoryIcon(sprite.getConsts().filename, 12, Vec2f(16, 32));
 			}
 		}
 	}
