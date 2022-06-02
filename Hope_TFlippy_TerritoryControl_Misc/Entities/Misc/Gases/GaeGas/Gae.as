@@ -13,7 +13,7 @@ void onInit(CBlob@ this)
 	this.SetMapEdgeFlags(CBlob::map_collide_sides);
 	this.getCurrentScript().tickFrequency = 15 + XORRandom(15);
 	
-	if (!this.exists("toxicity")) this.set_f32("toxicity", 2.00f);
+	if (!this.exists("toxicity")) this.set_f32("toxicity", 0.00f);
 	
 	this.getSprite().RotateBy(90 * XORRandom(4), Vec2f());
 	this.server_SetTimeToDie(60 + XORRandom(90));
@@ -64,12 +64,6 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 {
 	return 0;
 }
- 
-// void onCollision(CBlob@ this, CBlob@ blob, bool solid)
-// {
-	// if (blob is null) return;
-	// if (blob.hasTag("gas")) return;
-// }
 
 void MakeParticle(CBlob@ this, const string filename = "LargeSmoke")
 {

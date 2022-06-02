@@ -50,12 +50,6 @@ void onTick(CBlob@ this)
 		{
 			moveVars.walkFactor *= 1.20f - (withdrawal * 1.50f);
 			moveVars.jumpFactor *= 1.50f - (withdrawal * 2.00f);
-			
-			if (true_level > 3.00f)
-			{
-				moveVars.walkFactor = 0.5f;
-				moveVars.jumpFactor = 0.00f;
-			}
 		}	
 		
 		if (true_level < 0.20f)
@@ -100,7 +94,7 @@ void onTick(CBlob@ this)
 					if (XORRandom(500 * true_level) == 0)
 					{
 						u8 emote = 0;
-						if (true_level < 0.20f) emote = Emotes::clap;
+						if (true_level < 0.30f) emote = Emotes::clap;
 						else if (true_level < 0.40f) emote = Emotes::heart;
 						else if (true_level < 0.60f) emote = Emotes::love;
 						else emote = Emotes::kiss;
