@@ -30,7 +30,7 @@ void onTick(CBlob@ this)
 		for (uint i = 0; i < blobSize; i++)
 		{
 			CBlob@ blob = blobsInRadius[i];
-			if (blob is null || !blob.hasTag("flesh") || blob.hasTag("gas") || blob.hasTag("gas immune") || !blob.isCollidable() || !blob.hasTag("human") || blob.hasTag("transformed")) 
+			if (blob is null || !blob.hasTag("flesh") || blob.hasTag("gas") || blob.hasTag("gas immune") || !blob.isCollidable() || !blob.hasTag("human") || blob.hasTag("transformed") || blob.hasTag("npc")) 
 			{ 
 				break; 
 			} 
