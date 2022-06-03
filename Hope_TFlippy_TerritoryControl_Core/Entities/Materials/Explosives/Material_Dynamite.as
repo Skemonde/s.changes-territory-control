@@ -26,17 +26,17 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 	}
 }
 
-f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitterBlob, u8 customData)
-{
-	if (customData == Hitters::explosion && this.get_bool("lite")) //chain reaction
-	{
-		this.set_bool("lite", false);
-		if (isServer())
-		{
-			CBlob@ blob = server_CreateBlob("dynamite", this.getTeamNum(), this.getPosition());
-			blob.server_SetTimeToDie(0.2);
-			this.server_Die();
-		}
-	}
-	return damage;
-}
+// f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitterBlob, u8 customData)
+// {
+// 	if (customData == Hitters::explosion && this.get_bool("lite")) //chain reaction
+// 	{
+// 		this.set_bool("lite", false);
+// 		if (isServer())
+// 		{
+// 			CBlob@ blob = server_CreateBlob("dynamite", this.getTeamNum(), this.getPosition());
+// 			blob.server_SetTimeToDie(0.2);
+// 			this.server_Die();
+// 		}
+// 	}
+// 	return damage;
+// }
