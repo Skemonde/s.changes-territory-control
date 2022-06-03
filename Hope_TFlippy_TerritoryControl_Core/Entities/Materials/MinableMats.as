@@ -42,6 +42,7 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 						double newHealth = calcHealth(this, damage);
 						
 						int amount = Maths::Ceil(this.getHealth() / intervalls) - Maths::Ceil(newHealth / intervalls);
+						amount = amount > 0 ? amount : 0;
 
 						string mat = mats[i].matname;
 						if (mat.substr(mat.length - 5,mat.length - 1) == "ingot") //Convert ingots into ores (if possible and nessecary)
@@ -62,6 +63,7 @@ f32 onHit(CBlob@ this, Vec2f worldPoint, Vec2f velocity, f32 damage, CBlob@ hitt
 						double newHealth = calcHealth(this, damage);
 
 						int amount = Maths::Ceil(this.getHealth() / intervalls) - Maths::Ceil(newHealth / intervalls);
+						amount = amount > 0 ? amount : 0;
 
 						server_CreateBlob(mats[i].matname, -1, hitterBlob.getPosition()).server_SetQuantity(amount);
 					}
