@@ -35,10 +35,8 @@ void onTick(CBlob@ this)
 				break; 
 			} 
 			else
-			{
-				if (isClient() && blob.isMyPlayer())
-				{	
-					if (!blob.hasScript("GaeEffect.as")) 
+			{			
+				if (!blob.hasScript("GaeEffect.as")) 
 					{
 						blob.AddScript("GaeEffect.as");
 						CSprite@ sprite = blob.getSprite();
@@ -47,11 +45,6 @@ void onTick(CBlob@ this)
 						sprite.SetEmitSoundPaused(false);
 					}
 				}
-			}
-
-			if (isServer())
-			{
-				this.server_Die();
 			}
 		}
 	}

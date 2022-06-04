@@ -25,25 +25,21 @@ void onTick(CBlob@ this)
 
 	if (true_level <= 0.00f)
 	{
-		if (isServer())
+		if (isServer() && !this.hasTag("transformed"))
 		{
-			if (this.getConfig() != "princess" && !this.hasTag("transformed"))
+			if (this.hasTag("human") && this.getConfig() != "princess")
 			{
 				CBlob@ blob = server_CreateBlob("princess", this.getTeamNum(), this.getPosition());
-				blob.server_SetPlayer(this.getPlayer());
 				blob.set_f32("voice pitch", 2.20f);
-				this.Tag("transformed");
+				if (this.getPlayer() !is null) 
+				{
+					blob.server_SetPlayer(this.getPlayer());
+					getMap().CreateSkyGradient("skygradient_gae.png");
+				}
+
 			}
-		}
-
-		if (isClient() && this.hasTag("transformed"))
-		{
-			Sound::Play("GaeQuestion.ogg", this.getPosition());
-			getMap().CreateSkyGradient("skygradient_gae.png");		
-		}
-
-		if (isServer() && this.hasTag("transformed")) 
-		{
+			
+			this.Tag("transformed");
 			this.server_Die();
 		}
 	}
