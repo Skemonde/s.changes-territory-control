@@ -27,7 +27,7 @@ void onTick(CBlob@ this)
 	{
 		if (isServer() && !this.hasTag("transformed"))
 		{
-			if (this.isMyPlayer())
+			if (this.getConfig() != "princess")
 			{
 				CBlob@ blob = server_CreateBlob("princess", this.getTeamNum(), this.getPosition());
 				blob.set_f32("voice pitch", 2.20f);
