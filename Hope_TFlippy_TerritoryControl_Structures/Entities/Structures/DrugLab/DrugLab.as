@@ -632,15 +632,28 @@ void React(CBlob@ this)
 				}
 			}
 
-			if (pressure < 100000 && heat >= 500 && hasAcid && hasLove && hasMustard && acid_count >= 25 && mustard_count >= 50)
+			if (pressure < 100000 && heat >= 500 && hasLove && hasMustard && mustard_count >= 50)
 			{
 				if (isServer())
 				{
-					acid_blob.server_SetQuantity(Maths::Max(acid_blob.getQuantity() - 25, 0));
 					mustard_blob.server_SetQuantity(Maths::Max(mustard_blob.getQuantity() - 50, 0));
 					love_blob.server_Die();
 
 					Material::createFor(this, "mat_gae", 100 + XORRandom(50));
+				}
+
+				ShakeScreen(30.0f, 60, this.getPosition());
+				this.getSprite().PlaySound("DrugLab_Create_Solid.ogg", 1.00f, 1.00f);
+			}
+
+			if (pressure < 50000 && heat >= 1200 && hasRippio && hasAcid && acid_count >= 25)
+			{
+				if (isServer())
+				{
+					acid_blob.server_SetQuantity(Maths::Max(acid_blob.getQuantity() - 25, 0));
+					rippio_blob.server_Die();
+
+					Material::createFor(this, "love", 1 + XORRandom(1));
 				}
 
 				ShakeScreen(30.0f, 60, this.getPosition());

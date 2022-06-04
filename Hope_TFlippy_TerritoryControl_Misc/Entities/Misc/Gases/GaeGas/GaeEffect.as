@@ -27,17 +27,16 @@ void onTick(CBlob@ this)
 	{
 		if (isServer() && !this.hasTag("transformed"))
 		{
-			if (this.hasTag("human") && this.getConfig() != "princess")
+			if (this.isMyPlayer())
 			{
 				CBlob@ blob = server_CreateBlob("princess", this.getTeamNum(), this.getPosition());
 				blob.set_f32("voice pitch", 2.20f);
 				if (this.getPlayer() !is null) 
 				{
 					blob.server_SetPlayer(this.getPlayer());
-					Sound::Play("GaeQuestion.ogg");
+					blob.getSprite().PlaySound("GaeQuestion.ogg");
 					getMap().CreateSkyGradient("skygradient_gae.png");
 				}
-
 			}
 			
 			this.Tag("transformed");
