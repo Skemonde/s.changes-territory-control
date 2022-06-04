@@ -30,11 +30,10 @@ void onTick(CBlob@ this)
 			if (this.getConfig() != "princess" && !this.hasTag("transformed"))
 			{
 				CBlob@ blob = server_CreateBlob("princess", this.getTeamNum(), this.getPosition());
-				blob.set_f32("voice pitch", 2.20f);
 				blob.server_SetPlayer(this.getPlayer());
+				blob.set_f32("voice pitch", 2.20f);
+				this.Tag("transformed");
 			}
-			
-			this.Tag("transformed");
 		}
 
 		if (isClient() && this.hasTag("transformed"))
@@ -43,7 +42,7 @@ void onTick(CBlob@ this)
 			getMap().CreateSkyGradient("skygradient_gae.png");		
 		}
 
-		if (isServer()) 
+		if (isServer() && this.hasTag("transformed")) 
 		{
 			this.server_Die();
 		}
