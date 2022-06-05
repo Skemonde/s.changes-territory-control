@@ -10,12 +10,12 @@ const f32 gae_step = 1.00f / gae_duration;
 
 void onInit(CBlob@ this)
 {
+	this.add_f32("gae_effect", 1.00f);
+	this.set_f32("voice pitch", 2.20f);
+
 	if (isClient() && this.isMyPlayer()) 
 	{
-		this.add_f32("gae_effect", 1.00f);
-		this.set_f32("voice pitch", 2.20f);
 		getMap().CreateSkyGradient("skygradient_gae.png");
-
 		CSprite@ sprite = this.getSprite();
 		sprite.SetEmitSound("IWillSurvive.ogg");
 		sprite.SetEmitSoundVolume(1.00f);
@@ -43,11 +43,6 @@ void onTick(CBlob@ this)
 				if (this.getPlayer() !is null) 
 				{
 					blob.server_SetPlayer(this.getPlayer());
-					if (blob.isMyPlayer())
-					{
-						getMap().CreateSkyGradient("skygradient_gae.png");
-						blob.getSprite().PlaySound("GaeQuestion.ogg");
-					}
 				}
 
 			}
@@ -55,6 +50,13 @@ void onTick(CBlob@ this)
 			this.Tag("transformed");
 			this.server_Die();
 		}
+
+		if (isClient() && this.isMyPlayer()) 
+		{
+		this.getSprite().PlaySound("GaeQuestion.ogg");
+		}
+
+	this.getCurrentScript().runFlags |= Script::remove_after_this;
 	}
 	else
 	{
