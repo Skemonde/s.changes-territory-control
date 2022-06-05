@@ -261,7 +261,7 @@ void onRenderScoreboard(CRules@ this)
 				GUI::DrawText(characterName      , topleft + Vec2f(20, 0)               , playercolour);//CharacterName
 				GUI::DrawText(p.getUsername()    , topleft + Vec2f(200, 0)              , tempGrey);//Username
 				//GUI::DrawText(clan               , Vec2f(bottomright.x - 510, topleft.y), tempGrey);//Clan tag
-				GUI::DrawText(p.exists("kill_streak") ? "" + p.get_u8("kill_streak") : "" + 0     , Vec2f(bottomright.x - 510, topleft.y), tempGrey);//Killstreak
+				GUI::DrawText("" + p.getAssists()   , Vec2f(bottomright.x - 510, topleft.y), tempGrey);//Killstreak, uses Assists variable
 				GUI::DrawText(coins + " coins"   , Vec2f(bottomright.x - 420, topleft.y), tempGrey);//Coins
 				GUI::DrawText(ping_in_ms + " ms" , Vec2f(bottomright.x - 330, topleft.y), tempGrey);//Ping
 				GUI::DrawText("" + p.getKills()  , Vec2f(bottomright.x - 270, topleft.y), tempGrey);//Kills
@@ -274,7 +274,7 @@ void onRenderScoreboard(CRules@ this)
 
 				GUI::DrawText(p.getUsername()    , topleft + Vec2f(250, 0)              , tempGrey);
 				//GUI::DrawText(clan               , Vec2f(bottomright.x - 650, topleft.y), tempGrey);
-				GUI::DrawText(p.exists("kill_streak") ? "" + p.get_u8("kill_streak") : "" + 0      , Vec2f(bottomright.x - 650, topleft.y), tempGrey);
+				GUI::DrawText("" + p.getAssists() , Vec2f(bottomright.x - 650, topleft.y), tempGrey);
 				GUI::DrawText(coins + " coins"   , Vec2f(bottomright.x - 550, topleft.y), tempGrey);
 				GUI::DrawText(ping_in_ms + " ms" , Vec2f(bottomright.x - 450, topleft.y), tempGrey);
 				GUI::DrawText("" + p.getKills()  , Vec2f(bottomright.x - 350, topleft.y), tempGrey);
