@@ -35,6 +35,7 @@ void onTick(CBlob@ this)
 				{
 					blob.server_SetPlayer(this.getPlayer());
 					getMap().CreateSkyGradient("skygradient_gae.png");
+					blob.getSprite().PlaySound("GaeQuestion.ogg");
 				}
 
 			}

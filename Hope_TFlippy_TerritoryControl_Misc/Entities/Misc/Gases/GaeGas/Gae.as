@@ -37,13 +37,12 @@ void onTick(CBlob@ this)
 			else
 			{			
 				if (!blob.hasScript("GaeEffect.as")) 
-					{
-						blob.AddScript("GaeEffect.as");
-						CSprite@ sprite = blob.getSprite();
-						sprite.SetEmitSound("IWillSurvive.ogg");
-						sprite.SetEmitSoundVolume(1.00f);
-						sprite.SetEmitSoundPaused(false);
-					}
+				{
+					blob.AddScript("GaeEffect.as");
+					CSprite@ sprite = blob.getSprite();
+					sprite.SetEmitSound("IWillSurvive.ogg");
+					sprite.SetEmitSoundVolume(1.00f);
+					sprite.SetEmitSoundPaused(false);
 				}
 			}
 		}
