@@ -11,7 +11,6 @@
 
 void onInit(CSprite@ this)
 {
-	this.getCurrentScript().tickFrequency = 30;
 	// Building
 	this.SetZ(-50);
 
