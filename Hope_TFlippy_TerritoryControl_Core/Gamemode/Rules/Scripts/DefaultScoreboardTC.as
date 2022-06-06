@@ -2,7 +2,6 @@
 // set kills, deaths and assists
 
 #include "AssistCommon.as";
-#include "Announcer.as";
 
 void onBlobDie(CRules@ this, CBlob@ blob)
 {
@@ -34,14 +33,57 @@ void onBlobDie(CRules@ this, CBlob@ blob)
 						// temporary until we have a proper score system
 						killer.setScore(100 * (f32(killer.getKills()) / f32(killer.getDeaths() + 1)));
                         killer.setAssists(killer.getAssists() + 1);
-						AnnounceKills(killer);
+						announceKills(killer);
 					}
 				}
 
 			}
-
 		}
-
 	}
-	
+}
+
+void announceKills(CPlayer@ player)
+{
+    string playerName = player.getUsername();
+    bool hasFirstKill;
+
+    if (player.getKills() == 1)
+    {
+        for (u8 i = 0; i < getPlayersCount(); i++)
+	    {
+		    CPlayer@ p = getPlayer(i);
+		    if (p.getKills() > 0 && p.getUsername() != playerName) 
+            {
+                hasFirstKill = true;
+                break;
+            }
+	    }
+
+        if (!hasFirstKill)
+        {
+            client_AddToChat(playerName + " got the first kill!", SColor(255, 255, 0, 0));
+            Sound::Play("FirstBlood.ogg");
+        }
+        return;
+    }
+
+    switch(player.getAssists()) 
+    {
+        case 5:
+            client_AddToChat(playerName + " murdered 5 in a row !", SColor(255, 255, 0, 0));
+            Sound::Play("Unstoppable.ogg");
+            break;
+        case 10:
+            client_AddToChat(playerName + " has slayed 10 in a row, be careful !", SColor(255, 255, 0, 0));
+            Sound::Play("HolyShit.ogg");
+            break;
+        case 20:
+            client_AddToChat(playerName + " exterminated 20 souls, may God help us !", SColor(255, 255, 0, 0));
+            Sound::Play("GodLike.ogg");
+            break;
+        case 30:
+            client_AddToChat(playerName + " wiped out the server with a 30 killstreak, it's over !", SColor(255, 255, 0, 0));
+            Sound::Play("MonsterKill.ogg");
+            break;
+    }
 }
