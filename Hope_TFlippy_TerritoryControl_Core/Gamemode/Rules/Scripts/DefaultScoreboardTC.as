@@ -2,6 +2,7 @@
 // set kills, deaths and assists
 
 #include "AssistCommon.as";
+#include "Announcer.as";
 
 void onBlobDie(CRules@ this, CBlob@ blob)
 {
