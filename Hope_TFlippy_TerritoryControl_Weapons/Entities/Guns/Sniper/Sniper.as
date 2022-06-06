@@ -53,7 +53,7 @@ void onInit(CBlob@ this)
 		laser.SetRelativeZ(-1.0f);
 		laser.SetVisible(true);
 		laser.setRenderStyle(RenderStyle::additive);
-		laser.SetOffset(Vec2f(-15.0f, 0.5f));
+		laser.SetOffset(Vec2f(-12.5f, 1.5f));
 	}
 }
 
@@ -84,7 +84,7 @@ void onTick(CBlob@ this)
 		if (laser !is null)
 		{
 			laser.ResetTransform();
-			laser.ScaleBy(Vec2f(length / 32.0f - 0.4, 1.0f));
+			laser.ScaleBy(Vec2f(length / 32.0f - 0.3, 1.0f));
 			laser.TranslateBy(Vec2f(length / 2 - 7, 0.0f));
 			laser.RotateBy((flip ? 180 : 0), Vec2f());
 			if (holder.isMyPlayer()) laser.SetVisible(true);
