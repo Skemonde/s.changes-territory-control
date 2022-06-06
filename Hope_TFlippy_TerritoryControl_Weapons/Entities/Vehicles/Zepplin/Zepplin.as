@@ -4,8 +4,8 @@
 
 //most of the code is in BomberCommon.as
 
-const u32 shootDelay = 9; // Ticks
-const f32 damage = 15.0f;
+const u32 shootDelay = 12; // Ticks
+const f32 damage = 4.5f;
 const Vec2f arm_offset = Vec2f(-26, 50);
 
 string[] particles = 
