@@ -33,6 +33,7 @@ void onBlobDie(CRules@ this, CBlob@ blob)
 						// temporary until we have a proper score system
 						killer.setScore(100 * (f32(killer.getKills()) / f32(killer.getDeaths() + 1)));
                         killer.setAssists(killer.getAssists() + 1);
+						AnnounceKills(killer);
 					}
 				}
 
