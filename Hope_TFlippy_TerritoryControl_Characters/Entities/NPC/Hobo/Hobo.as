@@ -134,138 +134,18 @@ void onInit(CBlob@ this)
 
 	this.set_u32("nextTalk", getGameTime() + XORRandom(60));
 	this.set_u32("nextFood", 0);
+	this.set_u32("shop_space", 0);
 
 	this.addCommandID("traderChat");
 
 	addTokens(this); //colored shop icons
 
 	this.set_Vec2f("shop offset", Vec2f(0, 0));
-	this.set_Vec2f("shop menu size", Vec2f(6, 4));
 	this.set_string("shop description", name + " the Hobo");
 	this.setInventoryName(name + " the Hobo");
 	this.set_u8("shop icon", 25);
 
 	this.set_u32("lastDanger", 0);
-
-	if (rand.NextRanged(100) < 50)
-	{
-		ShopItem@ s = addShopItem(this, "honking shite", "$klaxon$", "klaxon", "throw it away");
-		AddRequirement(s.requirements, "coin", "", "Coins", 50 + rand.NextRanged(500));
-		s.spawnNothing = true;
-	}
-
-	if (rand.NextRanged(100) < 50)
-	{
-		ShopItem@ s = addShopItem(this, "big cuffs", "$shackles$", "shackles", "tie that fool up");
-		AddRequirement(s.requirements, "coin", "", "Coins", 100 + rand.NextRanged(500));
-		s.spawnNothing = true;
-	}
-
-	if (rand.NextRanged(100) < 50)
-	{
-		ShopItem@ s = addShopItem(this, "sticky stick", "$nightstick$", "nightstick", "a stick for beating up");
-		AddRequirement(s.requirements, "coin", "", "Coins", 50 + rand.NextRanged(150));
-		s.spawnNothing = true;
-	}
-
-	if (rand.NextRanged(100) < 50)
-	{
-		ShopItem@ s = addShopItem(this, "poppin shit", "$icon_firework$", "firework", "popping flying shit");
-		AddRequirement(s.requirements, "coin", "", "Coins", 75 + rand.NextRanged(200));
-		s.spawnNothing = true;
-	}
-
-	if (rand.NextRanged(100) < 50)
-	{
-		ShopItem@ s = addShopItem(this, "firejob", "$icon_firejob$", "firejob", "fucking tie it to your neck and launch it ya cunt");
-		AddRequirement(s.requirements, "coin", "", "Coins", 2000 + rand.NextRanged(2575));
-		s.spawnNothing = true;
-	}
-
-	if (rand.NextRanged(100) < 25)
-	{
-		ShopItem@ s = addShopItem(this, "fireboom", "$icon_fireboom$", "fireboom", "ok so now listen carefully my dear this is illegal as fUCK");
-		AddRequirement(s.requirements, "coin", "", "Coins", 10000 + rand.NextRanged(20000));
-		s.spawnNothing = true;
-	}
-
-	if (rand.NextRanged(100) < 30)
-	{
-		ShopItem@ s = addShopItem(this, "bitch", "$icon_trader$", "trader", "huh");
-		AddRequirement(s.requirements, "coin", "", "Coins", 500 + rand.NextRanged(2000));
-		s.spawnNothing = true;
-	}
-
-	if (rand.NextRanged(100) < 5)
-	{
-		ShopItem@ s = addShopItem(this, "guy", "$icon_hobo$", "hobo", "fuck off");
-		AddRequirement(s.requirements, "coin", "", "Coins", 200 + rand.NextRanged(2000));
-		s.spawnNothing = true;
-	}
-
-	if (rand.NextRanged(100) < 30)
-	{
-		ShopItem@ s = addShopItem(this, "fart can", "$icon_methane$", "mat_methane-25", "smells like shit");
-		AddRequirement(s.requirements, "coin", "", "Coins", 400 + rand.NextRanged(500));
-		s.spawnNothing = true;
-	}
-
-	if (rand.NextRanged(100) < 20)
-	{
-		ShopItem@ s = addShopItem(this, "nuke", "$icon_mininuke$", "mat_dirt-10", "get fucked");
-		AddRequirement(s.requirements, "coin", "", "Coins", 1000 + rand.NextRanged(10000));
-		s.spawnNothing = true;
-	}
-
-	if (rand.NextRanged(100) < 20)
-	{
-		ShopItem@ s = addShopItem(this, "refined fart can", "$icon_fuel$", "mat_fuel-25", "smells worse than shit");
-		AddRequirement(s.requirements, "coin", "", "Coins", 800 + rand.NextRanged(1000));
-		s.spawnNothing = true;
-	}
-
-	if (rand.NextRanged(100) < 20)
-	{
-		ShopItem@ s = addShopItem(this, "gae", "$icon_princess$", "princess", "found him hanging around the tannhauser gate");
-		AddRequirement(s.requirements, "coin", "", "Coins", 69 + rand.NextRanged(10000));
-		s.spawnNothing = true;
-	}
-
-	if (rand.NextRanged(100) < 20)
-	{
-		{
-			ShopItem@ s = addShopItem(this, "rocket prop whatever launcher", "$icon_rpc$", "rpc", "cut the shit");
-			AddRequirement(s.requirements, "coin", "", "Coins", 250 + rand.NextRanged(2500));
-			s.spawnNothing = true;
-		}
-
-		{
-			ShopItem@ s = addShopItem(this, "rocket prop whatever rocket", "$icon_sawrocket$", "mat_sawrocket-1", "rocket for launcher");
-			AddRequirement(s.requirements, "coin", "", "Coins", 50 + rand.NextRanged(550));
-			s.spawnNothing = true;
-		}
-	}
-
-	if (rand.NextRanged(100) < 25)
-	{
-		ShopItem@ s = addShopItem(this, "cat", "$icon_kitten$", "badger", "yea");
-		AddRequirement(s.requirements, "coin", "", "Coins", 250 + rand.NextRanged(500));
-		s.spawnNothing = true;
-	}
-
-	if (rand.NextRanged(100) < 3)
-	{
-		ShopItem@ s = addShopItem(this, "some retarded shite", "$icon_oof$", "oof", "it's a rake or some shit now get the fuck out before i gouge your eyes out");
-		AddRequirement(s.requirements, "coin", "", "Coins", 1 + rand.NextRanged(1000));
-		s.spawnNothing = true;
-	}
-
-	if (rand.NextRanged(100) < 30)
-	{
-		ShopItem@ s = addShopItem(this, "vehry neat stufff phe GHAa", "$icon_illegalshit$", "illegalgunpart", "ok so now listen carefully my dear this is illegal as fUCK");
-		AddRequirement(s.requirements, "coin", "", "Coins", 6000 + rand.NextRanged(1000));
-		s.spawnNothing = true;
-	}
 
 	if (rand.NextRanged(100) < 40)
 	{
@@ -275,6 +155,144 @@ void onInit(CBlob@ this)
 		s.customButton = true;
 		s.buttonwidth = 2;
 		s.buttonheight = 2;
+		this.set_u32("shop_space", this.get_u32("shop_space") + 4);
+	}
+
+	if (rand.NextRanged(100) < 25)
+	{
+		ShopItem@ s = addShopItem(this, "fireboom", "$icon_fireboom$", "fireboom", "ok so now listen carefully my dear this is illegal as fUCK");
+		AddRequirement(s.requirements, "coin", "", "Coins", 10000 + rand.NextRanged(20000));
+		s.spawnNothing = true;
+		this.set_u32("shop_space", this.get_u32("shop_space") + 4);
+	}
+
+	if (rand.NextRanged(100) < 3)
+	{
+		ShopItem@ s = addShopItem(this, "some retarded shite", "$icon_oof$", "oof", "it's a rake or some shit now get the fuck out before i gouge your eyes out");
+		AddRequirement(s.requirements, "coin", "", "Coins", 1 + rand.NextRanged(1000));
+		s.spawnNothing = true;
+		this.set_u32("shop_space", this.get_u32("shop_space") + 2);
+	}
+
+	if (rand.NextRanged(100) < 50)
+	{
+		ShopItem@ s = addShopItem(this, "honking shite", "$klaxon$", "klaxon", "throw it away");
+		AddRequirement(s.requirements, "coin", "", "Coins", 50 + rand.NextRanged(500));
+		s.spawnNothing = true;
+		this.set_u32("shop_space", this.get_u32("shop_space") + 1);
+	}
+
+	if (rand.NextRanged(100) < 50)
+	{
+		ShopItem@ s = addShopItem(this, "big cuffs", "$shackles$", "shackles", "tie that fool up");
+		AddRequirement(s.requirements, "coin", "", "Coins", 50 + rand.NextRanged(100));
+		s.spawnNothing = true;
+		this.set_u32("shop_space", this.get_u32("shop_space") + 1);
+	}
+
+	if (rand.NextRanged(100) < 50)
+	{
+		ShopItem@ s = addShopItem(this, "sticky stick", "$nightstick$", "nightstick", "a stick for beating up");
+		AddRequirement(s.requirements, "coin", "", "Coins", 50 + rand.NextRanged(150));
+		s.spawnNothing = true;
+		this.set_u32("shop_space", this.get_u32("shop_space") + 1);
+	}
+
+	if (rand.NextRanged(100) < 50)
+	{
+		ShopItem@ s = addShopItem(this, "poppin shit", "$icon_firework$", "firework", "popping flying shit");
+		AddRequirement(s.requirements, "coin", "", "Coins", 75 + rand.NextRanged(200));
+		s.spawnNothing = true;
+		this.set_u32("shop_space", this.get_u32("shop_space") + 1);
+	}
+
+	if (rand.NextRanged(100) < 50)
+	{
+		ShopItem@ s = addShopItem(this, "firejob", "$icon_firejob$", "firejob", "fucking tie it to your neck and launch it ya cunt");
+		AddRequirement(s.requirements, "coin", "", "Coins", 2000 + rand.NextRanged(2575));
+		s.spawnNothing = true;
+		this.set_u32("shop_space", this.get_u32("shop_space") + 1);
+	}
+
+	if (rand.NextRanged(100) < 30)
+	{
+		ShopItem@ s = addShopItem(this, "bitch", "$icon_trader$", "trader", "huh");
+		AddRequirement(s.requirements, "coin", "", "Coins", 500 + rand.NextRanged(2000));
+		s.spawnNothing = true;
+		this.set_u32("shop_space", this.get_u32("shop_space") + 1);
+	}
+
+	if (rand.NextRanged(100) < 5)
+	{
+		ShopItem@ s = addShopItem(this, "guy", "$icon_hobo$", "hobo", "fuck off");
+		AddRequirement(s.requirements, "coin", "", "Coins", 200 + rand.NextRanged(2000));
+		s.spawnNothing = true;
+		this.set_u32("shop_space", this.get_u32("shop_space") + 1);
+	}
+
+	if (rand.NextRanged(100) < 30)
+	{
+		ShopItem@ s = addShopItem(this, "fart can", "$icon_crakgas$", "mat_crak-25", "smells like shit");
+		AddRequirement(s.requirements, "coin", "", "Coins", 400 + rand.NextRanged(500));
+		s.spawnNothing = true;
+		this.set_u32("shop_space", this.get_u32("shop_space") + 1);
+	}
+
+	if (rand.NextRanged(100) < 20)
+	{
+		ShopItem@ s = addShopItem(this, "nuke", "$icon_mininuke$", "mat_dirt-10", "get fucked");
+		AddRequirement(s.requirements, "coin", "", "Coins", 1000 + rand.NextRanged(10000));
+		s.spawnNothing = true;
+		this.set_u32("shop_space", this.get_u32("shop_space") + 1);
+	}
+
+	if (rand.NextRanged(100) < 20)
+	{
+		ShopItem@ s = addShopItem(this, "refined fart can", "$icon_fuel$", "mat_fuel-25", "smells worse than shit");
+		AddRequirement(s.requirements, "coin", "", "Coins", 800 + rand.NextRanged(1000));
+		s.spawnNothing = true;
+		this.set_u32("shop_space", this.get_u32("shop_space") + 1);
+	}
+
+	if (rand.NextRanged(100) < 20)
+	{
+		ShopItem@ s = addShopItem(this, "gae", "$icon_princess$", "princess", "found him hanging around the tannhauser gate");
+		AddRequirement(s.requirements, "coin", "", "Coins", 69 + rand.NextRanged(10000));
+		s.spawnNothing = true;
+		this.set_u32("shop_space", this.get_u32("shop_space") + 1);
+	}
+
+	if (rand.NextRanged(100) < 20)
+	{
+		{
+			ShopItem@ s = addShopItem(this, "rocket prop whatever launcher", "$icon_rpc$", "rpc", "cut the shit");
+			AddRequirement(s.requirements, "coin", "", "Coins", 250 + rand.NextRanged(2500));
+			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
+		}
+
+		{
+			ShopItem@ s = addShopItem(this, "rocket prop whatever rocket", "$icon_sawrocket$", "mat_sawrocket-1", "rocket for launcher");
+			AddRequirement(s.requirements, "coin", "", "Coins", 50 + rand.NextRanged(550));
+			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
+		}
+	}
+
+	if (rand.NextRanged(100) < 25)
+	{
+		ShopItem@ s = addShopItem(this, "cat", "$icon_kitten$", "badger", "yea");
+		AddRequirement(s.requirements, "coin", "", "Coins", 250 + rand.NextRanged(500));
+		s.spawnNothing = true;
+		this.set_u32("shop_space", this.get_u32("shop_space") + 1);
+	}
+
+	if (rand.NextRanged(100) < 30)
+	{
+		ShopItem@ s = addShopItem(this, "vehry neat stufff phe GHAa", "$icon_illegalshit$", "illegalgunpart", "ok so now listen carefully my dear this is illegal as fUCK");
+		AddRequirement(s.requirements, "coin", "", "Coins", 5000 + rand.NextRanged(2000));
+		s.spawnNothing = true;
+		this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 	}
 
 	if (rand.NextRanged(100) < 40)
@@ -282,6 +300,7 @@ void onInit(CBlob@ this)
 		ShopItem@ s = addShopItem(this, "boots that smell of piss", "$icon_rendeboots$", "rendeboots", "old pair of shoes i won from a chicken");
 		AddRequirement(s.requirements, "coin", "", "Coins", 150 + rand.NextRanged(500));
 		s.spawnNothing = true;
+		this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 	}
 
 	if (rand.NextRanged(100) < 50)
@@ -291,6 +310,7 @@ void onInit(CBlob@ this)
 			ShopItem@ s = addShopItem(this, "yellow mellow", "$icon_foof$", "foof", "pissssss");
 			AddRequirement(s.requirements, "coin", "", "Coins", 1750 + rand.NextRanged(1000));
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 
 		if (rand.NextRanged(100) < 25)
@@ -298,6 +318,7 @@ void onInit(CBlob@ this)
 			ShopItem@ s = addShopItem(this, "fun", "$icon_domino$", "domino", "hoyl shit");
 			AddRequirement(s.requirements, "coin", "", "Coins", 750 + rand.NextRanged(250));
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 
 		if (rand.NextRanged(100) < 25)
@@ -305,6 +326,7 @@ void onInit(CBlob@ this)
 			ShopItem@ s = addShopItem(this, "hard pill", "$fiks$", "fiks", "hard rocc");
 			AddRequirement(s.requirements, "coin", "", "Coins", 500 + rand.NextRanged(250));
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 
 		if (rand.NextRanged(100) < 30)
@@ -312,6 +334,7 @@ void onInit(CBlob@ this)
 			ShopItem@ s = addShopItem(this, "speedo", "$icon_stim$", "stim", "speedy stuff you'll be fast like hedgehog");
 			AddRequirement(s.requirements, "coin", "", "Coins", 1250 + rand.NextRanged(500));
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 
 		if (rand.NextRanged(100) < 40)
@@ -319,6 +342,7 @@ void onInit(CBlob@ this)
 			ShopItem@ s = addShopItem(this, "shite", "$icon_bobongo$", "bobongo", "stfu");
 			AddRequirement(s.requirements, "coin", "", "Coins", 350 + rand.NextRanged(150));
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 
 		if (rand.NextRanged(100) < 40)
@@ -326,6 +350,7 @@ void onInit(CBlob@ this)
 			ShopItem@ s = addShopItem(this, "crack", "$icon_crak$", "crak", "gets shit done quick");
 			AddRequirement(s.requirements, "coin", "", "Coins", 750 + rand.NextRanged(500));
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 
 		if (rand.NextRanged(100) < 25)
@@ -333,6 +358,7 @@ void onInit(CBlob@ this)
 			ShopItem@ s = addShopItem(this, "red stuff", "$icon_propesko$", "propesko", "had to do it to em");
 			AddRequirement(s.requirements, "coin", "", "Coins", 1550 + rand.NextRanged(750));
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 
 		if (rand.NextRanged(100) < 25)
@@ -340,6 +366,7 @@ void onInit(CBlob@ this)
 			ShopItem@ s = addShopItem(this, "smokey", "$icon_fumes$", "fumes", "fly like an idiot");
 			AddRequirement(s.requirements, "coin", "", "Coins", 1850 + rand.NextRanged(1250));
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 
 		if (rand.NextRanged(100) < 25)
@@ -347,13 +374,15 @@ void onInit(CBlob@ this)
 			ShopItem@ s = addShopItem(this, "venom", "$rippio$", "rippio", "rat poison");
 			AddRequirement(s.requirements, "coin", "", "Coins", 1650 + rand.NextRanged(850));
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 
 		if (rand.NextRanged(100) < 30)
 		{
 			ShopItem@ s = addShopItem(this, "blue paper", "$bp_chemistry$", "bp_chemistry", "wipe ya ass");
-			AddRequirement(s.requirements, "coin", "", "Coins", 3000 + rand.NextRanged(2500));
+			AddRequirement(s.requirements, "coin", "", "Coins", 1700 + rand.NextRanged(800));
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 	}
 	else if (rand.NextRanged(100) < 40)
@@ -365,6 +394,7 @@ void onInit(CBlob@ this)
 			ShopItem@ s = addShopItem(this, "sell boof", "$COIN$", "coin-" + cost, "ill take this giggly shit off yer hands fer " + cost + " coins.");
 			AddRequirement(s.requirements, "blob", "boof", "Boof", 1);
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 
 		if (rand.NextRanged(100) < 50)
@@ -373,6 +403,7 @@ void onInit(CBlob@ this)
 			ShopItem@ s = addShopItem(this, "sell crak", "$COIN$", "coin-" + cost, "ill take this cracker shit off yer hands fer " + cost + " coins.");
 			AddRequirement(s.requirements, "blob", "crak", "Crak", 1);
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 
 		if (rand.NextRanged(100) < 50)
@@ -381,6 +412,7 @@ void onInit(CBlob@ this)
 			ShopItem@ s = addShopItem(this, "sell rippio", "$COIN$", "coin-" + cost, "ill take this fucker shit off yer hands fer " + cost + " coins.");
 			AddRequirement(s.requirements, "blob", "rippio", "Rippio", 1);
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 
 		if (rand.NextRanged(100) < 50)
@@ -389,6 +421,7 @@ void onInit(CBlob@ this)
 			ShopItem@ s = addShopItem(this, "sell stim", "$COIN$", "coin-" + cost, "ill take this hedgehog shit off yer hands fer " + cost + " coins.");
 			AddRequirement(s.requirements, "blob", "stim", "Stim", 1);
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 
 		if (rand.NextRanged(100) < 50)
@@ -397,6 +430,7 @@ void onInit(CBlob@ this)
 			ShopItem@ s = addShopItem(this, "sell paxilon", "$COIN$", "coin-" + cost, "ill take this sleepy shit off yer hands fer " + cost + " coins.");
 			AddRequirement(s.requirements, "blob", "paxilon", "Paxilon", 1);
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 
 		if (rand.NextRanged(100) < 50)
@@ -405,6 +439,7 @@ void onInit(CBlob@ this)
 			ShopItem@ s = addShopItem(this, "sell propesko", "$COIN$", "coin-" + cost, "ill take this red shit off yer hands fer " + cost + " coins.");
 			AddRequirement(s.requirements, "blob", "propesko", "Propesko", 1);
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 
 		if (rand.NextRanged(100) < 50)
@@ -413,6 +448,7 @@ void onInit(CBlob@ this)
 			ShopItem@ s = addShopItem(this, "sell fumes", "$COIN$", "coin-" + cost, "Ill take this smelly shit off yer hands fer " + cost + " coins.");
 			AddRequirement(s.requirements, "blob", "fumes", "Fumes", 1);
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 
 		if (rand.NextRanged(100) < 50)
@@ -421,8 +457,12 @@ void onInit(CBlob@ this)
 			ShopItem@ s = addShopItem(this, "sell schisk", "$COIN$", "coin-" + cost, "ill take this schizo shit off yer hands fer " + cost + " coins.");
 			AddRequirement(s.requirements, "blob", "schisk", "Schisk", 1);
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 	}
+	
+	u8 shop_width = 6;
+	this.set_Vec2f("shop menu size", Vec2f(shop_width, 1+(Maths::Floor(this.get_u32("shop_space")/shop_width))));
 
 	if (isServer())
 	{
@@ -455,6 +495,7 @@ void addTokens(CBlob@ this)
 	AddIconToken("$icon_trader$", "TraderCoot.png", Vec2f(16, 16), 0, teamnum);
 	AddIconToken("$icon_sawrocket$", "Material_SawRocket.png", Vec2f(8, 24), 0, teamnum);
 	AddIconToken("$icon_illegalshit$", "IllegalGunPart.png", Vec2f(10, 6), 0, teamnum);
+	AddIconToken("$icon_crakgas$", "Material_Crak.png", Vec2f(16, 16), 0, teamnum);
 }
 
 int getRandomCost(Random@ random, int min, int max, int rounding = 10)

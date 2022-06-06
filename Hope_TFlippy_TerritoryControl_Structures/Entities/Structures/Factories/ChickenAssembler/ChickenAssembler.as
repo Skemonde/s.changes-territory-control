@@ -14,7 +14,9 @@ void onInit(CSprite@ this)
 	this.SetEmitSoundPaused(false);
 	
 	CBlob@ blob = this.getBlob();
-	if (!blob.hasTag("CA_is_on"))
+	bool state = blob.get_bool("state");
+	
+	if (!state)
 	{
 		this.SetEmitSoundPaused(true);
 	}
@@ -37,9 +39,6 @@ class AssemblerItem
 
 void onInit(CBlob@ this)
 {
-	this.Tag("CA_is_on");
-//	this.server_setTeamNum(250); // it is unnecessary
-
 	AssemblerItem[] items;
 	{
 		AssemblerItem i("assaultrifle", 2, "UPF Assault Rifle (4)");
@@ -159,10 +158,6 @@ void onInit(CBlob@ this)
 	this.set_bool("state", true);
 	bool state = this.get_bool("state");
 	
-	if (state == false) {
-		this.Untag("CA_is_on");
-	}
-	
 	this.addCommandID("set");
 	this.addCommandID("state");
 
@@ -180,7 +175,7 @@ void GetButtonsFor( CBlob@ this, CBlob@ caller )
 		CBitStream params;
 		params.write_u16(caller.getNetworkID());
 
-		CButton@ button = caller.CreateGenericButton(15, Vec2f(0, -16), this, ChickenAssemblerMenu, "Set Item");
+		CButton@ button = caller.CreateGenericButton(21, Vec2f(0, -16), this, ChickenAssemblerMenu, "Set Item");
 	}
 	{
 		bool state = this.get_bool("state");
@@ -249,11 +244,6 @@ void onCommand( CBlob@ this, u8 cmd, CBitStream @params )
 			this.getSprite().PlaySound("LeverToggle.ogg", 2.0f, 0.8f);
 		}
 		
-		if (this.hasTag("CA_is_on"))
-			this.Untag("CA_is_on");
-		else
-			this.Tag("CA_is_on");
-			
 		this.set_u32("next use", getGameTime() + 20);
 	}
 }

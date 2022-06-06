@@ -12,7 +12,9 @@ void onInit(CBlob@ this){
 	this.addCommandID("send_filter");
 	this.addCommandID("swap_list_type");
 	
-	this.Tag("whitelist");
+	this.set_bool("whitelist", true);
+	if (this.get_bool("whitelist"))
+		this.Tag("whitelist");
 }
 
 void GetButtonsFor( CBlob@ this, CBlob@ caller )
