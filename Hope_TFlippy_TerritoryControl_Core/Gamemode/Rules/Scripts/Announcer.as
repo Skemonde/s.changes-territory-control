@@ -20,7 +20,10 @@ void AnnounceKills(CPlayer@ player)
         if (!hasFirstKill) 
         {
             client_AddToChat(playerName + " got the first kill!", SColor(255, 255, 0, 0));
-            Sound::Play("FirstBlood.ogg");
+            if (isClient()) 
+            {
+                Sound::Play("FirstBlood.ogg");
+            }
         }
         return;
     }
@@ -29,19 +32,31 @@ void AnnounceKills(CPlayer@ player)
     {
         case 5:
             client_AddToChat(playerName + " murdered 5 in a row !", SColor(255, 255, 0, 0));
-            Sound::Play("Unstoppable.ogg");
+            if (isClient) 
+            {
+                Sound::Play("Unstoppable.ogg");
+            }
             break;
         case 10:
             client_AddToChat(playerName + " has slayed 10 in a row, be careful !", SColor(255, 255, 0, 0));
-            Sound::Play("HolyShit.ogg");
+            if (isClient()) 
+            {
+                Sound::Play("HolyShit.ogg");
+            }
             break;
         case 20:
             client_AddToChat(playerName + " exterminated 20 souls, may God help us !", SColor(255, 255, 0, 0));
-            Sound::Play("GodLike.ogg");
+            if (isClient())
+            {
+                Sound::Play("GodLike.ogg");
+            }
             break;
         case 30:
             client_AddToChat(playerName + " wiped out the server with a 30 killstreak, it's over !", SColor(255, 255, 0, 0));
-            Sound::Play("MonsterKill.ogg");
+            if (isClient())
+            {
+                Sound::Play("MonsterKill.ogg");
+            }
             break;
     }
 }
