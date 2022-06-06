@@ -17,7 +17,7 @@ void AnnounceKills(CPlayer@ player)
             }
 	    }
 
-        if (!hasFirstKill) 
+        if (!hasFirstKill)
         {
             client_AddToChat(playerName + " got the first kill!", SColor(255, 255, 0, 0));
             if (isClient()) 
@@ -32,7 +32,7 @@ void AnnounceKills(CPlayer@ player)
     {
         case 5:
             client_AddToChat(playerName + " murdered 5 in a row !", SColor(255, 255, 0, 0));
-            if (isClient) 
+            if (isClient()) 
             {
                 Sound::Play("Unstoppable.ogg");
             }
