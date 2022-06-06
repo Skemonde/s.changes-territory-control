@@ -2,7 +2,8 @@
 #include "FilteringCommon.as";
 
 void onInit(CBlob@ this){
-	this.Untag("whitelist");
+	
+	this.set_bool("whitelist", false);
 }
 
 void onCollision(CBlob@ this, CBlob@ blob, bool solid)

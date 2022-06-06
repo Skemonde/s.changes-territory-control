@@ -7,7 +7,7 @@
 
 #include "CustomBlocks.as";
 
-void onInit(CBlob@ this, bool open)
+void onInit(CBlob@ this)
 {
 	this.getShape().SetRotationsAllowed(false);
 	this.getSprite().getConsts().accurateLighting = true;
@@ -17,14 +17,15 @@ void onInit(CBlob@ this, bool open)
 	this.Tag("blocks water");
 	
 	CSprite@ sprite = this.getSprite();
-	if (open)
+	bool ss = this.get_bool("security_state");
+	if (ss)
 	{
 		sprite.SetZ(-100.0f);
 		sprite.SetAnimation("open");
 		this.getShape().getConsts().collidable = false;
 		this.getCurrentScript().tickFrequency = 3;
 		
-		this.getSprite().PlaySound("/Blastdoor_Buzzer.ogg", 1.00f, 1.00f);
+		//this.getSprite().PlaySound("/Blastdoor_Buzzer.ogg", 1.00f, 1.00f);
 		// this.getSprite().PlaySound("/Blastdoor_Open.ogg", 1.00f, 1.00f);
 	}
 }

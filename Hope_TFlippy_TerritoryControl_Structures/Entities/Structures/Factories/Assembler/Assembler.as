@@ -7,8 +7,6 @@
 #include "MakeMat.as";
 #include "MakeSeed.as";
 
-//bool sus;
-
 void onInit(CSprite@ this)
 {
 	// Building
@@ -20,7 +18,9 @@ void onInit(CSprite@ this)
 	this.SetEmitSoundPaused(false);
 	
 	CBlob@ blob = this.getBlob();
-	if (!blob.hasTag("cogs"))
+	bool state = blob.get_bool("state");
+	
+	if (!state)
 	{
 		this.SetEmitSoundPaused(true);
 	}
@@ -72,8 +72,10 @@ void onInit(CSprite@ this)
 void onTick(CSprite@ this)
 {
 	CBlob@ blob = this.getBlob();
+	bool state = blob.get_bool("state");
 	
-	if (blob.hasTag("cogs")) {
+	if (state)
+	{
 		if(this.getSpriteLayer("gear1") !is null){
 			this.getSpriteLayer("gear1").RotateBy(5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.0f,0.0f));
 	}
@@ -83,16 +85,9 @@ void onTick(CSprite@ this)
 		if(this.getSpriteLayer("gear3") !is null){
 			this.getSpriteLayer("gear3").RotateBy(5.0f*(this.getBlob().exists("gyromat_acceleration") ? this.getBlob().get_f32("gyromat_acceleration") : 1), Vec2f(0.0f,0.0f));
 	}
-	} else {
-		if(this.getSpriteLayer("gear1") !is null){
-			this.getSpriteLayer("gear1").RotateBy(0, Vec2f(0.0f,0.0f));
-	}
-		if(this.getSpriteLayer("gear2") !is null){
-			this.getSpriteLayer("gear2").RotateBy(0, Vec2f(0.0f,0.0f));
-	}
-		if(this.getSpriteLayer("gear3") !is null){
-			this.getSpriteLayer("gear3").RotateBy(0, Vec2f(0.0f,0.0f));
-	}
+	
+	
+	
 	}
 }
 
@@ -113,8 +108,6 @@ class AssemblerItem
 
 void onInit(CBlob@ this)
 {
-	this.Tag("cogs");
-	
 	AssemblerItem[] items;
 	{
 		AssemblerItem i("mat_pistolammo", 50, "Low Caliber Bullets (50)");
@@ -283,11 +276,6 @@ void onInit(CBlob@ this)
 	
 	CSprite@ sprite = this.getSprite();
 	
-	//this should prevent cogs of a turned-off assembler from rotating after player's relogs a server
-	if (state == false) {
-		this.Untag("cogs");
-	}	//
-	
 	this.addCommandID("set");
 	this.addCommandID("state");	
 
@@ -298,14 +286,14 @@ void onInit(CBlob@ this)
 
 void GetButtonsFor( CBlob@ this, CBlob@ caller )
 {
-	bool nospam = getGameTime() >= this.get_u32("next use");
+	bool nospam = getGameTime() >= this.get_u32("next_use");
 	
 	if (!caller.isOverlapping(this)) return;
 	{
 		CBitStream params;
 		params.write_u16(caller.getNetworkID());
 	
-		CButton@ button = caller.CreateGenericButton(15, Vec2f(0, -16), this, AssemblerMenu, "Set Item");
+		CButton@ button = caller.CreateGenericButton(21, Vec2f(0, -16), this, AssemblerMenu, "Set Item");
 	}
 	{		
 		bool state = this.get_bool("state");
@@ -363,7 +351,6 @@ void onCommand( CBlob@ this, u8 cmd, CBitStream @params)
 	}
 	else if (cmd == this.getCommandID("state"))
 	{
-		//sus = this.get_bool("state");//since every assembler share this bool (it's global) every assembler stops their animation if only one set the bool to false :C
 		bool newState = params.read_bool();
 		this.set_bool("state", newState);
 		this.getSprite().SetEmitSoundPaused(!newState);
@@ -375,12 +362,7 @@ void onCommand( CBlob@ this, u8 cmd, CBitStream @params)
 			this.getSprite().PlaySound("LeverToggle.ogg", 2.0f, 0.8f);
 		}
 		
-		if (this.hasTag("cogs"))
-			this.Untag("cogs");
-		else
-			this.Tag("cogs");
-			
-		this.set_u32("next use", getGameTime() + 20);
+		this.set_u32("next_use", getGameTime() + 0);
 	}
 }
 

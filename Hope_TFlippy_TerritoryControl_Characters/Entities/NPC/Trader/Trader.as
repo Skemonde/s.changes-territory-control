@@ -135,6 +135,7 @@ void onInit(CBlob@ this)
 
 	this.set_u32("nextTalk", getGameTime() + XORRandom(60));
 	this.set_u32("nextFood", 0);
+	this.set_u32("shop_space", 0);
 
 	this.addCommandID("traderChat");
 
@@ -153,11 +154,13 @@ void onInit(CBlob@ this)
 		ShopItem@ s = addShopItem(this, "Buy Gold Ingot (1)", "$mat_goldingot$", "mat_goldingot-1", "Buy 1 Gold Ingot for 100 coins.");
 		AddRequirement(s.requirements, "coin", "", "Coins", 100);
 		s.spawnNothing = true;
+		this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 	}
 	{
 		ShopItem@ s = addShopItem(this, "Sell Gold Ingot (1)", "$COIN$", "coin-90", "Sell 1 Gold Ingot for 90 coins.");
 		AddRequirement(s.requirements, "blob", "mat_goldingot", "Gold Ingot", 1);
 		s.spawnNothing = true;
+		this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 	}
 
 	// Resource Trader
@@ -167,21 +170,25 @@ void onInit(CBlob@ this)
 			ShopItem@ s = addShopItem(this, "Buy Stone (250)", "$mat_stone$", "mat_stone-250", "Buy 250 stone for 135 coins.");
 			AddRequirement(s.requirements, "coin", "", "Coins", 135);
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 		{
 			ShopItem@ s = addShopItem(this, "Buy Wood (250)", "$mat_wood$", "mat_wood-250", "Buy 250 wood for 100 coins.");
 			AddRequirement(s.requirements, "coin", "", "Coins", 100);
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 		{
 			ShopItem@ s = addShopItem(this, "Sell Stone (250)", "$COIN$", "coin-90", "Sell 250 stone for 90 coins.");
 			AddRequirement(s.requirements, "blob", "mat_stone", "Stone", 250);
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 		{
 			ShopItem@ s = addShopItem(this, "Sell Wood (250)", "$COIN$", "coin-65", "Sell 250 wood for 65 coins.");
 			AddRequirement(s.requirements, "blob", "mat_wood", "Wood", 250);
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 	}
 
@@ -192,31 +199,37 @@ void onInit(CBlob@ this)
 			ShopItem@ s = addShopItem(this, "Gramophone Record", "$musicdisc$", "musicdisc", "A disc with mysterious music!");
 			AddRequirement(s.requirements, "coin", "", "Coins", 40);
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 		{
 			ShopItem@ s = addShopItem(this, "Jetpack", "$icon_jetpack$", "jetpack", "A pack with two jets!");
 			AddRequirement(s.requirements, "coin", "", "Coins", 300);
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 		{
 			ShopItem@ s = addShopItem(this, "Binoculars", "$icon_binoculars$", "binoculars", "Now you can see afar!");
 			AddRequirement(s.requirements, "coin", "", "Coins", 200);
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 		{
 			ShopItem@ s = addShopItem(this, "Fireworks", "$icon_firework$", "firework", "A fancy firework rocket!");
 			AddRequirement(s.requirements, "coin", "", "Coins", 350);
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 		{
 			ShopItem@ s = addShopItem(this, "Lighter", "$icon_lighter$", "lighter", "Set a forest on fire!");
 			AddRequirement(s.requirements, "coin", "", "Coins", 100);
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 	    {  
-		    ShopItem@ s = addShopItem(this, "Amogus Plushie", "$amogusplushie$", "amogusplushie", "SUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUS");
+		    ShopItem@ s = addShopItem(this, "SUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUS", "$amogusplushie$", "amogusplushie", "Amogus Plushie");
 			AddRequirement(s.requirements, "coin", "", "Coins", 500);
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 	}
 
@@ -227,21 +240,25 @@ void onInit(CBlob@ this)
 			ShopItem@ s = addShopItem(this, "Cinnamon Bun", "$icon_cake$", "cake", "Pastry made with love by my wife!");
 			AddRequirement(s.requirements, "coin", "", "Coins", 50);
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 		{
 			ShopItem@ s = addShopItem(this, "Tree Seed", "$seed$", "seed", "A tree seed. Trees don't have seeds, though.");
 			AddRequirement(s.requirements, "coin", "", "Coins", 150);
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 		{
 			ShopItem@ s = addShopItem(this, "Sell Pumpkin (1)", "$COIN$", "coin-100", "Sell 1 pumpkin for 100 coins.");
 			AddRequirement(s.requirements, "blob", "pumpkin", "Pumpkin", 1);
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 		{
 			ShopItem@ s = addShopItem(this, "Sell Scrub's Chow", "$COIN$", "coin-120", "Sell 1 Scrub's Chow for 120 coins");
 			AddRequirement(s.requirements, "blob", "foodcan", "Scrub's Chow", 1);
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 	}
 
@@ -252,18 +269,24 @@ void onInit(CBlob@ this)
 			ShopItem@ s = addShopItem(this, "Boomstick", "$icon_boomstick$", "boomstick", " You see this? A boomstick! The twelve-gauge double-barreled Bobington.");
 			AddRequirement(s.requirements, "coin", "", "Coins", 500);
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 		{
 			ShopItem@ s = addShopItem(this, "Shotgun Shells (4)", "$icon_shotgunammo$", "mat_shotgunammo-4", "Boomstick's food.");
 			AddRequirement(s.requirements, "coin", "", "Coins", 100);
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 		{
 			ShopItem@ s = addShopItem(this, "Fragmentation Grenade (1)", "$icon_fraggrenade$", "mat_fraggrenade-1", "A small hand grenade, try not to hurt yourself with it.");
 			AddRequirement(s.requirements, "coin", "", "Coins", 150);
 			s.spawnNothing = true;
+			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 	}
+	
+	u8 shop_width = 4;
+	this.set_Vec2f("shop menu size", Vec2f(shop_width, 1+(Maths::Floor(this.get_u32("shop_space")/shop_width))));
 
 	if (isServer() && XORRandom(100) < 25)
 	{

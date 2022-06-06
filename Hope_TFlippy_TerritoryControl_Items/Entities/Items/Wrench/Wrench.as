@@ -39,7 +39,7 @@ void onTick(CBlob@ this)
 					CBlob@ blob = getMap().getBlobAtPosition(pos);
 					if (blob !is null && blob.getHealth() < blob.getInitialHealth()) //Must be damaged
 					{
-						if (blob.hasTag("vehicle") || blob.getShape().isStatic() && !blob.hasTag("nature"))
+						if (blob.hasTag("vehicle") || blob.hasTag("chicken_turret") || blob.getShape().isStatic() && !blob.hasTag("nature"))
 						{
 							if (isServer())
 							{
