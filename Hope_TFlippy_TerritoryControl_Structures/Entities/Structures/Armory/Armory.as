@@ -34,7 +34,7 @@ void onInit(CBlob@ this)
 	addTokens(this); //colored shop icons
 
 	this.set_Vec2f("shop offset", Vec2f(0,0));
-	this.set_Vec2f("shop menu size", Vec2f(3, 5));
+	this.set_Vec2f("shop menu size", Vec2f(3, 6));
 	this.set_string("shop description", "Armory");
 	this.set_u8("shop icon", 15);
 
@@ -135,9 +135,22 @@ void onInit(CBlob@ this)
 		s.spawnNothing = true;
 	}
 	{
+		ShopItem@ s = addShopItem(this, "Jump Shoes", "$jumpshoes$", "jumpshoes", "Makes you better, faster, stronger.");
+		AddRequirement(s.requirements, "blob", "combatboots", "Combat Boots", 1);
+		AddRequirement(s.requirements, "blob", "mat_ironingot", "Iron Ingot", 5);
+			AddRequirement(s.requirements, "blob", "mat_copperwire", "Copper Wire", 10);
+		AddRequirement(s.requirements, "coin", "", "Coins", 1000);
+
+		s.spawnNothing = true;
+	}
+	{
 		ShopItem@ s = addShopItem(this, "Rendezook", "$icon_rendezook$", "rendezook", "A replica of a rocket launcher found behind the UPF shop in a trash can.\nDoes not seem to hurt anybody.");
 		AddRequirement(s.requirements, "coin", "", "Coins", 350);
 
+		s.customButton = true;
+		s.buttonwidth = 3;
+		s.buttonheight = 1;
+		
 		s.spawnNothing = true;
 	}
 }
@@ -154,6 +167,7 @@ void addTokens(CBlob@ this)
 	if (teamnum > 6) teamnum = 7;
 
 	AddIconToken("$icon_parachute$", "Parachutepack.png", Vec2f(16, 16), 0, teamnum);
+	AddIconToken("$jumpshoes$", "JumpShoes.png", Vec2f(16, 16), 0, teamnum);
 	AddIconToken("$icon_royalarmor$", "RoyalArmor.png", Vec2f(16, 8), 0, teamnum);
 }
 
