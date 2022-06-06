@@ -154,8 +154,8 @@ class Bullet
                             if (blob.hasTag("flesh") || blob.isCollidable() || blob.hasTag("vehicle"))
                             {
 
-                                if (blob.getTeamNum() == gunBlob.getTeamNum() && !blob.getShape().isStatic()) continue;
-                                else if (blob.hasTag("weapon") || blob.hasTag("dead") || blob.hasTag("invincible") || 
+                                if (blob.getTeamNum() == gunBlob.getTeamNum() && !blob.getShape().isStatic() && !blob.hasTag("dead")) continue;
+                                else if (blob.hasTag("weapon") /*|| blob.hasTag("dead")*/ || blob.hasTag("invincible") || 
                                          blob.hasTag("food")   || blob.hasTag("gas")  || blob.isAttachedTo(hoomanShooter)) continue;
                                 else if (blob.getName() == "iron_halfblock" || blob.getName() == "stone_halfblock") continue;
 
@@ -164,6 +164,7 @@ class Bullet
                                 if (isServer())
                                 {
                                     if (blob.hasTag("door")) damage *= 1.5f;
+									if (blob.hasTag("dead")) damage *= 3.0f;
                                     hoomanShooter.server_Hit(blob, CurrentPos, dir, damage, ammotype);
                                     gunBlob.server_Hit(blob, CurrentPos, dir, 0.0f, ammotype, false); //For calling onHitBlob
 

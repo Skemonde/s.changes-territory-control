@@ -226,7 +226,7 @@ void onInit(CBlob@ this)
 			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
 		}
 	    {  
-		    ShopItem@ s = addShopItem(this, "SUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUS", "$amogusplushie$", "amogusplushie", "Amogus Plushie");
+		    ShopItem@ s = addShopItem(this, "SUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUSUS", "$icon_sugoma$", "amogusplushie", "Amogus Plushie");
 			AddRequirement(s.requirements, "coin", "", "Coins", 500);
 			s.spawnNothing = true;
 			this.set_u32("shop_space", this.get_u32("shop_space") + 1);
@@ -310,6 +310,7 @@ void addTokens(CBlob@ this)
 	AddIconToken("$icon_lighter$", "Lighter.png", Vec2f(8, 8), 0, teamnum);
 	AddIconToken("$icon_firework$", "Firework.png", Vec2f(16, 24), 0, teamnum);
 	AddIconToken("$icon_jetpack$", "Jetpack.png", Vec2f(16, 16), 0, teamnum);
+	AddIconToken("$icon_sugoma$", "AmogusPlushie.png", Vec2f(16, 16), 0, teamnum);
 }
 
 void GetButtonsFor(CBlob@ this, CBlob@ caller)
