@@ -26,6 +26,21 @@ void onInit(CBlob@ this)
 	this.set_string("initial_base_name", this.getInventoryName());
 	string base_name = this.get_string("base_name");
 	if (base_name != "") this.setInventoryName(this.getInventoryName() + " \"" + base_name + "\"");
+	
+	string old_name;
+	
+	if (this.hasTag("camp_name_changed"))
+	{
+		old_name = this.getInventoryName();
+		this.setInventoryName(this.get_string("new_camp_name"));
+	}
+	if (this.hasTag("faction_name_changed"))
+	{
+		TeamData@ team_data;
+		GetTeamData(this.getTeamNum(), @team_data);
+		old_name = GetTeamName(this.getTeamNum());
+		team_data.team_name = this.get_string("new_faction_name");
+	}
 
 	this.set_bool("base_demolition", false);
 	this.set_bool("base_alarm", false);
@@ -826,43 +841,48 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream@ inParams)
 
 		if (caller !is null && carried !is null)
 		{
-			string new_name = carried.get_string("text");
 			string old_name;
 
 			if (cmd == this.getCommandID("rename_base"))
 			{
+				this.set_string("new_camp_name", carried.get_string("text"));
 				old_name = this.getInventoryName();
-				this.setInventoryName(new_name);
+				this.setInventoryName(this.get_string("new_camp_name"));
+				this.Tag("camp_name_changed");
 			}
 			else
 			{
+				this.set_string("new_faction_name", carried.get_string("text"));
 				TeamData@ team_data;
 				GetTeamData(this.getTeamNum(), @team_data);
 				if (team_data !is null)
 				{
 					old_name = GetTeamName(this.getTeamNum());
-					team_data.team_name = new_name;
+					team_data.team_name = this.get_string("new_faction_name");
+					this.Tag("faction_name_changed");
 				}
-			}
+				
+				string new_name = this.get_string("new_faction_name");
 
-			string renamer_name = "Someone";
-			SColor message_color(255, 128, 128, 128);
-
-			CPlayer@ player = caller.getPlayer();
-			if (player !is null)
-			{
-				renamer_name = player.getUsername();
-				CRules @rules = getRules();
-				if (rules !is null)
+				string renamer_name = "Someone";
+				SColor message_color(255, 128, 128, 128);
+	
+				CPlayer@ player = caller.getPlayer();
+				if (player !is null)
 				{
-					CTeam@ team = rules.getTeam(player.getTeamNum());
-					if (team !is null)
+					renamer_name = player.getUsername();
+					CRules @rules = getRules();
+					if (rules !is null)
 					{
-						message_color = player.getTeamNum() < 7 ? team.color : SColor(255, 128, 128, 128);
+						CTeam@ team = rules.getTeam(player.getTeamNum());
+						if (team !is null)
+						{
+							message_color = player.getTeamNum() < 7 ? team.color : SColor(255, 128, 128, 128);
+						}
 					}
 				}
+				client_AddToChat(renamer_name + " has renamed " + old_name + " to " + new_name, message_color);
 			}
-			client_AddToChat(renamer_name + " has renamed " + old_name + " to " + new_name, message_color);
 
 			carried.server_Die();
 		}
