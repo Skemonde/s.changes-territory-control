@@ -50,6 +50,13 @@ void onInit(CBlob@ this)
 	this.set_Vec2f("shop offset", Vec2f(0, 0));
 	this.set_Vec2f("shop menu size", Vec2f(6, 4));
 	this.set_string("shop description", "Merchant");
+	
+	if (this.hasTag("name_changed"))
+	{
+		this.setInventoryName(this.get_string("text"));
+		this.set_string("shop description", this.get_string("text"));
+	}
+	
 	this.set_u8("shop icon", 25);
 
 	// {
@@ -390,6 +397,7 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 				this.set_string("shop description", this.get_string("text"));
 				this.Sync("shop description", true);
 				carried.server_Die();
+				this.Tag("name_changed");
 			}
 		}
 		if (isClient())
