@@ -73,30 +73,30 @@ void announceKills(CPlayer@ player)
     switch(player.getAssists()) 
     {
         case 5:
-            Sound::Play("Unstoppable.ogg");
 			if (isClient())
 			{
+				Sound::Play("Unstoppable.ogg");
 				client_AddToChat(playerName + " murdered 5 in a row !", SColor(255, 255, 0, 0));
 			}
             break;
         case 10:
-            Sound::Play("HolyShit.ogg");
 			if (isClient())
 			{
+				Sound::Play("HolyShit.ogg");
 				client_AddToChat(playerName + " has slayed 10 in a row, be careful !", SColor(255, 255, 0, 0));
 			}
             break;
         case 20:
-            Sound::Play("GodLike.ogg");
 			if (isClient())
 			{
+				Sound::Play("GodLike.ogg");
 				client_AddToChat(playerName + " exterminated 20 souls, may God help us !", SColor(255, 255, 0, 0));
 			}
             break;
         case 30:
-            Sound::Play("MonsterKill.ogg");
 			if (isClient())
 			{
+				Sound::Play("MonsterKill.ogg");
 				client_AddToChat(playerName + " wiped out the server with a 30 killstreak, it's over !", SColor(255, 255, 0, 0));
 			}
             break;
