@@ -272,6 +272,19 @@ void onInit(CBlob@ this)
 		AddRequirement(s.requirements, "coin", "", "Coins", 15);
 
 		s.spawnNothing = true;
+	}
+	{
+		ShopItem@ s = addShopItem(this, "Catalyzer for Mithril Reactor", "$icon_catalyzer$", "catalyzer", "Increases reactor's irradiation just like if you put 75 of enriched mithril instead.");
+		AddRequirement(s.requirements, "blob", "mat_mithrilenriched", "Enriched Mithril", 50);
+		AddRequirement(s.requirements, "blob", "mat_mithrilingot", "Mithril Ingot", 5);
+		AddRequirement(s.requirements, "blob", "mat_steelingot", "Steel Ingot", 5);
+		AddRequirement(s.requirements, "coin", "", "Coins", 1000);
+
+		s.customButton = true;
+		s.buttonwidth = 1;
+		s.buttonheight = 1;
+
+		s.spawnNothing = true;
 	}/*
 	{
 		ShopItem@ s = addShopItem(this, "Grappling Hook For Dummies", "$grapplingcertificate$", "grapplingcertificate", "A knight without shield, but with hook!");
@@ -302,6 +315,7 @@ void addTokens(CBlob@ this)
 	AddIconToken("$icon_flippers$", "Flippers.png", Vec2f(16, 16), 0, teamnum);
 	AddIconToken("$icon_backpack$", "Backpack.png", Vec2f(16, 16), 0, teamnum);
 	AddIconToken("$icon_jetpackv2$", "JetpackV2.png", Vec2f(16, 16), 0, teamnum);
+	AddIconToken("$icon_catalyzer$", "Catalyzer.png", Vec2f(9, 11), 0, teamnum);
 }
 
 void onTick(CBlob@ this)

@@ -28,9 +28,13 @@ void onInit(CBlob@ this)
 	this.getSprite().SetZ(-10.0f);
 
 	this.set_f32("pressure", 0.00f);
-	this.set_f32("upgrade", 0.00f);
 	this.set_f32("pressure_max", 150000.00f);
 	this.set_string("inventory_name", "Chemical Laboratory");
+	
+	if (this.hasTag("upgraded"))
+		this.set_f32("upgrade", this.get_f32("upgrade"));
+	else
+		this.set_f32("upgrade", 0.00f);
 
 	this.addCommandID("lab_react");
 	this.addCommandID("lab_add_heat");
@@ -72,10 +76,10 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 			CBlob@ carried = caller.getCarriedBlob();
 			if (carried !is null && carried.getName() == "mat_copperingot")
 			{
-				if (carried.getQuantity() >= 1)
+				if (carried.getQuantity() >= 10)
 				{
 					
-					int remain = carried.getQuantity() - 1;
+					int remain = carried.getQuantity() - 10;
 					if (remain > 0)
 					{
 						carried.server_SetQuantity(remain);
@@ -85,7 +89,8 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 						carried.Tag("dead");
 						carried.server_Die();
 					}
-					this.add_f32("upgrade", 2000.00f);
+					this.add_f32("upgrade", 20000.00f);
+					this.Tag("upgraded");
 				}
 			}
 		}
@@ -113,7 +118,7 @@ void GetButtonsFor(CBlob@ this, CBlob@ caller)
 			{
 				CBitStream params;
 				params.write_u16(caller.getNetworkID());
-				CButton@ button = caller.CreateGenericButton(23, Vec2f(3, -2), this, this.getCommandID("upgrade"), "Upgrade Druglab", params);
+				CButton@ button = caller.CreateGenericButton(23, Vec2f(3, -2), this, this.getCommandID("upgrade"), "Upgrade Druglab for 10 Copper Ingots", params);
 				button.deleteAfterClick = false;
 			}
 		}

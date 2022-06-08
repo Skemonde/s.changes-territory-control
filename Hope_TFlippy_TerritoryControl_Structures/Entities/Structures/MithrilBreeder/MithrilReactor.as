@@ -22,7 +22,11 @@ void onInit(CBlob@ this)
 	this.getSprite().SetZ(-10.0f);
 	
 	this.set_f32("irradiation", 0.00f);
-	this.set_f32("upgrade", 0.00f);
+	
+	if (this.hasTag("upgraded"))
+		this.set_f32("upgrade", this.get_f32("upgrade"));
+	else
+		this.set_f32("upgrade", 0.00f);
 
 	this.addCommandID("upgrade");
 }
@@ -37,7 +41,7 @@ void GetButtonsFor(CBlob@ this, CBlob@ caller) //Mutate button
 		{
 			CBitStream params;
 			params.write_u16(caller.getNetworkID());
-			CButton@ button = caller.CreateGenericButton(23, Vec2f(0, -6), this, this.getCommandID("upgrade"), "Upgrade Reactor", params);
+			CButton@ button = caller.CreateGenericButton(23, Vec2f(0, -6), this, this.getCommandID("upgrade"), "Upgrade Reactor for 2 Mithril or Steel Bars", params);
 			button.deleteAfterClick = false;
 		}
 	}
@@ -51,12 +55,12 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params) //Mutate command
 		if (caller !is null)
 		{
 			CBlob@ carried = caller.getCarriedBlob();
-			if (carried !is null && carried.getName() == "mat_mithrilingot")
+			if (carried !is null && (carried.getName() == "mat_mithrilingot" || carried.getName() == "mat_steelingot"))
 			{
-				if (carried.getQuantity() >= 1)
+				if (carried.getQuantity() >= 2)
 				{
 					
-					int remain = carried.getQuantity() - 1;
+					int remain = carried.getQuantity() - 2;
 					if (remain > 0)
 					{
 						carried.server_SetQuantity(remain);
@@ -66,7 +70,8 @@ void onCommand(CBlob@ this, u8 cmd, CBitStream @params) //Mutate command
 						carried.Tag("dead");
 						carried.server_Die();
 					}
-					this.add_f32("upgrade", 1000.00f);
+					this.add_f32("upgrade", 2000.00f);
+					this.Tag("upgraded");
 				}
 			}
 		}
@@ -84,9 +89,10 @@ void onTick(CBlob@ this)
 		const f32 mithril_count = inv.getCount("mat_mithril");
 		const f32 e_mithril_count = inv.getCount("mat_mithrilenriched");
 		const f32 gold_count = inv.getCount("mat_gold");
+		const f32 catalyzer = inv.getCount("catalyzer");
 		const f32 upgrade = this.get_f32("upgrade");
 		
-		const f32 irradiation = Maths::Pow((mithril_count * 3.00f) + (e_mithril_count * 15.00f), 2) / 400.00f;
+		const f32 irradiation = Maths::Pow((mithril_count * 3.00f) + (e_mithril_count * 15.00f) + (catalyzer * 1125.00f), 2) / 400.00f;
 		const f32 max_irradiation = water ? 30000.00f + upgrade : 9000.00f + (upgrade / 4);
 		
 		this.set_f32("irradiation", irradiation);
